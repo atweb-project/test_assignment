@@ -1,0 +1,1166 @@
+
+* {
+	margin:0; 
+	padding:0;
+	background-repeat: no-repeat;
+}
+
+html, body {
+	background-color:#ffffff;
+	text-align:center;
+	width:100%;
+	min-width: 320px;
+	font-family:"Helvetica", "Arial", "Sans-Serif";	
+    font-weight:normal;
+    background-image:url(http://seed1.watermelonduck.com/page_bg.gif);
+	background-position:top right;
+	background-repeat:repeat-y;	
+}
+body {
+	padding-top:25px;
+	color:#999;
+	font-size: 14px;
+}
+a {
+	text-decoration:none;
+}
+abbr {
+	border:0;
+}
+
+/* Remove margins for navigation lists */
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display:block; }
+
+a:link {color:#49a0d8}
+a:visited {color:#49a0d8}
+a:hover {color:#49a0d8}
+a:active {color:#dddddd}
+
+.subtleLink:link {color:#999;}
+.subtleLink:visited {color:#999;}
+.subtleLink:active {color:#999;}
+.subtleLink:hover {color:#49a0d8; text-decoration:underline;}
+
+img {
+	border: 0;
+	border-style: none;
+}
+
+ul {	
+	list-style-position:inside;
+	list-style-type:none;
+}
+
+ol {
+	margin-left:20px;
+}
+
+h1 {
+	text-align: center;
+	font-size: 24px;
+	color:#444;
+	margin: 4%;
+	font-family: "Droid Serif", "Serif";
+	font-weight:bold;
+	font-variant:small-caps;
+}
+
+h2 {
+	margin:4%;
+	font-size: 18px;
+	color:#444;
+	font-family: "Droid Serif", "Serif";
+    font-weight:bold;
+}
+
+h2 a:link, h2 a:visited {
+	color:#444;
+}
+
+h2 a:hover, a:active {
+	color:#49a0d8;
+}
+
+h3 {
+	font-size: 16px;
+	color:#557755;
+	font-family: "Droid Serif", "Serif";
+}
+
+p {
+	margin:4%;
+}
+
+#page {
+	margin: 0 auto;
+	text-align: left;
+	width: 100%;
+	max-width:1000px;
+	min-width:1000px; /* For browsers without media query support */
+}
+
+input, dt, textArea {
+	margin: 15px 0;	
+}
+
+/* ====== media ====== */
+
+.media {}
+.media, .hd {overflow:hidden; _overflow:visible; zoom:1;}
+.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
+.media, .ft {overflow:hidden; _overflow:visible; zoom:1;}
+.media .img {float:left;}
+.media .img img{display:block;}
+.media .imgExt{float:right;}
+
+
+.photo { border: 2px solid #DDDDDD; padding: 2px; margin: 15px 0;}
+
+.bubble {
+	border: solid 1px #ddd;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 2px 2px 5px #ccc;
+	-webkit-box-shadow: 2px 2px 5px #ccc;
+	box-shadow: 2px 2px 5px #ccc;
+}
+
+.articleList article {
+	margin-bottom: 20px;
+}
+
+.subtitle {
+	text-align: center;
+	border-bottom: 1px dashed #CCC;
+	padding-bottom: 40px;
+	margin-bottom: 40px;
+}
+
+/**
+* Header
+*/
+#williamMaloneLogo {
+	display:block;
+	margin:0 0 40px 10%;
+	background-position: center;
+	background-image:url(http://seed1.watermelonduck.com/head_logo.png);
+	width:238px;
+	height:28px;
+	transition: margin-bottom 0.25s linear;
+	-webkit-transition: margin-bottom 0.25s linear;
+	-moz-transition: margin-bottom 0.25s linear;
+	-ms-transition: margin-bottom 0.25s linear;
+}
+
+/**
+* Nav
+*/
+header img {
+	display:block;
+	padding:0;
+}
+#nav {
+	margin:0 auto;
+	width:530px;
+	height:44px;
+}
+.navLink {
+	font-size: 0px; /* fix for IE 7 and below */	
+	
+}
+.navLink a {
+	float:left;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image:url(http://seed1.watermelonduck.com/nav-sprite.png);
+	display:block;
+	height:44px;
+	width:80px;
+	margin-left: 13px;
+	margin-right: 13px;
+	
+}
+
+#nav img {
+	padding:0;
+}
+#homeLink a {background-position:0px 0px;}
+#homeLink a:hover {background-position:0px -44px;}
+#homeLinkDown a {background-position:0px -44px;}
+
+#articlesLink a {background-position:-80px 0px;}
+#articlesLink a:hover {background-position:-80px -44px;}
+#articlesLinkDown a {background-position:-80px -44px;}
+
+#worksLink a {background-position:-160px 0px;}
+#worksLink a:hover {background-position:-160px -44px;}
+#worksLinkDown a {background-position:-160px -44px;}
+
+#aboutLink a {background-position:-240px 0px;}
+#aboutLink a:hover {background-position:-240px -44px;}
+#aboutLinkDown a {background-position:-240px -44px;}
+
+#contactLink a {background-position:-320px 0px;}
+#contactLink a:hover {background-position:-320px -44px;}
+#contactLinkDown a {background-position:-320px -44px;}
+
+#underNav {
+	width:100%;
+}
+	#underNavLeft {
+		float: left;
+		width: 20px;
+	}
+	#underNavCenter {
+		height:35px;
+		margin-left: 20px;
+		margin-right: 20px;
+		background-repeat:repeat-x;
+		background-image:url(http://seed2.watermelonduck.com/head_nav_bg.png);
+	}
+	#underNavRight {
+		float:right;
+		width:20px;
+	}
+#navDownIcon {
+	visibility:hidden;
+}
+#navOverIcon {
+	visibility:hidden;
+}
+	
+#content {
+	width:100%;
+	background-image:url(http://seed2.watermelonduck.com/content_bg_left.png);
+	background-repeat:repeat-y;
+	background-position:left;
+	
+}	
+	#contentWrapper {
+		width:100%;
+		background-image:url(http://seed2.watermelonduck.com/content_bg_right.png);
+		background-repeat:repeat-y;
+		background-position:right;
+	}
+		#contentColorWrapper {
+			margin:0 20px 0 20px;
+			background-color:#FFF;
+			padding-top:20px;
+		}
+	
+		#contentLeft {
+			float: left;
+			width: 215px;
+			padding:0;
+			font-size:10px;
+		}
+
+		#contentCenter {
+			padding-bottom: 20px;
+			margin:0 20px;
+			margin-left:215px;
+			margin-right:215px;
+			-webkit-transition: margin-right 0.25s linear;
+			-webkit-transition: margin-left 0.25s linear;
+		}
+
+		#contentRight {
+			float: right;
+			width: 215px;
+			font-size: 10px;
+			padding:0;
+			font-family: Helvetica, Arial, sans-serif;
+		}	
+		#contentRight object{
+			display:block;
+		}
+#head {
+	font-size:12px;
+	text-align:center;
+	color:#999;
+	padding:0 40px 20px 40px;
+	border-bottom:1px dashed #CCC;
+	margin-bottom:10px;
+}
+
+#head.paragraph {
+	text-align:left;	
+}
+
+#contentEndCap {
+	width:100%;
+}
+		#overFooterLeft {
+			float: left;
+			width: 20px;
+		}
+
+		#overFooterCenter {
+			height:35px;
+			margin-left: 20px;
+			margin-right: 20px;
+			background-repeat:repeat-x;
+			background-image:url(http://seed2.watermelonduck.com/foot_bg.png);
+		}
+
+		#overFooterRight {
+			float:right;
+			width:20px;
+		}
+
+#overFooter img {
+	padding:0;
+}
+
+footer {
+	text-align:center;
+}
+
+#footer {
+	margin: 0px auto; 
+	margin-bottom:30px;
+	width:252px;
+	height:32px;
+	text-align:center;
+}
+
+.footerNav {
+	border-right:1px #ccc solid;
+	padding-right:5px;
+}
+
+.footerNav:last-child {
+	border-right:none;	
+}
+
+#footer img {
+	padding:0;
+}
+
+.footerIcon a {
+	float:left;
+	background-image:url(http://seed3.watermelonduck.com/social_sprite.png);
+	display:block;
+	height:32px;
+	width:32px;
+	margin:0 5px;
+}
+
+#linkedIn a {background-position:0px 0px;}
+#linkedIn a:hover {background-position:0px -32px;}
+
+#twitter a {background-position:-32px 0px;}
+#twitter a:hover {background-position:-32px -32px;}
+
+#facebook a {background-position:-64px 0px;}
+#facebook a:hover {background-position:-64px -32px;}
+
+#flickr a {background-position:-96px 0px;}
+#flickr a:hover {background-position:-96px -32px;}
+
+#delicious a {background-position:-128px 0px;}
+#delicious a:hover {background-position:-128px -32px;}
+
+#rssIcon a {background-position:-192px 0px;}
+#rssIcon a:hover {background-position:-192px -32px;}
+
+#googleIcon a {background-position:-224px 0px;}
+#googleIcon a:hover {background-position:-224px -32px;}
+
+#githubIcon a {background-position:-160px 0px;}
+#githubIcon a:hover {background-position:-160px -32px;}
+
+#underFooter {
+	margin:0 0 10px 0;
+	padding:0;
+	font-size:10px;
+	color:#999;
+	text-align:center;
+	display:block;
+}
+
+#underFooter a {
+	padding-left:5px;
+	padding-right:5px;
+
+}
+
+#copyright {
+	color:#999;
+	margin:20px 50px 0 50px;
+	padding-bottom:20px;
+	text-align:center;
+	font-size:9px;	
+	display:block;
+}
+
+.roundedBox {
+	border: solid 1px #ddd;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 2px 2px 5px #ccc;
+	-webkit-box-shadow: 2px 2px 5px #ccc;
+	box-shadow: 2px 2px 5px #ccc;
+}
+
+.mobile {
+	display:none;	
+}
+
+.iPhone {
+	display:none;	
+}
+
+.clear {
+	clear:both;
+}
+
+.clearLeft {
+	clear:left;
+}
+
+.clearRight {
+	clear:right;
+}
+
+.homeArticleTitle {
+	margin-bottom: 0;	
+}
+
+/**
+* Articles
+*/
+.upperDivide {
+	border-top:1px dashed #ccc;
+	padding-top:10px;
+}
+.arrowAccent {
+	background-image:url(http://seed3.watermelonduck.com/arrow_0_deg.png);
+	background-repeat:no-repeat;
+	background-position:left center;
+	padding:15px 0 10px 40px;
+	width:100%;
+	margin-left: -20px;
+
+}
+.description {
+	color:#666;
+	float:left;
+	margin-left:40px;	
+	width:580px;
+}
+
+.preview {
+	padding:0px 40px 20px 10px;
+	float:right;
+	display:block;
+}
+
+/**
+* Works
+*/
+.collection {
+	font-size:12px;
+}
+.collection ul {
+	text-align:left;
+	list-style-type: disc;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+.collection p {
+	margin: 0 0 10px 0;
+	text-align:left;
+	
+}
+.collection img {
+	text-align:center;
+	width: 100%;
+	height: auto;
+}
+.workTitle {
+	margin: 30px 0 10px 0;
+}
+/**
+* Home
+*/
+#homePageContent {
+	color:#999;
+	padding:0;
+	margin:0;
+	margin-top:4%;
+}
+
+#homePageContent p.subtitle {
+	text-align:left;
+}
+
+.label {
+	margin: 15px 0;
+    min-height: 115px;
+	display: block;
+	overflow: hidden;
+	
+}
+
+.labelLarge {
+	margin: 30px 0;
+    min-height: 200px;
+	display: block;
+}
+
+.labelTitle {
+	margin:0;
+	font-family:"Vollkorn", "Trajan Pro", Georgia, serif;
+	color:#444;
+	padding:15px 10px 15px 15px;
+	line-height:100%;
+}
+
+.labelBlurb {
+	margin:0;
+    font-family: Helvetica, Arial, sans-serif;
+	font-weight:normal;
+	color:#999;
+	padding:0 15px 10px 15px;
+}
+
+.labelImageRight {
+	float:right;
+
+	padding:0;
+	padding-left:10px;
+	margin:0;
+    display:block;
+}
+
+#more {
+	font-size:14px;
+	text-align:right;
+}
+
+#more a {
+	color:#49a0d8;
+}
+
+.news {
+	margin: 15px;
+}
+
+.newsDate {
+	border-top: 1px solid #ddd;
+	padding-top: 5px;
+	padding-left: 15px;
+	font-size:10px;
+}
+
+/**
+* Resume
+*/
+
+#resumePageContent {
+	color:#000;
+	font-weight:normal;
+	list-style:disc;
+}
+
+.resumeSubHeader {
+	color: #000;
+}
+
+.resumeSubSection {
+	margin-top: 30px;
+}
+
+.resumeList {
+	list-style:none;
+	padding:0 30px 0 20px;
+}
+
+.resumeBody {
+	margin-left: 4%;
+}
+
+.resumeBullet {
+	list-style:disc;
+	margin:15px 0 15px 40px;
+}
+
+.resumeBulletImg {
+	float:right;
+}
+
+.resumeList li {
+	color:#222;
+}
+
+.compactList {
+	margin-left: 4%;
+}
+
+.compactList li {
+	float: left;
+	margin-right: 5px;
+}
+
+.compactList li:after {
+	content: ", ";
+}
+
+.compactList .lastItem:after {
+	content: "";
+}
+
+.expandedList {
+	padding-left:35px;
+	padding-bottom:5px;
+	list-style-type:disc;
+	list-style-position:outside;
+}
+
+.subList {
+	padding-left:40px;
+	list-style-type:disc;
+	list-style-position:outside;
+}
+
+.subNotList {
+	padding-left:25px;
+}
+
+.expandedList li {
+	list-style-type:disc;
+	list-style-position:outside;
+}
+
+.moreButton {
+	border: 0;
+	text-transform: uppercase;
+	background: #49a0d8;
+	font-size: 14px;
+	color: #eeeeee;
+	margin: 15px auto 5px auto;
+	cursor: pointer;
+	width: 200px;
+	height: 50px;
+	letter-spacing: 1px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	outline: 0;
+}
+
+.moreButton:hover {
+	color: #eee;
+	background: #999;
+}
+
+.moreButtonContainer {
+	width: 100%;
+	text-align: center;
+}
+
+#moreExperienceButton {
+	display:none;
+}
+#moreExperienceList {
+	display:none;
+}
+
+.leftCol {
+	float: left;
+}
+
+.rightCol {
+	text-align: right;
+	float: right;
+}
+
+.adobeCert {
+	margin: 30px auto 0 auto;
+	width: 173px;
+	height: 40px;
+	background-image: url(http://seed3.watermelonduck.com/adobe-certified-expert.png);
+}
+
+/**
+* Contact
+*/
+
+.field {
+	border: 1px solid #ccc;
+	font-size:16px;
+	padding:5px;
+	display:block; 
+	width:100%;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.field:invalid {
+	background-color: pink;
+	border: 1px solid #f22;
+}
+
+fieldset {
+	margin:0;
+	border:0;
+	text-align:left;
+}
+
+.contactLabel {
+	margin-bottom:0;
+}
+.contactInput input, .contactInput textArea {
+	margin-top:5px;
+}
+
+dt {
+	text-align:left;
+	font-size:12px;
+	color:#444444;
+	font-weight:bold;
+}
+.hide {
+	display: none;
+}
+.submitButton {
+	border: 0;
+	text-transform: uppercase;
+	background: #49a0d8;
+	font-size: 14px;
+	color: #eeeeee;
+	margin: 15px 0 5px 0;
+	cursor: pointer;
+	width: 200px;
+	height: 50px;
+	letter-spacing: 1px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	outline: 0;
+}
+
+.submitButton:hover {
+	color: #eee;
+	background: #999;
+}
+
+.emailSent {
+	background: #eee;
+	color: #999;
+}
+
+.submitButton:active {
+	color: #eee;
+	background: #df4b26;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="submit"]:focus, textarea:focus {
+    background-image:none;
+    background:#ddd;
+    /*border:solid 1px #df4b26;*/
+}
+
+/**
+* Sitemap
+*/
+
+.sitemapList {
+	list-style:disc;
+	font-size: 14px;
+	padding:5px 5px 20px 80px;
+}
+
+.sitemapListItem {
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+/**
+* About
+*/
+
+.profileImg {
+	/*border:2px solid #ccc;*/
+	background-image:url(http://www.williammalone.com/about/profile.jpg);
+	display:block;
+	width:145px;
+	height:145px;
+	margin-left:40px;
+	transition: background-image 0.25s linear;
+	-webkit-transition: background-image 0.25s linear;
+	-moz-transition: background-image 0.25s linear;
+	-ms-transition: background-image 0.25s linear;
+}
+
+#aboutPageContent ul {
+	list-style:disc;
+	padding:0 5px 0 40px;
+}
+.yoursTruly {
+	color:#df4b26;
+	font-family: 'Reenie Beanie', arial, serif;
+	font-size:24px;
+	text-align:center;
+}
+
+#followMe {
+	margin-bottom:5px;	
+}
+
+/**
+* Page Not Found 404
+*/
+#notFoundPageContent {	
+	padding:20px ;
+	text-align:center;
+}
+
+/* Briefs */
+.briefExample {
+	text-align:center;
+	padding:20px;
+}
+
+.briefQuestion {
+	margin:10px 0 40px 0;
+	text-align:left;
+	font-size:18px;
+	font-weight:normal;
+}
+	
+.briefListing { font-size:10px; }
+
+.briefsHeader {
+	font-size:12px;
+	text-align:center;
+	color:#999;
+	padding:20px 0;
+	border-bottom:1px dashed #CCC;
+	margin-bottom:40px;
+}
+
+.briefsFooter {
+	font-size:12px;
+	text-align:center;
+	color:#999;
+	padding:20px 40px 20px 40px;
+	border-top:1px dashed #CCC;
+	margin-top:40px;
+}
+
+/* Related Briefs */
+#relatedBriefs {
+	padding:20px 0;
+}
+
+.relatedBrief { 
+	background-image:url(http://seed1.watermelonduck.com/question-mark.png);
+	background-position:top left;
+	background-repeat:no-repeat;	
+	padding: 10px 10px 10px 30px; 
+	margin:15px;
+	font-size:10px;
+	color:#999;
+}
+
+/* Related Articles */
+#relatedArticles {
+	padding:20px 0 20px 0;
+}
+
+.relatedArticle {
+	margin:15px;
+	padding: 10px;
+	color:#999;
+	text-align:center;
+	padding-top:20px;
+}
+
+.relatedArticleTitle {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 10px;
+}
+
+/* Tweets */
+#tweets {
+	margin-bottom: 15px;
+}
+
+.tweet {
+	margin: 15px;
+	padding: 10px;
+	color: #999;
+}
+
+#content li.tweet {
+	font-size: 10px;
+}
+
+.tweet a.at {
+	color: #777;
+}
+
+.tweet a.hash {
+	color: #ddd;
+}
+
+@media screen and (max-width: 1000px) {
+	#page {
+		min-width: 320px; /* For browsers without media query support */	
+	}
+	#contentRight {
+		display:none;
+	}
+	#contentCenter {
+		margin-right:5%;
+	}
+	.collection img {
+		width:100%;	
+		height:auto;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	
+}
+
+@media screen and (max-width: 768px) {
+	#tableOfContents {
+		display:auto;
+	}
+	#contentLeft {
+		float:none;
+		text-align:center;
+		width:100%;
+	}
+	#contentCenter {
+		margin-left:5%;
+		-webkit-transition: margin-left 0.25s linear;
+	}
+	
+	.profileImg {
+		margin:0 auto 0 auto;
+		background-image:url(http://www.williammalone.com/about/profile_long.jpg);
+		width:372px;
+		height:198px;
+		/*transition: background-image 0.25s linear;
+		-webkit-transition: background-image 0.25s linear;
+		-moz-transition: background-image 0.25s linear;
+		-ms-transition: background-image 0.25s linear;*/
+		transition: width 0.25s linear;
+		-webkit-transition: width 0.25s linear;
+		-moz-transition: width 0.25s linear;
+		-ms-transition: width 0.25s linear;
+		background-position: center;
+	}
+	.subtitle {
+		border: none;
+		padding: 0;
+		margin: 0;
+		margin-bottom: 30px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	#navOverIcon, #navDownIcon {
+		display:none;	
+	}
+	#nav {
+		width:320px;
+	}
+	#homeLink, #homeLinkDown {
+		display: none;	
+	}
+	.navLink a {
+		margin: 0;
+	}
+}
+@media screen and (max-width: 480px) {
+
+	body {
+		min-width:320px;
+		background-image:none;
+	}
+	#content {
+		margin:0;
+		background-image: none;
+	}
+	#contentWrapper {
+		margin:0;
+		background-image: none;
+	}
+	#contentColorWrapper {
+		padding-top: 0;
+		margin:0;
+	}
+	#underNav {
+		display:none;	
+	}
+	#contentEndCap {
+		display:none;	
+	}
+	.upperDivide {
+			
+	}
+	.sitemapList {
+		padding:0;
+	}
+	.sitemapList li {
+		list-style:none;
+	}
+	.mobileButton {
+		margin:10px 4%;
+		border: solid 2px #ddd;
+		padding:10px 10px;
+		display:block;
+		font-size:18px;
+		border: solid 1px #ddd;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		-moz-box-shadow: 2px 2px 5px #ccc;
+		-webkit-box-shadow: 2px 2px 5px #ccc;
+		box-shadow: 2px 2px 5px #ccc;
+		width:85%;
+	}
+	.down {
+		background-color: #DE4C0E;
+	}
+	 a.down:visited {
+		color:#fff;
+	}
+	#underFooter {
+		overflow:hidden;
+	}
+	#underFooter > .mobileButton {
+		float: left;
+		width: 38%;
+	}
+	#underFooter > .mobileButton: last-child {
+		width: 100%;
+	}
+	#williamMaloneLogo {
+		margin:0 auto 20px auto;
+		transition: margin-bottom 0.25s linear;
+		-webkit-transition: margin-bottom 0.25s linear;
+		-moz-transition: margin-bottom 0.25s linear;
+		-ms-transition: margin-bottom 0.25s linear;
+	}
+	#articlesLinkDown a {
+		background-color: #de4c0e;
+		background-position: -80px -88px;
+	}
+	#worksLinkDown a {
+		background-color: #de4c0e;
+		background-position: -160px -88px;
+	}
+	#aboutLinkDown a {
+		background-color: #de4c0e;
+		background-position: -240px -88px;
+	}
+	#contactLinkDown a {
+		background-color: #de4c0e;
+		background-position: -320px -88px;
+	}
+	.profileImg {
+		border: 0;
+	}
+	.resumeHeader {
+		text-align: center;
+	}
+	.adobeCert {
+		margin-bottom: 15px;
+	}
+	.resumeBullet {
+		margin-left: 0;
+	}
+	.resumeSubSection {
+		margin-bottom: 30px;
+	}
+	.leftCol {
+		float: none;
+		text-align: center;
+	}
+	.rightCol {
+		float: none;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 372px) {
+	.profileImg {
+		width:100%;
+		height:150px;
+		border:0;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	h1 {
+		margin-left: 4%;
+		margin-right: 4%;
+	}
+	body {
+		padding-top: 15px;
+	}
+	#contentCenter {
+		margin-left:4%;
+		margin-right:4%;
+		transition: margin-left 0.25s linear;
+		-webkit-transition: margin-left 0.25s linear;
+		-moz-transition: margin-left 0.25s linear;
+		-ms-transition: margin-left 0.25s linear;
+	}
+	.navLink a {
+		width:80px;
+	}
+	#copyright {
+		margin-left: 4%;
+		margin-right: 4%;
+	}
+}
+
+/* -- Density --*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min-device-pixel-ratio: 1.5){
+
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2){
+	#williamMaloneLogo {
+		background-image:url(http://seed1.watermelonduck.com/head_logo-2x.png);
+		background-size: 100%;
+	}
+	
+	.profileImg {
+		background-image:url(http://www.williammalone.com/about/profile-2x.jpg);
+		background-size: 100%;
+	}
+
+}
+
+@media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2){
+	.profileImg {
+		background-image:url(http://www.williammalone.com/about/profile_long-2x.jpg);
+		background-size: 100%;
+	}
+}

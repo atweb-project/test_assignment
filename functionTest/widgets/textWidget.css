@@ -1,0 +1,12 @@
+.textEditBox {
+
+ /* border: 1px #000000 solid; */
+  
+  overflow: auto;
+}
+
+.textEditBox .sourceText {
+  padding: 0;
+  margin: 0;
+  
+}

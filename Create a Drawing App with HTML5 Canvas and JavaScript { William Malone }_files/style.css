@@ -1,0 +1,41 @@
+#canvasSimpleDiv, #canvasSimpleColorsDiv, #canvasSimpleSizesDiv, #canvasSimpleToolsDiv, #canvasSimpleOutlineDiv {
+	/*border:dashed 1px #557755;*/
+	cursor:wait;
+	width:490px;
+	height:220px;	
+}
+
+#canvasSimple, #canvasSimpleColors, #canvasSimpleSizes, #canvasSimpleTools, #canvasSimpleOutline {
+	border:solid 1px #333;
+	cursor:pointer;
+	width:490px;
+	height:220px;
+}
+
+.clearCanvasLink {
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.standardList {
+	list-style-type:disc;
+}
+
+.demoToolList {
+	list-style-type:none;
+	font-size:12px;
+	padding:0 0 20px 20px;
+}
+
+button {
+	margin:2px;
+	padding:3px;
+}
+
+a.watermelonDuck {
+	font-family:'Reenie Beanie',arial,san-serif; color:#cc3399; font-size:18px;
+}
+
+a.watermelonDuck:hover {
+	text-decoration:underline;
+}

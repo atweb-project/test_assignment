@@ -1,0 +1,94 @@
+ .function ul li {
+ 	background:#FFF;
+	border:none;
+	box-shadow: none;
+	display:block;
+	height:45px;
+	width:45px;
+	margin:4px 4px 15px 4px;
+	float:left;
+	list-style:none;
+	border-radius:6px;
+	position:relative;
+    background-size: 80% !important;
+    padding: 2px !important;
+	}
+	
+	
+	 .function ul li span.text{
+	top: 45px;
+	width: 100%;
+	position: absolute;
+	font-family: Calibri, Arial;
+	text-align: center;
+	font-size: 75%;
+	margin: 0;
+	padding: 4px 0;
+	display: block;
+    line-height: 1.0em;
+}
+	.ui-tabs-anchor {
+    font-size: 11px;
+}
+	.ui-tabs {
+	  zoom:0.8;
+	  height:600px
+	}
+		
+	.button {
+	 cursor:pointer
+	
+	}
+	
+	.draggable {
+	 cursor:move
+	}
+	
+	
+	
+	.button input, .button a{
+    background: none !important;
+        background-color: #F08834 !important;
+    background-repeat: no-repeat;
+    border: 0px;
+    padding: 2px 0px 5px 0px;
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 1px;
+    -moz-border-radius: 5px 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: white;
+    background-color: #F08834;
+    text-decoration: none;
+    padding: 4px 10px 5px 10px;
+    margin-left: 3px !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+    text-indent: 0!important;
+    height: auto !important;
+    width: auto !important;
+    
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

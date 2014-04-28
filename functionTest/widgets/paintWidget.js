@@ -7,85 +7,50 @@
         MyWidget.call(this, pid, ptype)
 
        //Added for paint tool
-        var canvas;
-        var context;
-        var canvasWidth = 470;
-        var canvasHeight = 195;
-        var padding = 25;
-        var lineWidth = 8;
-        var colorPurple = "#cb3594";
-        var colorGreen = "#659b41";
-        var colorYellow = "#ffcf33";
-        var colorBrown = "#986928";
-        var outlineImage = new Image();
-        var crayonImage = new Image();
-        var markerImage = new Image();
-        var eraserImage = new Image();
-        var crayonBackgroundImage = new Image();
-        var markerBackgroundImage = new Image();
-        var eraserBackgroundImage = new Image();
-        var crayonTextureImage = new Image();
-        var clickX = new Array();
-        var clickY = new Array();
-        var clickColor = new Array();
-        var clickTool = new Array();
-        var clickSize = new Array();
-        var clickDrag = new Array();
-        var paint = false;
-        var curColor = colorPurple;
-        var curTool = "crayon";
-        var curSize = "normal";
-        var mediumStartX = 18;
-        var mediumStartY = 19;
-        var mediumImageWidth = 93;
-        var mediumImageHeight = 46;
-        var drawingAreaX = 111;
-        var drawingAreaY = 11;
-        var drawingAreaWidth = 267;
-        var drawingAreaHeight = 200;
-        var toolHotspotStartY = 23;
-        var toolHotspotHeight = 38;
-        var sizeHotspotStartY = 157;
-        var sizeHotspotHeight = 36;
-        var sizeHotspotWidthObject = new Object();
-        sizeHotspotWidthObject.huge = 39;
-        sizeHotspotWidthObject.large = 25;
-        sizeHotspotWidthObject.normal = 18;
-        sizeHotspotWidthObject.small = 16;
-        var totalLoadResources = 8;
-        var curLoadResNum = 0;
-       
+	        var canvas;
+        	var context;
+        	//var canvasWidth = 490;
+        	//var canvasHeight = 220;
+        	var padding = 25;
+        	var lineWidth = 8;
+        	
         //end of addition 
        
         this.createElement= function (param) {
-
-            var paintText = 'You can draw whatever you want in Preview mode!'
+        	
+        	var paintelement = '<div id="canvasDiv"></div>'
+            
 
 
             if (typeof (param) !== 'undefined') {
 
-                if (typeof (param.text) !== 'undefined') paintText = param.text
+                if (typeof (param.paintelement) !== 'undefined') paintelement = param.paintelement
 
             }
 
            
-            return '<div id="' + this.getId()  +  '" style="width:100%; height:100%">'+ paintText +'<div id="canvasDiv"></div></div>'
+            return '<div id="' + this.getId()  +  '" style="width:100%; height:100%">'+ paintelement +'</div>'
 
         },
         
 
 		this.initElement = function(param){
         	//if( appGlobals.isInDesignMode() == false){
+        	this.prepareCanvas()
+       
+        	//}
+		},
 		
-        	var canvasDiv = document.getElementById('canvasDiv');
+		this.prepareCanvas = function(){
+		 	var canvasDiv = document.getElementById('canvasDiv');
         	canvas = document.createElement('canvas');
-        	canvas.setAttribute('width', canvasWidth);
-        	canvas.setAttribute('height', canvasHeight);
+        	//canvas.setAttribute('width', '100%');
+        	//canvas.setAttribute('height', '100%');
         	canvas.setAttribute('id', 'canvas');
         	canvasDiv.appendChild(canvas);
-        	if(typeof G_vmlCanvasManager != 'undefined') {
-        		canvas = G_vmlCanvasManager.initElement(canvas);
-        	}
+        	//if(typeof G_vmlCanvasManager != 'undefined') {
+        	//	canvas = G_vmlCanvasManager.initElement(canvas);
+        	//}
         	context = canvas.getContext("2d");
         	
         	// Add mouse events
@@ -144,12 +109,11 @@
         		     context.stroke();
         		  }
         		}
-        	//}
 		},
 
         this.createJSON = function() {
 
-            return { 'text': $('#'+ this.getId() ).html() }
+            return { 'paintelement': $('#'+ this.getId() ).html() }
 
         }
         
@@ -194,8 +158,8 @@ PaintWidget.init = function () {
 PaintWidget.buttomImage='images/brush_painting.png'
 PaintWidget.typeId= 'paint'
 PaintWidget.myClass= 'paintWidget'
-PaintWidget.initialWidth='500'
-PaintWidget.initialHeight= '230'
+PaintWidget.initialWidth='490'
+PaintWidget.initialHeight= '220'
 PaintWidget.actionsSectionId='paintMenu'
 
 // not actually  needed??

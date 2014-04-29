@@ -36,7 +36,7 @@
 
 		this.initElement = function(param){
         	//if( appGlobals.isInDesignMode() == false){
-        	this.prepareCanvas()
+        	
        
         	//}
 		},
@@ -48,10 +48,10 @@
         	//canvas.setAttribute('height', '100%');
         	canvas.setAttribute('id', 'canvas');
         	canvasDiv.appendChild(canvas);
-        	//if(typeof G_vmlCanvasManager != 'undefined') {
-        	//	canvas = G_vmlCanvasManager.initElement(canvas);
-        	//}
-        	context = canvas.getContext("2d");
+        	if(typeof G_vmlCanvasManager != 'undefined') {
+        		canvas = G_vmlCanvasManager.initElement(canvas);
+        	}
+        	//context = canvas.getContext("2d");
         	
         	// Add mouse events
         	$('#canvas').mousedown(function(e){
@@ -112,8 +112,9 @@
 		},
 
         this.createJSON = function() {
-
-            return { 'paintelement': $('#'+ this.getId() ).html() }
+			this.prepareCanvas()
+            return { 'paintelement': $('#'+ this.getId() ).html() 
+            	}
 
         }
         
@@ -156,7 +157,7 @@ PaintWidget.init = function () {
   //  $("#paintMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
 }
 PaintWidget.buttomImage='images/brush_painting.png'
-PaintWidget.typeId= 'paint'
+PaintWidget.typeId= 'Paint'
 PaintWidget.myClass= 'paintWidget'
 PaintWidget.initialWidth='490'
 PaintWidget.initialHeight= '220'

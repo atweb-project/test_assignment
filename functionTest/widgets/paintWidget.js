@@ -13,12 +13,19 @@
         	//var canvasHeight = 220;
         	var padding = 25;
         	var lineWidth = 8;
+        	var inEditingMode = false
         	
+        	/*
+        	document.addEventListener( "DOMContentLoaded", function(){
+        		this.prepareCanvas()
+        		
+        	}, false );
+        	*/
         //end of addition 
        
         this.createElement= function (param) {
         	
-        	var paintelement = '<div id="canvasDiv"></div>'
+        	//var paintelement = '<div id="canvasDiv"></div>'
             
 
 
@@ -28,31 +35,34 @@
 
             }
 
-           
-            return '<div id="' + this.getId()  +  '" style="width:100%; height:100%">'+ paintelement +'</div>'
+           alert(this.getId());
+            return '<div id="' + this.getId()  +  '" style="width:100%; height:100%"><div id="canvasDiv"></div></div>'
 
         },
         
 
 		this.initElement = function(param){
-        	//if( appGlobals.isInDesignMode() == false){
         	
-       
-        	//}
+        		//return this.prepareCanvas()
+        	
 		},
 		
 		this.prepareCanvas = function(){
+			
 		 	var canvasDiv = document.getElementById('canvasDiv');
         	canvas = document.createElement('canvas');
         	//canvas.setAttribute('width', '100%');
         	//canvas.setAttribute('height', '100%');
         	canvas.setAttribute('id', 'canvas');
+        	  
         	canvasDiv.appendChild(canvas);
+
         	if(typeof G_vmlCanvasManager != 'undefined') {
         		canvas = G_vmlCanvasManager.initElement(canvas);
         	}
-        	//context = canvas.getContext("2d");
-        	
+        	canvas = document.getElementById('canvas');
+        	context = canvas.getContext("2d");
+			
         	// Add mouse events
         	$('#canvas').mousedown(function(e){
         		  var mouseX = e.pageX - this.offsetLeft;
@@ -110,11 +120,25 @@
         		  }
         		}
 		},
+		
+		this.previewInit = function() {
+			if(inEditingMode == true){
+				alert('mypreview executed');
+			}
+		},
 
         this.createJSON = function() {
-			this.prepareCanvas()
-            return { 'paintelement': $('#'+ this.getId() ).html() 
-            	}
+			/*if(inEditingMode == false) {
+				alert(inEditingMode)
+				this.prepareCanvas()
+        	}
+			*/
+        	appGlobals.isInDesignMode()	
+         //  return { 'paintelement': this.prepareCanvas()
+            	//}
+            alert(this.getId());
+         
+            
 
         }
         

@@ -100,6 +100,7 @@ function TextWidget(pid, ptype) {
 		this.wasDoubleClicked = function() {
 		
 			if(inEditingMode == false) {
+				alert(inEditingMode)
 				inEditingMode = true
 			
 				//alert ("i was double clicked")

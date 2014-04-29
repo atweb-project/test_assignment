@@ -161,7 +161,7 @@ function YoutubeWidget (pid, ptype)
 
                 if( typeof (param.autoplay) !== 'undefined') autoplay = param.autoplay
 
-               // alert(" param.url "+param.url+"  param.allowFullscreen " + param.allowFullscreen + " number of params " + param.length)
+                alert(" param.url "+param.url+"  param.allowFullscreen " + param.allowFullscreen + " number of params " + param.length)
 
              }
               

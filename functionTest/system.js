@@ -123,6 +123,7 @@ var widgetlist = []
 
                      
                     $('#myPreviewDiv').dialog('open')
+                    var inEditingMode = true
 
 
 

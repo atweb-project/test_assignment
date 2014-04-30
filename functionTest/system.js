@@ -123,7 +123,15 @@ var widgetlist = []
 
                      
                     $('#myPreviewDiv').dialog('open')
-                    var inEditingMode = true
+                    
+                    var isOpen = $( "#myPreviewDiv" ).dialog( "isOpen" );
+                    if (isOpen = true){
+                    	alert('ok')
+                    	//return 	this.prepareCanvas()
+                    	
+                    	
+                    }
+                    
 
 
 

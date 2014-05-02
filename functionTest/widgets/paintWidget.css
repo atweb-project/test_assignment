@@ -1,6 +1,30 @@
-#canvas{
-    border: 1px solid #333333;
-	cursor: pointer;
-	height: 100%;
-    width: 100%;
+.palette-case {
+    width:260px;
+    margin:auto;
+    text-align:center;
+}
+.palette-box {
+    float:left;
+    padding:2px 6px 2px 6px;
+}
+.palette {
+    border:2px solid #777;
+    height:36px;
+    width:36px;
+}
+.red{
+    background-color:#c22;
+}
+.blue{
+    background-color:#22c;
+}
+.green{
+    background-color:#2c2;
+}
+.white{
+    background-color:#fff;
+}
+.black{
+    background-color:#000;
+    border:2px dashed #fff;
 }

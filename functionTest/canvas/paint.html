@@ -1,102 +1,119 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Paint Widget Canvas</title>
-    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
-    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-    <style>
-    #canvasDiv {
-
-
+<head>
+    <title>Paint Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <style type="text/css">
+    
+body {
+    margin:0px;
+    width:100%;
+    height:100%;
 }
 
+#content{
+    position: absolute;
+    top: 44px;
+    left: 0px;
+    right: 0px;
+    bottom: 46px;
+    overflow:hidden;
+    background-color:#fff;
+    border: 1px solid #000;
+}
 #canvas{
-    border: 1px solid #333333;
-cursor: pointer;
+    cursor:crosshair ;
+    background-color:#fff;
+    
 }
+
     </style>
-    <script type="text/javascript">
-    var canvas;
-    var context;
-    var canvasWidth = 490;
-    var canvasHeight = 220;
-    var padding = 25;
-    var lineWidth = 8;
-    function prepareCanvas()
-{
-        var canvasDiv = document.getElementById('canvasDiv');
-        canvas = document.createElement('canvas');
-        canvas.setAttribute('width', canvasWidth);
-        canvas.setAttribute('height', canvasHeight);
-        canvas.setAttribute('id', 'canvas');
-        canvasDiv.appendChild(canvas);
-        if ( typeof G_vmlCanvasManager != 'undefined') {
-            canvas = G_vmlCanvasManager.initElement(canvas);
+<script type="text/javascript">
+
+    var ctx;
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // setup a new canvas for drawing wait for device init
+        setTimeout(function() {
+            newCanvas();
+        }, 1000);
+
+    }, false);
+
+// function to setup a new canvas for drawing
+    function newCanvas(){
+        //define and resize canvas
+        document.getElementById("content").style.height = window.innerHeight-90;
+        var canvas = '<canvas id="canvas" width="'+window.innerWidth+'" height="'+window.innerHeight+'"></canvas>';
+        document.getElementById("content").innerHTML = canvas;
+
+        // setup canvas
+        ctx=document.getElementById("canvas").getContext("2d");
+
+        ctx.strokeStyle = parent.color;
+        ctx.lineWidth = parent.linewidth;
+
+        // setup to trigger drawing on mouse
+        drawMouse();
+
         }
-        context = canvas.getContext("2d");
-
-        $('#canvas').mousedown(function(e) {
-            var mouseX = e.pageX - this.offsetLeft;
-            var mouseY = e.pageY - this.offsetTop;
-
-            paint = true;
-            addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
-            redraw();
-        });
-
-        $('#canvas').mousemove(function(e) {
-            if (paint) {
-                addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-                redraw();
-            }
-        });
         
-        $('#canvas').mouseup(function(e){
-  paint = false;
-});
+// start drawing on mouse using canvas moveTo and lineTo
+        var drawMouse = function() {
+        var clicked = 0;
+        var start = function(e) {
+        clicked = 1;
+        ctx.beginPath();
+        x = e.pageX;
+        y = e.pageY-44;
+        ctx.moveTo(x,y);
+        };
+        var move = function(e) {
+        if(clicked){
+        x = e.pageX;
+        y = e.pageY-44;
+        ctx.lineTo(x,y);
+        ctx.stroke();
+        }
+        };
+        var stop = function(e) {
+        clicked = 0;
+        };
+        document.getElementById("canvas").addEventListener("mousedown", start, false);
+        document.getElementById("canvas").addEventListener("mousemove", move, false);
+        document.addEventListener("mouseup", stop, false);
+        };
 
-$('#canvas').mouseleave(function(e){
-  paint = false;
-});
+//Eraser
+    function eraser(){
+        ctx.strokeStyle = '#fff';
+        }
 
-var clickX = new Array();
-var clickY = new Array();
-var clickDrag = new Array();
-var paint;
-
-function addClick(x, y, dragging)
-{
-  clickX.push(x);
-  clickY.push(y);
-  clickDrag.push(dragging);
+//Get the marker after erase
+    function marker(){
+    if (parent.color == null){
+        parent.color = '#000';
+    }
+    ctx.strokeStyle = parent.color;
+    
 }
-
-function redraw(){
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-  
-  context.strokeStyle = "#df4b26";
-  context.lineJoin = "round";
-  context.lineWidth = 5;
-            
-  for(var i=0; i < clickX.length; i++) {        
-    context.beginPath();
-    if(clickDrag[i] && i){
-      context.moveTo(clickX[i-1], clickY[i-1]);
-     }else{
-       context.moveTo(clickX[i]-1, clickY[i]);
-     }
-     context.lineTo(clickX[i], clickY[i]);
-     context.closePath();
-     context.stroke();
-  }
-}
-}
-    </script>
-  </head>
-  <body>
-    <div id="canvasDiv"></div>
-    <script type="text/javascript"> $(document).ready(function() {
-         prepareCanvas();
-});</script>
-  </body>
-</html>
+</script>
+</head>
+    <body>
+        <div id="content">
+            <p style="text-align:center">
+                Loading Canvas...
+            </p>
+        </div>
+        <button id="clear" type="button" onclick="newCanvas()">
+            Clear Canvas
+        </button>
+        <button id="eraser" type="button" onclick="eraser()">
+            Eraser
+        </button>
+        <button id="marker" type="button" onclick="marker()">
+            Marker
+        </button>
+    </body>
+    </html>

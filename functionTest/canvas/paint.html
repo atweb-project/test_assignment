@@ -3,6 +3,7 @@
 <head>
     <title>Paint Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
     <style type="text/css">
     
 body {
@@ -13,7 +14,7 @@ body {
 
 #content{
     position: absolute;
-    top: 44px;
+    top: 80px;
     left: 0px;
     right: 0px;
     bottom: 46px;
@@ -26,53 +27,129 @@ body {
     background-color:#fff;
     
 }
+.tools {
+    margin-top: 10px;
+}
+.palette-case {
+    width:210px;
+    float:left;
+    display: none;
+}
+.palette-box {
+    float:left;
+    padding:2px 6px 2px 6px;
+}
+.palette {
+    border:2px solid #777;
+    height:25px;
+    width:25px;
+}
+.red{
+    background-color:#C40233;
+}
+.blue{
+    background-color:#0087BD;
+}
+.green{
+    background-color:#009F6B;
+}
+.yellow{
+    background-color:#FFD300;
+}
+.black{
+    background-color:#000;
+    border:2px dashed #fff;
+}
+.linewidthbox {
+    float:right;
+    position: relative;
+    top: 4px;
+    margin-left:auto;
+    margin-right:auto;
+    width: 50%;
+}
 
     </style>
 <script type="text/javascript">
+        var ctx;
+        color = "#000";
+        linewidth = 5;
 
-    var ctx;
-
-    document.addEventListener("DOMContentLoaded", function() {
+        $(document).ready(function () {
 
         // setup a new canvas for drawing wait for device init
-        setTimeout(function() {
-            newCanvas();
+        setTimeout(function(){
+        newCanvas();
+        Options();
         }, 1000);
-
-    }, false);
-
-// function to setup a new canvas for drawing
-    function newCanvas(){
+            
+        //Palette 
+        $(".palette").on("click", function(){
+        $(".palette").css("border-color", "#777");
+        $(".palette").css("border-style", "solid");
+        $(this).css("border-color", "#fff");
+        $(this).css("border-style", "dashed");
+        color = $(this).css("background-color");
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        });
+        
+        //Select line size
+        $("#linewidth").on("change",function(){
+            selectSize();
+        });
+        
+         $("#clear").on("click", function(){
+            newCanvas();
+        });
+        $("#eraser").on("click", function(){
+            eraser();
+        });
+        
+        });  
+        
+         // function to setup a new canvas for drawing
+        function newCanvas(){
         //define and resize canvas
-        document.getElementById("content").style.height = window.innerHeight-90;
-        var canvas = '<canvas id="canvas" width="'+window.innerWidth+'" height="'+window.innerHeight+'"></canvas>';
-        document.getElementById("content").innerHTML = canvas;
+        $("#content").height($(window).height()-90);
+        var canvas = '<canvas id="canvas" width="'+$(window).width()+'" height="'+ ($(window).height()-90)+'"></canvas>';
+        $("#content").html(canvas);
 
         // setup canvas
         ctx=document.getElementById("canvas").getContext("2d");
-
-        ctx.strokeStyle = parent.color;
-        ctx.lineWidth = parent.linewidth;
+        ctx.strokeStyle = color;
+        ctx.lineWidth = linewidth;
 
         // setup to trigger drawing on mouse
-        drawMouse();
+        $("#canvas").drawMouse();
 
         }
         
-// start drawing on mouse using canvas moveTo and lineTo
-        var drawMouse = function() {
+        function Options(){
+            if ( parent.allowColorsattribute == true ) {
+                
+                $(".palette-case").show();
+                
+                } else {
+                    
+                $(".palette-case").hide();
+                }
+        }
+        
+        // prototype to start drawing on touch using canvas moveTo and lineTo
+        $.fn.drawMouse = function() {
         var clicked = 0;
         var start = function(e) {
         clicked = 1;
         ctx.beginPath();
         x = e.pageX;
-        y = e.pageY-44;
+        y = e.pageY-80;
         ctx.moveTo(x,y);
         };
         var move = function(e) {
         if(clicked){
         x = e.pageX;
-        y = e.pageY-44;
+        y = e.pageY-80;
         ctx.lineTo(x,y);
         ctx.stroke();
         }
@@ -80,40 +157,81 @@ body {
         var stop = function(e) {
         clicked = 0;
         };
-        document.getElementById("canvas").addEventListener("mousedown", start, false);
-        document.getElementById("canvas").addEventListener("mousemove", move, false);
-        document.addEventListener("mouseup", stop, false);
+        $(this).on("mousedown", start);
+        $(this).on("mousemove", move);
+        $(window).on("mouseup", stop);
         };
-
-//Eraser
-    function eraser(){
-        ctx.strokeStyle = '#fff';
+            
+               
+        function selectSize(){
+            linewidth = $("#linewidth").val();
+            ctx.lineWidth = linewidth;
+            //alert(linewidth);
+        }
+                
+        //Eraser
+        function eraser(){
+            ctx.strokeStyle = '#fff';
         }
 
-//Get the marker after erase
-    function marker(){
-    if (parent.color == null){
+        //Get the marker after erase
+        /*function marker(){
+        if (parent.color == null){
         parent.color = '#000';
-    }
-    ctx.strokeStyle = parent.color;
-    
-}
+        }
+        ctx.strokeStyle = parent.color;
+
+        }*/
+
+       
+       /* $("#marker").on("click", function(){
+        marker();
+        });*/
+        
 </script>
 </head>
     <body>
+         <button id="clear" type="button">
+            Clear Canvas
+        </button>
+        <button id="eraser" type="button">
+            Eraser
+        </button>
+        <!--<button id="marker" type="button">
+            Marker
+        </button>-->
+        <div class="tools">
+        <div class="palette-case">
+            <div class="palette-box">
+                <div class="palette red"></div>
+            </div>
+            <div class="palette-box">
+                <div class="palette blue"></div>
+            </div>
+            <div class="palette-box">
+                <div class="palette green"></div>
+            </div>
+            <div class="palette-box">
+                <div class="palette yellow"></div>
+            </div>
+            <div class="palette-box">
+                <div class="palette black"></div>
+            </div>
+            </div>
+            <div class="linewidthbox">
+                Select a line size 
+        <select id="linewidth">
+        <option value="2">2</option>
+        <option value="5" selected="selected">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        </select>
+        </div>
         <div id="content">
             <p style="text-align:center">
                 Loading Canvas...
             </p>
         </div>
-        <button id="clear" type="button" onclick="newCanvas()">
-            Clear Canvas
-        </button>
-        <button id="eraser" type="button" onclick="eraser()">
-            Eraser
-        </button>
-        <button id="marker" type="button" onclick="marker()">
-            Marker
-        </button>
+       
     </body>
     </html>

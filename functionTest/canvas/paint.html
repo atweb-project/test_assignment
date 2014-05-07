@@ -74,22 +74,15 @@ body {
         var ctx;
         color = "#000";
         linewidth = 5;
-        //allowColors = parent.allowColorsattribute;
-        //alert(parent.allowColorsattribute);
-        //allowLinewidths = parent.allowLinewidthsattribute;
-       // alert(parent.allowColors);
-       
+    
          
-        	
-        //parent.$('iframe').attr('allowcolors');
-        allowlinewidths = parent.$('iframe').attr('allowlinewidths');
         $(document).ready(function () {
         
-        parent.$('.gcanvas').each(function(){
-        		allowcolors = $(this).attr("allowcolors");
-        		alert(allowcolors);
-        	});
-
+        allowcolors = $(window.frameElement).attr('allowcolors');
+               // alert($(window.frameElement).attr('allowcolors')+"file");
+                
+        allowlinewidths = $(window.frameElement).attr('allowlinewidths');
+     
         // setup a new canvas for drawing wait for device init
         setTimeout(function(){
         newCanvas();
@@ -155,7 +148,7 @@ body {
         function Options(){
         	//for (var i = 0; i < allowcolors.length; i++) {
          
-            if ( allowcolors == 1 ) {
+            if ( allowcolors == '1' ) {
            // alert(parent.allowColors);
                 
                 $(".red,.blue,.green,.yellow").show();

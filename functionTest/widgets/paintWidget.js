@@ -15,6 +15,7 @@
 
         	//alert ("button clicked")
             this.myRegisterUniquePropEvent(  [{ 'prop': 'allowColors', 'ov': allowColors, 'nv': $('#allowColors').prop('checked') }])
+            //alert(this.myRegisterUniquePropEvent())
 
 
         },
@@ -35,15 +36,12 @@
         	 for (var i = 0; i < param.length; i++) {
                    
                  if (param[i].prop == 'allowColors') allowColors = param[i].value
+                 //alert(allowColors+"change")
                  
                  if (param[i].prop == 'allowLinewidths') allowLinewidths = param[i].value
 
              }
         	 
-        	 allowColorsattribute = allowColors
-        	 allowLinewidthsattribute = allowLinewidths
- 				//alert(allowColorsattribute)
-        	 //alert(allowColors)
         	 $('#'+this.getId() ).attr( 'allowcolors', allowColors == true ? 1:0);
         	 $('#'+this.getId() ).attr( 'allowlinewidths', allowLinewidths == true ? 1 : 0);
         	 
@@ -69,15 +67,13 @@
                 if (typeof (param.url) !== 'undefined') url = param.url
                 
                 if (typeof (param.allowColors) !== 'undefined') allowColors = param.allowColors
+                //alert(allowColors +"+create")
                 
                 if (typeof (param.allowLinewidths) !== 'undefined') allowLinewidths = param.allowLinewidths
 
             }
 
-           //alert(this.getId());
-        	 allowColorsattribute = allowColors
-        	//alert(allowColorsattribute)
-        	 allowLinewidthsattribute = allowLinewidths
+
         	 return '<iframe width="100%" id="' + this.getId() + '" class="gcanvas" height="100%" src="' + url + '" frameborder="0" allowcolors="'+ (allowColors == true ? 1 : 0) +
         	 '" allowlinewidths="'+ (allowLinewidths == true ? 1 : 0) +'"></iframe>'
         	

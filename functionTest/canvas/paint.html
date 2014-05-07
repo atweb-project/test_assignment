@@ -33,7 +33,7 @@ body {
 .palette-case {
     width:210px;
     float:left;
-    display: none;
+    
 }
 .palette-box {
     float:left;
@@ -74,24 +74,50 @@ body {
         var ctx;
         color = "#000";
         linewidth = 5;
-
+        //allowColors = parent.allowColorsattribute;
+        //alert(parent.allowColorsattribute);
+        //allowLinewidths = parent.allowLinewidthsattribute;
+       // alert(parent.allowColors);
+       
+         
+        	
+        //parent.$('iframe').attr('allowcolors');
+        allowlinewidths = parent.$('iframe').attr('allowlinewidths');
         $(document).ready(function () {
+        
+        parent.$('.gcanvas').each(function(){
+        		allowcolors = $(this).attr("allowcolors");
+        		alert(allowcolors);
+        	});
 
         // setup a new canvas for drawing wait for device init
         setTimeout(function(){
         newCanvas();
-        Options();
         }, 1000);
+        
+        
+        //setup the canvas tool options 
+        Options();
             
         //Palette 
         $(".palette").on("click", function(){
+        
         $(".palette").css("border-color", "#777");
+        
         $(".palette").css("border-style", "solid");
+        
         $(this).css("border-color", "#fff");
+        
         $(this).css("border-style", "dashed");
+        
         color = $(this).css("background-color");
+        
         ctx.beginPath();
+        
         ctx.strokeStyle = color;
+        
+        $("#canvas").css("cursor","crosshair");
+        
         });
         
         //Select line size
@@ -125,14 +151,27 @@ body {
 
         }
         
+        //function to set the canvas tools options
         function Options(){
-            if ( parent.allowColorsattribute == true ) {
+        	//for (var i = 0; i < allowcolors.length; i++) {
+         
+            if ( allowcolors == 1 ) {
+           // alert(parent.allowColors);
                 
-                $(".palette-case").show();
+                $(".red,.blue,.green,.yellow").show();
                 
                 } else {
                     
-                $(".palette-case").hide();
+                $(".red,.blue,.green,.yellow").hide();
+                }
+                
+            if (  allowlinewidths == 1 ) {
+                
+                $(".linewidthbox").show();
+                
+                } else {
+                    
+                $(".linewidthbox").hide();
                 }
         }
         
@@ -172,52 +211,53 @@ body {
         //Eraser
         function eraser(){
             ctx.strokeStyle = '#fff';
+            $("#canvas").css("cursor","pointer");
         }
 
 </script>
 </head>
     <body>
-         <button id="clear" type="button">
-            Clear Canvas
-        </button>
-        <button id="eraser" type="button">
-            Eraser
-        </button>
-        <!--<button id="marker" type="button">
-            Marker
-        </button>-->
-        <div class="tools">
-        <div class="palette-case">
-            <div class="palette-box">
-                <div class="palette red"></div>
-            </div>
-            <div class="palette-box">
-                <div class="palette blue"></div>
-            </div>
-            <div class="palette-box">
-                <div class="palette green"></div>
-            </div>
-            <div class="palette-box">
-                <div class="palette yellow"></div>
-            </div>
-            <div class="palette-box">
-                <div class="palette black"></div>
-            </div>
-            </div>
-            <div class="linewidthbox">
-                Select a line size 
-        <select id="linewidth">
-        <option value="2">2</option>
-        <option value="5" selected="selected">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        </select>
-        </div>
-        <div id="content">
-            <p style="text-align:center">
-                Loading Canvas...
-            </p>
-        </div>
-       
-    </body>
+		<button id="clear" type="button">
+			Clear Canvas
+		</button>
+		<button id="eraser" type="button">
+			Eraser
+		</button>
+		<!--<button id="marker" type="button">
+		Marker
+		</button>-->
+		<div class="tools">
+			<div class="palette-case">
+				<div class="palette-box">
+					<div class="palette red"></div>
+				</div>
+				<div class="palette-box">
+					<div class="palette blue"></div>
+				</div>
+				<div class="palette-box">
+					<div class="palette green"></div>
+				</div>
+				<div class="palette-box">
+					<div class="palette yellow"></div>
+				</div>
+				<div class="palette-box">
+					<div class="palette black"></div>
+				</div>
+			</div>
+			<div class="linewidthbox">
+				Select a line size
+				<select id="linewidth">
+					<option value="2">2</option>
+					<option value="5" selected="selected">5</option>
+					<option value="10">10</option>
+					<option value="20">20</option>
+				</select>
+			</div>
+			<div id="content">
+				<p style="text-align:center">
+					Loading Canvas...
+				</p>
+			</div>
+
+	</body>
     </html>

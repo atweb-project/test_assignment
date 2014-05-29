@@ -24,17 +24,55 @@
 		
 		<script src="widgets/htmlWidget.js" type="text/javascript"></script>
 		
-		<!-- added for the test -->
+		<!-- paint widget for the test -->
 		<script src="widgets/paintWidget.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="widgets/paintWidget.css">
-	 
-	 
 		
+		<!-- checkbox widget -->
+		<script src="widgets/checkboxWidget.js" type="text/javascript"></script>
+		
+		<!--radio buttons widget -->
+		<script src="widgets/radiobuttonsWidget.js" type="text/javascript"></script>
+		
+		<!-- video widget -->
+		<script src="widgets/videoWidget.js" type="text/javascript"></script>
+		
+		<!-- rss widget -->
+		<script src="widgets/rssWidget.js" type="text/javascript"></script>
+		
+		<!-- jigsaw widget -->
+		<script src="widgets/jigsawWidget.js" type="text/javascript"></script>
+		
+		<!-- menus widget -->
+		<script src="widgets/menusWidget.js" type="text/javascript"></script>
+		
+		<!-- camera widget -->
+		<script src="widgets/cameraWidget.js" type="text/javascript"></script>
+	 
+	 	<!-- 360 widget -->
+	 	<script src="widgets/360Widget.js" type="text/javascript"></script>
+		
+		<!-- carousel widget -->
+		<script src="widgets/carouselWidget.js" type="text/javascript"></script>
+		
+		<!-- gallery widget -->
+		<script src="widgets/galleryWidget.js" type="text/javascript"></script>
+			
 		<script>
 		
 		 $(document).ready(function () {
-		 
-			widgetSetup( PaintWidget ) //added for the test
+		 	
+		 	widgetSetup( CheckboxWidget )
+		 	widgetSetup( RadiobWidget )
+		 	widgetSetup( VideoWidget )
+		 	widgetSetup( RssWidget )
+		 	widgetSetup( JigsawWidget )
+		 	widgetSetup( MenusWidget )
+		 	widgetSetup( CameraWidget )
+		 	widgetSetup( RotateWidget )
+		 	widgetSetup( CarouselWidget )
+		 	widgetSetup( GalleryWidget )
+			widgetSetup( PaintWidget ) //paint for the test
 			widgetSetup( ButtonWidget )
 			widgetSetup( YoutubeWidget )
 			widgetSetup( TextWidget )

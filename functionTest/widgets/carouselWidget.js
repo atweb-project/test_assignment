@@ -1,7 +1,7 @@
 
 
     
-    function ButtonWidget (pid, ptype ){
+    function CarouselWidget (pid, ptype ){
 
         
         MyWidget.call(this, pid, ptype)
@@ -65,15 +65,15 @@
 
 // static variables/functions
 
-ButtonWidget.init = function () {
-    $("#buttonMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
+CarouselWidget.init = function () {
+    $("#carouselMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
 }
-ButtonWidget.buttomImage='images/button_icon.png'
-ButtonWidget.typeId= 'button'
-ButtonWidget.myClass= 'widget_button'
-ButtonWidget.initialWidth='100'
-ButtonWidget.initialHeight= '50'
-ButtonWidget.actionsSectionId='buttonMenu'
+CarouselWidget.buttomImage='images/button_icon.png'
+CarouselWidget.typeId= 'carousel'
+CarouselWidget.myClass= 'widget_carousel'
+CarouselWidget.initialWidth='100'
+CarouselWidget.initialHeight= '50'
+CarouselWidget.actionsSectionId='carouselMenu'
 
 // not actually  needed??
 //ButtonWidget.prototype = MyWidget

@@ -1,7 +1,7 @@
 
 
     
-    function ButtonWidget (pid, ptype ){
+    function RotateWidget (pid, ptype ){
 
         
         MyWidget.call(this, pid, ptype)
@@ -65,15 +65,15 @@
 
 // static variables/functions
 
-ButtonWidget.init = function () {
-    $("#buttonMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
+RotateWidget.init = function () {
+    $("#rotateMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
 }
-ButtonWidget.buttomImage='images/button_icon.png'
-ButtonWidget.typeId= 'button'
-ButtonWidget.myClass= 'widget_button'
-ButtonWidget.initialWidth='100'
-ButtonWidget.initialHeight= '50'
-ButtonWidget.actionsSectionId='buttonMenu'
+RotateWidget.buttomImage='images/button_icon.png'
+RotateWidget.typeId= 'rotate'
+RotateWidget.myClass= 'widget_rotate'
+RotateWidget.initialWidth='100'
+RotateWidget.initialHeight= '50'
+RotateWidget.actionsSectionId='rotateMenu'
 
 // not actually  needed??
 //ButtonWidget.prototype = MyWidget

@@ -1,7 +1,7 @@
 
 
     
-    function ButtonWidget (pid, ptype ){
+    function CameraWidget (pid, ptype ){
 
         
         MyWidget.call(this, pid, ptype)
@@ -65,15 +65,15 @@
 
 // static variables/functions
 
-ButtonWidget.init = function () {
-    $("#buttonMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
+CameraWidget.init = function () {
+    $("#cameraMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
 }
-ButtonWidget.buttomImage='images/button_icon.png'
-ButtonWidget.typeId= 'button'
-ButtonWidget.myClass= 'widget_button'
-ButtonWidget.initialWidth='100'
-ButtonWidget.initialHeight= '50'
-ButtonWidget.actionsSectionId='buttonMenu'
+CameraWidget.buttomImage='images/button_icon.png'
+CameraWidget.typeId= 'camera'
+CameraWidget.myClass= 'widget_camera'
+CameraWidget.initialWidth='100'
+CameraWidget.initialHeight= '50'
+CameraWidget.actionsSectionId='cameraMenu'
 
 // not actually  needed??
 //ButtonWidget.prototype = MyWidget

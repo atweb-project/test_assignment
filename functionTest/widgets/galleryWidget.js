@@ -1,7 +1,7 @@
 
 
     
-    function ButtonWidget (pid, ptype ){
+    function GalleryWidget (pid, ptype ){
 
         
         MyWidget.call(this, pid, ptype)
@@ -65,15 +65,15 @@
 
 // static variables/functions
 
-ButtonWidget.init = function () {
-    $("#buttonMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
+GalleryWidget.init = function () {
+    $("#galleryMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
 }
-ButtonWidget.buttomImage='images/button_icon.png'
-ButtonWidget.typeId= 'button'
-ButtonWidget.myClass= 'widget_button'
-ButtonWidget.initialWidth='100'
-ButtonWidget.initialHeight= '50'
-ButtonWidget.actionsSectionId='buttonMenu'
+GalleryWidget.buttomImage='images/button_icon.png'
+GalleryWidget.typeId= 'gallery'
+GalleryWidget.myClass= 'widget_gallery'
+GalleryWidget.initialWidth='100'
+GalleryWidget.initialHeight= '50'
+GalleryWidget.actionsSectionId='galleryMenu'
 
 // not actually  needed??
 //ButtonWidget.prototype = MyWidget

@@ -1,5 +1,5 @@
 /*
- * This widget is based on the Reel jQuery open source library, the most versatile three
+ * This widget is based on the Reel jQuery open source plugin, the most versatile three
  * sixty player for jQuery 
  * The current version used is Reel 1.3
  * For more options http://jquery.vostrel.cz/reel

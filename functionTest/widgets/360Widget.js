@@ -19,22 +19,17 @@
 
 				if (typeof (param) !== 'undefined') {
 
-					if (typeof (param.frameNumber) !== 'undefined')
-						frameNumber = param.frameNumber
+					if (typeof (param.frameNumber) !== 'undefined')	frameNumber = param.frameNumber
 
-					if (typeof (param.Speed) !== 'undefined')
-						Speed = param.Speed
+					if (typeof (param.Speed) !== 'undefined') Speed = param.Speed
 
-					if (typeof (param.Orientable) !== 'undefined')
-						Orientable = param.Orientable
+					if (typeof (param.Orientable) !== 'undefined') Orientable = param.Orientable
 
 						// alert('param '+param.frameNumber)
 
 				}
 
-				return '<img id="'
-						+ this.getId()
-						+ '" src="images/rotate/DSCN0691.JPG" width="100%" height="100%" class="reel" />'
+				return '<img id="'+ this.getId() + '" src="images/rotate/DSCN0691.JPG" width="100%" height="100%" class="reel" />'
 
 			},
 
@@ -43,16 +38,11 @@
 				if ((appGlobals.isInDesignMode() == false))
 					$('#' + this.getId()).reel({
 						images : 'images/rotate/DSCN####.JPG|691..702',
-						frame : frameNumber, // from which frame to start the
-												// rotation
+						frame : frameNumber, // from which frame to start the rotation
 						speed : Speed, // Speed of rotating auto animation
 						// duration: 10,
 						// velocity: 3,
-						orientable : Orientable == false ? 1 : 0, // For
-																	// devices
-																	// that
-																	// support
-																	// gyroscope
+						orientable : Orientable == false ? 1 : 0, // For devices that support gyroscope
 						responsive : true
 					});
 
@@ -64,14 +54,11 @@
 
 				for (var i = 0; i < param.length; i++) {
 
-					if (param[i].prop == 'frameNumber')
-						frameNumber = param[i].value
+					if (param[i].prop == 'frameNumber') frameNumber = param[i].value
 
-					if (param[i].prop == 'Speed')
-						Speed = param[i].value
+					if (param[i].prop == 'Speed') Speed = param[i].value
 
-					if (param[i].prop == 'Orientable')
-						Orientable = param[i].value
+					if (param[i].prop == 'Orientable') Orientable = param[i].value
 
 						// alert('prop '+frameNumber)
 
@@ -95,11 +82,7 @@
 
 				if (ns != null || ns == 0) {
 
-					this.myRegisterUniquePropEvent([ {
-						'prop' : 'frameNumber',
-						'ov' : frameNumber,
-						'nv' : ns
-					} ])
+					this.myRegisterUniquePropEvent([ {'prop' : 'frameNumber', 'ov' : frameNumber, 'nv' : ns} ])
 
 				} else {
 
@@ -114,11 +97,7 @@
 
 				if (ns != null) {
 
-					this.myRegisterUniquePropEvent([ {
-						'prop' : 'Speed',
-						'ov' : Speed,
-						'nv' : ns
-					} ])
+					this.myRegisterUniquePropEvent([ {'prop' : 'Speed', 'ov' : Speed, 'nv' : ns} ])
 
 				} else {
 
@@ -129,20 +108,13 @@
 
 			this.choiceOfOrientation = function() {
 
-				this.myRegisterUniquePropEvent([ {
-					'prop' : 'Orientable',
-					'ov' : Orientable,
-					'nv' : $('#Orientable').prop('checked')
-				} ])
+				this.myRegisterUniquePropEvent([ {'prop' : 'Orientable', 'ov' : Orientable, 'nv' : $('#Orientable').prop('checked')} ])
 
 			},
 
 			this.createJSON = function() {
 
-				return {
-					'frameNumber' : frameNumber,
-					'Speed' : Speed
-				}
+				return {'frameNumber' : frameNumber, 'Speed' : Speed }
 
 			}
         

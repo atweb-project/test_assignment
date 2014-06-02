@@ -6,11 +6,11 @@
         
         MyWidget.call(this, pid, ptype)
 
-      
+      var url = "embedded-player/Baby-with-cat-dog-and-laser-pointer.mp4"
 
         this.createElement= function (param) {
 
-        	var url = "http://www.youtube.com/embed/ClCk6LljEAU"
+        	
 
 
             if (typeof (param) !== 'undefined') {
@@ -20,16 +20,20 @@
             }
 
            
-            return '<a id="' + this.getId()  +  '" class="media" href="'+ url +'">My Embedded Video</a>'
+            return '<div id="' + this.getId()  +  '"><a class="media" href="'+ url +'"></a></div>'
 
         },
         
         this.initElement = function(param){
         	
         	//if( (appGlobals.isInDesignMode() == false))
-        	$('#'+ this.getId() ).media({
-        	        
-        	      });
+        	$('.media' ).media({
+        		width:  204,
+        		height: 375,
+        		wmode: 'transparent',
+        		params:	{ wmode: 'transparent'}
+        		//type:'swf'
+        		});
         	
         	//alert(frameNumber)
 
@@ -44,7 +48,7 @@
 
         this.createJSON = function() {
 
-            return { 'url': this.cleanSource() }
+            return { 'url': url }
 
         },
         
@@ -89,8 +93,8 @@
 VideoWidget.buttomImage='images/button_icon.png'
 VideoWidget.typeId= 'video'
 VideoWidget.myClass= 'widget_video'
-VideoWidget.initialWidth='400'
-VideoWidget.initialHeight= '300'
+VideoWidget.initialWidth='204'
+VideoWidget.initialHeight= '375'
 VideoWidget.actionsSectionId='videoMenu'
 
 // not actually  needed??

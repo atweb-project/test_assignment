@@ -12,170 +12,139 @@
         MyWidget.call(this, pid, ptype)
 
         var frameNumber = 1
-        var Width = '210'
-        var Height = '186'
         var Speed = 0
-        //var Responsive = true
         var Orientable = false
 
-        this.createElement= function (param) {
+			this.createElement = function(param) {
 
-            if (typeof (param) !== 'undefined') {
+				if (typeof (param) !== 'undefined') {
 
-            	if ( typeof (param.frameNumber) !== 'undefined') frameNumber = param.frameNumber
-            	
-            	if (typeof (param.Width) !== 'undefined') Width = param.Width
-            	
-            	if (typeof (param.Height) !== 'undefined') Height = param.Height
-            	
-            	if (typeof (param.Speed) !== 'undefined') Speed = param.Speed
-            	
-            	if (typeof (param.Orientable) !== 'undefined') Orientable = param.Orientable
-            	
-            	//alert('param '+param.frameNumber)
+					if (typeof (param.frameNumber) !== 'undefined')
+						frameNumber = param.frameNumber
 
-            }
+					if (typeof (param.Speed) !== 'undefined')
+						Speed = param.Speed
 
-           
-            return '<img id="' + this.getId()  +  '" src="images/rotate/DSCN0691.JPG" class="reel" />'
-           
+					if (typeof (param.Orientable) !== 'undefined')
+						Orientable = param.Orientable
 
-        },
-        
-        this.initElement = function(param){
-        	
-        	if( (appGlobals.isInDesignMode() == false))
-        	$('#'+ this.getId() ).reel({
-        	        images:      'images/rotate/DSCN####.JPG|691..702',
-        	        frame: frameNumber,       //from which frame to start the rotation
-        	        attr: {
-        	        	width:  Width,
-        	        	height: Height
-        	        	},
-        	        speed: Speed,             //Speed of rotating auto animation
-        	        orientable: Orientable == false ? 1:0   //For devices that support gyroscope
-        	       // responsive: true
-        	      });
-        	
-        	//alert(frameNumber)
+						// alert('param '+param.frameNumber)
 
-		},
+				}
 
-        this.propChange= function (param) {
+				return '<img id="'
+						+ this.getId()
+						+ '" src="images/rotate/DSCN0691.JPG" width="100%" height="100%" class="reel" />'
 
-            for (var i = 0; i < param.length; i++) {
+			},
 
-            if (param[i].prop == 'frameNumber') frameNumber =  param[i].value 
-              
-            if (param[i].prop == 'Width') Width = param[i].value
+			this.initElement = function(param) {
 
-            if( param[i].prop == 'Height' ) Height = param[i].value
+				if ((appGlobals.isInDesignMode() == false))
+					$('#' + this.getId()).reel({
+						images : 'images/rotate/DSCN####.JPG|691..702',
+						frame : frameNumber, // from which frame to start the
+												// rotation
+						speed : Speed, // Speed of rotating auto animation
+						// duration: 10,
+						// velocity: 3,
+						orientable : Orientable == false ? 1 : 0, // For
+																	// devices
+																	// that
+																	// support
+																	// gyroscope
+						responsive : true
+					});
 
-            if (param[i].prop == 'Speed') Speed = param[i].value
+				// alert(frameNumber)
 
-            if( param[i].prop == 'Orientable') Orientable = param[i].value
-            
-            //alert('prop '+frameNumber)
-            
-           }
-            
-        },
+			},
 
-        this.selectionChanged=function()  {
+			this.propChange = function(param) {
 
-        	$('#frameNumber').spinner('value', frameNumber)
-        	
-        	$('#Width').spinner('value', Width)
-        	
-        	$('#Height').spinner('value', Height)
-        	
-        	$('#Speed').spinner('value', Speed)
-        	
-        	$('#Orientable').prop('checked', Orientable)  
-              
+				for (var i = 0; i < param.length; i++) {
 
-         },
-         
-         this.changeFrameNumber = function () {
+					if (param[i].prop == 'frameNumber')
+						frameNumber = param[i].value
 
-                var ns = $('#frameNumber').spinner( "value" )
+					if (param[i].prop == 'Speed')
+						Speed = param[i].value
 
-                if (ns != null || ns == 0) {
+					if (param[i].prop == 'Orientable')
+						Orientable = param[i].value
 
-                    this.myRegisterUniquePropEvent(  [{ 'prop': 'frameNumber', 'ov': frameNumber, 'nv': ns }])
+						// alert('prop '+frameNumber)
 
-                } 
-                else {
+				}
 
-                    alert ("Numbers only and and after the number 1")
-                }
+			},
 
+			this.selectionChanged = function() {
 
-            },
-            
-          this.changeWidth = function () {
+				$('#frameNumber').spinner('value', frameNumber)
 
-                var ns = $('#Width').spinner( "value" )
+				$('#Speed').spinner('value', Speed)
 
-                if (ns != null || ns == 0) {
+				$('#Orientable').prop('checked', Orientable)
 
-                    this.myRegisterUniquePropEvent(  [{ 'prop': 'Width', 'ov': Width, 'nv': ns }])
+			},
 
-                } 
-                else {
+			this.changeFrameNumber = function() {
 
-                    alert ("Numbers only and and after the number 1")
-                }
+				var ns = $('#frameNumber').spinner("value")
 
+				if (ns != null || ns == 0) {
 
-            },
-            
-           this.changeHeight = function () {
+					this.myRegisterUniquePropEvent([ {
+						'prop' : 'frameNumber',
+						'ov' : frameNumber,
+						'nv' : ns
+					} ])
 
-                var ns = $('#Height').spinner( "value" )
+				} else {
 
-                if (ns != null || ns == 0) {
+					alert("Numbers only and and after the number 1")
+				}
 
-                    this.myRegisterUniquePropEvent(  [{ 'prop': 'Height', 'ov': Height, 'nv': ns }])
+			},
 
-                } 
-                else {
+			this.changeSpeed = function() {
 
-                    alert ("Numbers only and and after the number 1")
-                }
+				var ns = $('#Speed').spinner("value")
 
+				if (ns != null) {
 
-            },
-            
-            this.changeSpeed = function () {
+					this.myRegisterUniquePropEvent([ {
+						'prop' : 'Speed',
+						'ov' : Speed,
+						'nv' : ns
+					} ])
 
-                var ns = $('#Speed').spinner( "value" )
+				} else {
 
-                if (ns != null) {
+					alert("Numbers only")
+				}
 
-                    this.myRegisterUniquePropEvent(  [{ 'prop': 'Speed', 'ov': Speed, 'nv': ns }])
+			},
 
-                } 
-                else {
+			this.choiceOfOrientation = function() {
 
-                    alert ("Numbers only")
-                }
+				this.myRegisterUniquePropEvent([ {
+					'prop' : 'Orientable',
+					'ov' : Orientable,
+					'nv' : $('#Orientable').prop('checked')
+				} ])
 
+			},
 
-            },
-            
-            this.choiceOfOrientation = function()
-            {
+			this.createJSON = function() {
 
-                this.myRegisterUniquePropEvent(  [{ 'prop': 'Orientable', 'ov': Orientable, 'nv': $('#Orientable').prop('checked') }])
+				return {
+					'frameNumber' : frameNumber,
+					'Speed' : Speed
+				}
 
-            },
-            
-            this.createJSON = function() {
-
-                return { 'frameNumber': frameNumber, 'Width': Width, 'Height': Height, 'Speed': Speed }
-
-            }
+			}
         
     }
 
@@ -184,10 +153,6 @@
 RotateWidget.init = function () {
 	$("#rotateMenu").append("<br>Starting Frame<input type='edit' id='frameNumber' name='frameNumber' value='1' >")
     $("#frameNumber").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeFrameNumber() } });
-	$("#rotateMenu").append("<br>Width<input type='edit' id='Width' name='Width' value='' >")
-    $("#Width").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeWidth() } });
-	$("#rotateMenu").append("<br>Height<input type='edit' id='Height' name='Height' value='' >")
-    $("#Height").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeHeight() } });
 	$("#rotateMenu").append("If you want auto rotate choose the speed of rotation<input type='edit' id='Speed' name='Speed' value='0' >")
     $("#Speed").spinner({ min: 0, change: function (event, ui) { appGlobals.currentObject().changeSpeed() } });
 	$("#rotateMenu").append("Allow interaction with device's gyroscope(if available)<input type='checkbox' id='Orientable' name='Orientable' value='Orientable' onclick='appGlobals.currentObject().choiceOfOrientation()'>")

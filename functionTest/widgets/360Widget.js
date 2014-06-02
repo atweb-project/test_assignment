@@ -29,7 +29,7 @@
 
 				}
 
-				return '<img id="'+ this.getId() + '" src="images/rotate/DSCN0691.JPG" width="100%" height="100%" class="reel" />'
+				return '<img id="'+ this.getId() + '" src="images/rotate/001.jpg" width="100%" height="100%" class="reel" />'
 
 			},
 
@@ -37,11 +37,34 @@
 
 				if ((appGlobals.isInDesignMode() == false))
 					$('#' + this.getId()).reel({
-						images : 'images/rotate/DSCN####.JPG|691..702',
+						images : 'images/rotate/###.jpg',
 						frame : frameNumber, // from which frame to start the rotation
-						speed : Speed, // Speed of rotating auto animation
-						// duration: 10,
-						// velocity: 3,
+						//speed : Speed, // Speed of rotating auto animation
+						frames:      20,
+						//frame:       14,
+				        rows:        6,
+				        row:         3,
+				        speed:       0.3,
+				        annotations: {
+				          "first_row": {
+				            node: { css: { width: 100 } },
+				            start: 1,
+				            end: 20,
+				            x: [ 10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105 ],
+				            y: 10
+				          },
+				          "last_row": {
+				            node: { css: { width: 100 } },
+				            start: 101,
+				            end: 120,
+				            x: [ 105,100,95,90,85,80,75,70,65,60,55,50,45,40,35,30,25,20,15,10 ],
+				            y: 175
+				          }
+				        },
+						
+						 duration: 100,
+						 velocity: 3,
+						 brake :0.2,
 						orientable : Orientable == false ? 1 : 0, // For devices that support gyroscope
 						responsive : true
 					});
@@ -126,7 +149,7 @@ RotateWidget.init = function () {
 	$("#rotateMenu").append("<br>Starting Frame<input type='edit' id='frameNumber' name='frameNumber' value='1' >")
     $("#frameNumber").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeFrameNumber() } });
 	$("#rotateMenu").append("If you want auto rotate choose the speed of rotation<input type='edit' id='Speed' name='Speed' value='0' >")
-    $("#Speed").spinner({ min: 0, change: function (event, ui) { appGlobals.currentObject().changeSpeed() } });
+    $("#Speed").spinner({ min: 0, step: 0.01, numberFormat: "n", change: function (event, ui) { appGlobals.currentObject().changeSpeed() } });
 	$("#rotateMenu").append("Allow interaction with device's gyroscope(if available)<input type='checkbox' id='Orientable' name='Orientable' value='Orientable' onclick='appGlobals.currentObject().choiceOfOrientation()'>")
 }
 

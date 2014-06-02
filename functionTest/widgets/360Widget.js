@@ -43,6 +43,7 @@
         },
         
         this.initElement = function(param){
+        	
         	if( (appGlobals.isInDesignMode() == false))
         	$('#'+ this.getId() ).reel({
         	        images:      'images/rotate/DSCN####.JPG|691..702',

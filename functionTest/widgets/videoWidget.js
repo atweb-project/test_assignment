@@ -10,23 +10,41 @@
 
         this.createElement= function (param) {
 
-            var buttonText = 'Button!'
+        	var url = "http://www.youtube.com/embed/ClCk6LljEAU"
 
 
             if (typeof (param) !== 'undefined') {
 
-                if (typeof (param.text) !== 'undefined') buttonText = param.text
+            	if ( typeof (param.url) !== 'undefined') url = param.url
 
             }
 
            
-            return '<button id="' + this.getId()  +  '" style="width:100%; height:100%">'+ buttonText +'</button>'
+            return '<a id="' + this.getId()  +  '" class="media" href="'+ url +'">My Embedded Video</a>'
 
+        },
+        
+        this.initElement = function(param){
+        	
+        	//if( (appGlobals.isInDesignMode() == false))
+        	$('#'+ this.getId() ).media({
+        	        
+        	      });
+        	
+        	//alert(frameNumber)
+
+		},
+		
+		this.cleanSource = function() {
+            var s =  $('#'+this.getId() ).attr('src')
+            alert(s)
+            var i = s.indexOf("?") // get rid of question mark as not mark as url 
+            return s.substring(0,i) 
         },
 
         this.createJSON = function() {
 
-            return { 'text': $('#'+ this.getId() ).html() }
+            return { 'url': this.cleanSource() }
 
         },
         
@@ -66,13 +84,13 @@
 // static variables/functions
 
     VideoWidget.init = function () {
-    $("#videoMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
+    	$("#videoMenu").append("URL<input type='text' id='newvideoURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
 }
 VideoWidget.buttomImage='images/button_icon.png'
 VideoWidget.typeId= 'video'
 VideoWidget.myClass= 'widget_video'
-VideoWidget.initialWidth='100'
-VideoWidget.initialHeight= '50'
+VideoWidget.initialWidth='400'
+VideoWidget.initialHeight= '300'
 VideoWidget.actionsSectionId='videoMenu'
 
 // not actually  needed??

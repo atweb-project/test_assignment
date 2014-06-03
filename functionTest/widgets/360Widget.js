@@ -52,31 +52,9 @@
 						images : 'images/rotate/###.jpg',
 						frame : frameNumber, // from which frame to start the rotation
 						frames : framesNumber, //set total number of frames per row
-						//speed : Speed, // Speed of rotating auto animation
-						//speed : 0.3,
-				        rows:  Rows, //set the number of rows to have total
-				        row:   Row, //set the exact row to start to move in the x axis
-				      /* annotations: {
-				          "first_row": {
-				            start: 1,
-				            end: 20
-				           // x: [ 10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105 ],
-				           // y: 10
-				          },
-				          "last_row": {
-				            start: 101,
-				            end: 120
-				          //  x: [ 105,100,95,90,85,80,75,70,65,60,55,50,45,40,35,30,25,20,15,10 ],
-				          //  y: 175
-				          }
-				        },*/
-						//opening:     2,
-				        //entry:       1,
-						//preload : 'linear',
-						//delay: 0.2,
-						// duration: 1000,
-						// velocity: 3,
-						// brake :0.2,
+						speed : Speed, // Speed of rotating auto animation
+				        rows:  Rows, //set the number of rows to move in the y axis
+				        row:   Row, //set the exact row to start 
 						orientable : Orientable == false ? 1 : 0, // For devices that support gyroscope
 						responsive : true
 					})

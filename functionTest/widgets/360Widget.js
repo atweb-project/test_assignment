@@ -12,7 +12,10 @@
         MyWidget.call(this, pid, ptype)
 
         var frameNumber = 1
+        var framesNumber = 20
         var Speed = 0
+        var Row = 1
+        var Rows = 0
         var Orientable = false
 
 			this.createElement = function(param) {
@@ -20,8 +23,14 @@
 				if (typeof (param) !== 'undefined') {
 
 					if (typeof (param.frameNumber) !== 'undefined')	frameNumber = param.frameNumber
+					
+					if (typeof (param.framesNumber) !== 'undefined') framesNumber = param.framesNumber
 
 					if (typeof (param.Speed) !== 'undefined') Speed = param.Speed
+					
+					if (typeof (param.Row) !== 'undefined') Row = param.Row
+					
+					if (typeof (param.Rows) !== 'undefined') Rows = param.Rows
 
 					if (typeof (param.Orientable) !== 'undefined') Orientable = param.Orientable
 
@@ -42,11 +51,11 @@
 					$('#' + this.getId()).reel({
 						images : 'images/rotate/###.jpg',
 						frame : frameNumber, // from which frame to start the rotation
+						frames : framesNumber, //set total number of frames per row
 						//speed : Speed, // Speed of rotating auto animation
-						frames :      20, //set total number of frames
 						//speed : 0.3,
-				        //rows:        6, //set the number of rows to have total
-				        //row:         3, //set the exact row to start to move in the x axis
+				        rows:  Rows, //set the number of rows to have total
+				        row:   Row, //set the exact row to start to move in the x axis
 				      /* annotations: {
 				          "first_row": {
 				            start: 1,
@@ -72,15 +81,6 @@
 						responsive : true
 					})
 			
-					
-					if(Speed != 0){
-						$('#' + this.getId()).trigger('teardown')
-						$('#' + this.getId()).trigger('play', Speed)
-						}
-				
-					
-					
-				//this.initElement()
 
 				// alert(frameNumber)
 
@@ -91,8 +91,14 @@
 				for (var i = 0; i < param.length; i++) {
 
 					if (param[i].prop == 'frameNumber') frameNumber = param[i].value
+					
+					if (param[i].prop == 'framesNumber') framesNumber = param[i].value
 
 					if (param[i].prop == 'Speed') Speed = param[i].value
+					
+					if (param[i].prop == 'Row') Row = param[i].value
+					
+					if (param[i].prop == 'Rows') Rows = param[i].value
 
 					if (param[i].prop == 'Orientable') Orientable = param[i].value
 
@@ -105,8 +111,14 @@
 			this.selectionChanged = function() {
 
 				$('#frameNumber').spinner('value', frameNumber)
+				
+				$('#framesNumber').spinner('value', framesNumber)
 
 				$('#Speed').spinner('value', Speed)
+				
+				$('#Row').spinner('value', Row)
+				
+				$('#Rows').spinner('value', Rows)
 
 				$('#Orientable').prop('checked', Orientable)
 
@@ -119,6 +131,21 @@
 				if (ns != null || ns == 0) {
 
 					this.myRegisterUniquePropEvent([ {'prop' : 'frameNumber', 'ov' : frameNumber, 'nv' : ns} ])
+
+				} else {
+
+					alert("Numbers only and and after the number 1")
+				}
+
+			},
+			
+			this.changeFramesNumber = function() {
+
+				var ns = $('#framesNumber').spinner("value")
+
+				if (ns != null || ns == 0) {
+
+					this.myRegisterUniquePropEvent([ {'prop' : 'framesNumber', 'ov' : framesNumber, 'nv' : ns} ])
 
 				} else {
 
@@ -143,6 +170,40 @@
 				}
 
 			},
+			
+			this.changeRow = function() {
+
+				var ns = $('#Row').spinner("value")
+
+				if (ns != null || ns == 0) {
+					//alert(ns)
+							
+					this.myRegisterUniquePropEvent([ {'prop' : 'Row', 'ov' : Row, 'nv' : ns} ])
+					
+
+				} else {
+
+					alert("Numbers only and and after the number 1")
+				}
+			
+			},
+			
+			this.changeRows = function() {
+
+				var ns = $('#Rows').spinner("value")
+
+				if (ns != null) {
+					//alert(ns)
+							
+					this.myRegisterUniquePropEvent([ {'prop' : 'Rows', 'ov' : Rows, 'nv' : ns} ])
+					
+
+				} else {
+
+					alert("Numbers only")
+				}
+			
+			},
 
 			this.choiceOfOrientation = function() {
 
@@ -152,7 +213,7 @@
 
 			this.createJSON = function() {
 
-				return {'frameNumber' : frameNumber, 'Speed' : Speed, 'Orientable' : Orientable}
+				return {'frameNumber' : frameNumber, 'framesNumber' : framesNumber, 'Speed' : Speed, 'Row' : Row, 'Rows' : Rows, 'Orientable' : Orientable}
 
 			}
         
@@ -163,9 +224,15 @@
 RotateWidget.init = function () {
 	$("#rotateMenu").append("<br>Starting Frame<input type='edit' id='frameNumber' name='frameNumber' value='1' >")
     $("#frameNumber").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeFrameNumber() } });
-	$("#rotateMenu").append("If you want auto rotate choose the speed of rotation<input type='edit' id='Speed' name='Speed' value='0' >")
+	$("#rotateMenu").append("<br>Total number of frames per row<input type='edit' id='framesNumber' name='framesNumber' value='20' >")
+    $("#framesNumber").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeFramesNumber() } });
+	$("#rotateMenu").append("<br>If you want auto rotate choose the speed of rotation<input type='edit' id='Speed' name='Speed' value='0' >")
     $("#Speed").spinner({ min: 0, step: 0.01, numberFormat: "n", change: function (event, ui) { appGlobals.currentObject().changeSpeed() } });
-	$("#rotateMenu").append("Allow interaction with device's gyroscope(if available)<input type='checkbox' id='Orientable' name='Orientable' value='Orientable' onclick='appGlobals.currentObject().choiceOfOrientation()'>")
+	$("#rotateMenu").append("<br>Row(The row to start from)<input type='edit' id='Row' name='Row' value='1' >")
+    $("#Row").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeRow() } })
+    $("#rotateMenu").append("<br>Rows(Total number of rows to move in the y axis)<input type='edit' id='Rows' name='Rows' value='0' >")
+    $("#Rows").spinner({ min: 0, change: function (event, ui) { appGlobals.currentObject().changeRows() } })
+	$("#rotateMenu").append("<br>Allow interaction with device's gyroscope(if available)<input type='checkbox' id='Orientable' name='Orientable' value='Orientable' onclick='appGlobals.currentObject().choiceOfOrientation()'>")
 }
 
 RotateWidget.buttomImage='images/button_icon.png'

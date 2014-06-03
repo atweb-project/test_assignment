@@ -35,39 +35,52 @@
 
 			this.initElement = function(param) {
 
-				if ((appGlobals.isInDesignMode() == false))
+				
+					
+					if ((appGlobals.isInDesignMode() == false))
+						
 					$('#' + this.getId()).reel({
 						images : 'images/rotate/###.jpg',
 						frame : frameNumber, // from which frame to start the rotation
 						//speed : Speed, // Speed of rotating auto animation
-						frames:      20,
-						//frame:       14,
-				        rows:        6,
-				        row:         3,
-				        speed:       0.3,
-				        annotations: {
+						frames :      20, //set total number of frames
+						//speed : 0.3,
+				        //rows:        6, //set the number of rows to have total
+				        //row:         3, //set the exact row to start to move in the x axis
+				      /* annotations: {
 				          "first_row": {
-				            node: { css: { width: 100 } },
 				            start: 1,
-				            end: 20,
-				            x: [ 10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105 ],
-				            y: 10
+				            end: 20
+				           // x: [ 10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105 ],
+				           // y: 10
 				          },
 				          "last_row": {
-				            node: { css: { width: 100 } },
 				            start: 101,
-				            end: 120,
-				            x: [ 105,100,95,90,85,80,75,70,65,60,55,50,45,40,35,30,25,20,15,10 ],
-				            y: 175
+				            end: 120
+				          //  x: [ 105,100,95,90,85,80,75,70,65,60,55,50,45,40,35,30,25,20,15,10 ],
+				          //  y: 175
 				          }
-				        },
-						
-						 duration: 100,
-						 velocity: 3,
-						 brake :0.2,
+				        },*/
+						//opening:     2,
+				        //entry:       1,
+						//preload : 'linear',
+						//delay: 0.2,
+						// duration: 1000,
+						// velocity: 3,
+						// brake :0.2,
 						orientable : Orientable == false ? 1 : 0, // For devices that support gyroscope
 						responsive : true
-					});
+					})
+			
+					
+					if(Speed != 0){
+						$('#' + this.getId()).trigger('teardown')
+						$('#' + this.getId()).trigger('play', Speed)
+						}
+				
+					
+					
+				//this.initElement()
 
 				// alert(frameNumber)
 
@@ -119,8 +132,10 @@
 				var ns = $('#Speed').spinner("value")
 
 				if (ns != null) {
-
+					//alert(ns)
+							
 					this.myRegisterUniquePropEvent([ {'prop' : 'Speed', 'ov' : Speed, 'nv' : ns} ])
+					
 
 				} else {
 
@@ -137,7 +152,7 @@
 
 			this.createJSON = function() {
 
-				return {'frameNumber' : frameNumber, 'Speed' : Speed }
+				return {'frameNumber' : frameNumber, 'Speed' : Speed, 'Orientable' : Orientable}
 
 			}
         

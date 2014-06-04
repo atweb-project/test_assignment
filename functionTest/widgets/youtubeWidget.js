@@ -281,11 +281,11 @@ YoutubeWidget.init= function () {
 
     $("#youtubeMenu").append("<br>Start<input type='edit' id='startYoutube' name='startYoutube' value='0' >")
 
-    $("#startYoutube").spinner({ min: 0, change: function (event, ui) { appGlobals.currentObject().changeStartTime() } });
+    $("#startYoutube").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeStartTime() } });
 
     $("#youtubeMenu").append("<br>End<input type='edit' id='endYoutube' name='endYoutube' value='0' >")
 
-    $("#endYoutube").spinner({ min: 0, change: function (event, ui) { appGlobals.currentObject().changeEndTime() } });
+    $("#endYoutube").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeEndTime() } });
    
 
 }

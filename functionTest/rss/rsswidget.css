@@ -1,0 +1,53 @@
+
+/* Styling for screens */
+
+@media screen, projection {
+
+	/* Slider */
+
+	.slider, .slider li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow: hidden;
+	}
+	.slider li { float: left; }
+	.sliderItem {}
+	.sliderPrevious, .sliderNext {} 
+	.slider {
+		width: 100%;
+		height: 100%;
+	}
+	
+	
+	/* Rotate */
+	.rotate, .rotate li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.rotate { position: absolute; }
+	.rotate li { display: block; }
+	.rotate h4, .rotate p { margin: 0; }
+	.rotateItem { padding: 0.5em 0; } 
+
+
+	/* Ticker */
+
+	.ticker { padding: 0.5em; }
+	.ticker {
+		/*background-color: #ccc;
+		border: 1px solid #888;*/
+		list-style: none outside none;
+	}
+	
+	/* General */
+	.rssFeed li {
+		list-style: none;
+	}
+	
+	.rssBody > ul {
+    padding: 0;
+}
+
+}

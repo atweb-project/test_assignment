@@ -106,13 +106,13 @@
 
 				var ns = $('#frameNumber').spinner("value")
 
-				if (ns != null || ns == 0) {
+				if (ns != null || ns != 0) {
 
 					this.myRegisterUniquePropEvent([ {'prop' : 'frameNumber', 'ov' : frameNumber, 'nv' : ns} ])
 
 				} else {
 
-					alert("Numbers only and and after the number 1")
+					alert("Numbers only and after the number 1")
 				}
 
 			},
@@ -121,13 +121,13 @@
 
 				var ns = $('#framesNumber').spinner("value")
 
-				if (ns != null || ns == 0) {
+				if (ns != null || ns != 0) {
 
 					this.myRegisterUniquePropEvent([ {'prop' : 'framesNumber', 'ov' : framesNumber, 'nv' : ns} ])
 
 				} else {
 
-					alert("Numbers only and and after the number 1")
+					alert("Numbers only and after the number 1")
 				}
 
 			},
@@ -153,7 +153,7 @@
 
 				var ns = $('#Row').spinner("value")
 
-				if (ns != null || ns == 0) {
+				if (ns != null || ns != 0) {
 					//alert(ns)
 							
 					this.myRegisterUniquePropEvent([ {'prop' : 'Row', 'ov' : Row, 'nv' : ns} ])
@@ -161,7 +161,7 @@
 
 				} else {
 
-					alert("Numbers only and and after the number 1")
+					alert("Numbers only and after the number 1")
 				}
 			
 			},
@@ -201,15 +201,15 @@
 
 RotateWidget.init = function () {
 	$("#rotateMenu").append("<br>Starting Frame<input type='edit' id='frameNumber' name='frameNumber' value='1' >")
-    $("#frameNumber").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeFrameNumber() } });
+    $("#frameNumber").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeFrameNumber() } });
 	$("#rotateMenu").append("<br>Total number of frames per row<input type='edit' id='framesNumber' name='framesNumber' value='20' >")
-    $("#framesNumber").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeFramesNumber() } });
+    $("#framesNumber").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeFramesNumber() } });
 	$("#rotateMenu").append("<br>If you want auto rotate choose the speed of rotation<input type='edit' id='Speed' name='Speed' value='0' >")
-    $("#Speed").spinner({ min: 0, step: 0.01, numberFormat: "n", change: function (event, ui) { appGlobals.currentObject().changeSpeed() } });
+    $("#Speed").spinner({ min: 0, step: 0.01, numberFormat: "n", change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeSpeed() } });
 	$("#rotateMenu").append("<br>Row(The row to start from)<input type='edit' id='Row' name='Row' value='1' >")
-    $("#Row").spinner({ min: 1, change: function (event, ui) { appGlobals.currentObject().changeRow() } })
+    $("#Row").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeRow() } })
     $("#rotateMenu").append("<br>Rows(Total number of rows to move in the y axis)<input type='edit' id='Rows' name='Rows' value='0' >")
-    $("#Rows").spinner({ min: 0, change: function (event, ui) { appGlobals.currentObject().changeRows() } })
+    $("#Rows").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeRows() } })
 	$("#rotateMenu").append("<br>Allow interaction with device's gyroscope(if available)<input type='checkbox' id='Orientable' name='Orientable' value='Orientable' onclick='appGlobals.currentObject().choiceOfOrientation()'>")
 }
 

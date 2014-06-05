@@ -48,6 +48,7 @@
         	var selector = '#'+ this.getId() + ' ul'
         	var animationValue = $('#animation').prop('value') //choose animation value in order to choose rss animations
         	//alert(animationValue);
+        
         	
         	switch (animationValue) { 
 		     case '1' : 
@@ -103,8 +104,9 @@
 		        		sortasc: sortAsc == true ? 1 : 0
 		        		}, function(e){
 		        			
-		        			  $.zazar.rotate({selector: selector}) 
+		        				$.zazar.rotate({selector: selector}) 
 		        		});
+		    	 
 			
 		         break;      
 		     default:
@@ -134,9 +136,14 @@
         	
         	this.myRegisterUniquePropEvent( [{ 'prop': 'animationValue', 'ov': animationValue, 'nv': newValue }])
         	
-        	if ((appGlobals.isInDesignMode() == false))
+        	//if ((appGlobals.isInDesignMode() == false))
         	this.initElement()
-        	
+        	if ((appGlobals.isInDesignMode() == true)){
+   		    	$('. rssBody a').attr
+				$('.rotateItem a').click(function () {return false;});
+				$('.rotateItem a').css('cursor','move')
+	    		 
+ 				alert('yes')}      			
         	
         	
         },
@@ -167,6 +174,8 @@
 
 
 			}
+        	
+        	
 
          },
         

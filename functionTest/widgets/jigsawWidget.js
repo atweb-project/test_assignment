@@ -23,6 +23,12 @@
             return '<button id="' + this.getId()  +  '" style="width:100%; height:100%">'+ buttonText +'</button>'
 
         },
+        
+        this.initElement = function(param){
+        	
+        	
+
+		},
 
         this.createJSON = function() {
 

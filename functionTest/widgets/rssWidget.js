@@ -1,4 +1,7 @@
-
+/*
+ * This widget is based on the zRSSFeed jQuery open source plugin, 
+ * using the Google Feeds API.
+ */
 
     
     function RssWidget (pid, ptype ){
@@ -37,8 +40,7 @@
                 if (typeof (param.sortAsc) !== 'undefined') sortAsc = param.sortAsc
 
             }
-
-           
+                     
             return '<div id="' + this.getId()  +  '" style="width:100%; height:100%"></div>'
 
         },
@@ -48,7 +50,6 @@
         	var selector = '#'+ this.getId() + ' ul'
         	var animationValue = $('#animation').prop('value') //choose animation value in order to choose rss animations
         	//alert(animationValue);
-        
         	
         	switch (animationValue) { 
 		     case '1' : 
@@ -103,8 +104,9 @@
 		        		sort: 'date',
 		        		sortasc: sortAsc == true ? 1 : 0
 		        		}, function(e){
-		        			
+		        					        			
 		        				$.zazar.rotate({selector: selector}) 
+		        				
 		        		});
 		    	 
 			
@@ -124,7 +126,7 @@
 		        		});
 		         
         	}
-
+        	
         },
         
         this.getAnimationValue = function() {
@@ -134,17 +136,7 @@
         	//alert(animationValue)
         	//alert(newValue)
         	
-        	this.myRegisterUniquePropEvent( [{ 'prop': 'animationValue', 'ov': animationValue, 'nv': newValue }])
-        	
-        	//if ((appGlobals.isInDesignMode() == false))
-        	this.initElement()
-        	if ((appGlobals.isInDesignMode() == true)){
-   		    	$('. rssBody a').attr
-				$('.rotateItem a').click(function () {return false;});
-				$('.rotateItem a').css('cursor','move')
-	    		 
- 				alert('yes')}      			
-        	
+        	this.myRegisterUniquePropEvent( [{ 'prop': 'animationValue', 'ov': animationValue, 'nv': newValue }])    	
         	
         },
         
@@ -175,8 +167,8 @@
 
 			}
         	
-        	
-
+        	this.initElement()   	
+   
          },
         
         this.changeURL= function()
@@ -271,8 +263,6 @@
         	
         	$('#animation').prop('value', animationValue)
         	
-        	
-
         },
          
         this.createJSON = function() {

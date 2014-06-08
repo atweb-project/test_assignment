@@ -102,7 +102,7 @@ JigsawWidget.init = function () {
 
     $("#numberOfPieces").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().numberOfPieces() } });
 
-    $("#jigsawMenu").append("<br>Number of rows to devide(Please make sure that the number of pieces with number of rows devides exactly)<input type='edit' id='numberOfRows' name='numberOfRows' value='2' >")
+    $("#jigsawMenu").append("<br>Number of rows to devide(Please make sure that the number of pieces with number of rows devides exactly)<br><input type='edit' id='numberOfRows' name='numberOfRows' value='2' >")
 
     $("#numberOfRows").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().numberOfRows() } });
 }

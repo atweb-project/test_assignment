@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="jquery.media.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $(function() {
+        	$('.media' ).media({
+        		width:  480,
+        		height: 260,
+        		params:	{ wmode: 'transparent', allowfullscreen: 'true'},
+        		attrs:  { wmode: 'opaque'}
+        		//type:'swf'
+        		});
+        	$('.media object').append('<param name="wmode" value="transparent">');
+        });
+        </script>
+  
+    </head>
+    <body>
+        <a class="media" href="simpsons.mov"></a>
+    </body>
+</html>

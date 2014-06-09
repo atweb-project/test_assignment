@@ -19,8 +19,11 @@
 
             }
        
-            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
-            			numberOfPieces +'" numberOfRows="'+ aspectH +'" frameborder="0"></iframe>'
+            /*return '<div id="' + this.getId() + '" style="width: 80%;margin: 0px auto;"><div class="iframe-container" style="height: 0;width: 100%;padding-bottom: 56.25%;overflow: hidden;position: relative;">'+
+            		'<iframe width="100%" height="100%" style=" position: absolute;top:0;left: 0;" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
+            			numberOfPieces +'" numberOfRows="'+ aspectH +'" frameborder="0"></iframe><div></div>'*/
+            return '<iframe width="100%" height="100%" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
+			numberOfPieces +'" numberOfRows="'+ aspectH +'" frameborder="0"></iframe><div>'
             
         },
         
@@ -98,11 +101,11 @@
 // static variables/functions
 
 JigsawWidget.init = function () {
-	$("#jigsawMenu").append("<br>Number of pieces to devide<input type='edit' id='numberOfPieces' name='numberOfPieces' value='6' >")
+	$("#jigsawMenu").append("<br>Number of pieces to divide<input type='edit' id='numberOfPieces' name='numberOfPieces' value='6' >")
 
     $("#numberOfPieces").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().numberOfPieces() } });
 
-    $("#jigsawMenu").append("<br>Number of rows to devide(Please make sure that the number of pieces with number of rows devides exactly)<br><input type='edit' id='numberOfRows' name='numberOfRows' value='2' >")
+    $("#jigsawMenu").append("<br>Number of rows to divide(Please make sure that the number of pieces with number of rows divides exactly)<br><input type='edit' id='numberOfRows' name='numberOfRows' value='2' >")
 
     $("#numberOfRows").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().numberOfRows() } });
 }

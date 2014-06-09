@@ -6,7 +6,9 @@
         
         MyWidget.call(this, pid, ptype)
 
-      var url = "embedded-player/Baby-with-cat-dog-and-laser-pointer.mp4"
+      var url = "embedded-player/simpsons.mov"
+      var Width = '100%'
+      var Height = '100%'
 
         this.createElement= function (param) {
 
@@ -20,7 +22,7 @@
             }
 
            
-            return '<div id="' + this.getId()  +  '"><a class="media" href="'+ url +'"></a></div>'
+            return '<div id="' + this.getId()  +  '" width="100%" height="100%"><a class="media" href="'+ url +'"></a></div>'
 
         },
         
@@ -28,11 +30,13 @@
         	
         	//if( (appGlobals.isInDesignMode() == false))
         	$('.media' ).media({
-        		width:  204,
-        		height: 375,
+        		width:  Width,
+        		height: Height,
         		params:	{ wmode: 'opaque', allowfullscreen: 'true'}
         		//type:'swf'
         		});
+        	if( (appGlobals.isInDesignMode() == true))
+        	$('.media object').append('<param name="wmode" value="transparent">');
         	
         	//alert(frameNumber)
 
@@ -92,8 +96,8 @@
 VideoWidget.buttomImage='images/button_icon.png'
 VideoWidget.typeId= 'video'
 VideoWidget.myClass= 'widget_video'
-VideoWidget.initialWidth='204'
-VideoWidget.initialHeight= '375'
+VideoWidget.initialWidth='480'
+VideoWidget.initialHeight= '260'
 VideoWidget.actionsSectionId='videoMenu'
 
 // not actually  needed??

@@ -15,10 +15,12 @@
 img {
 	width: 100%;
 	height: 100%;
+	max-width:100%;
 }
 
 #puzzle {
-	width: 620px;
+	/*width: 620px;*/
+	max-width: 100%
 	padding: 5px;
 	margin: auto;
 	border: 1px solid #aaa;
@@ -26,7 +28,7 @@ img {
 	background-color: #eee;
 }
 #figure {
-	width: 500px;
+	width: 80%;
 	height: 300px;
 	border: 1px solid #aaa;
 	position: relative;

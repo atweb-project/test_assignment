@@ -30,8 +30,7 @@
         	$('.media' ).media({
         		width:  204,
         		height: 375,
-        		wmode: 'transparent',
-        		params:	{ wmode: 'transparent'}
+        		params:	{ wmode: 'opaque', allowfullscreen: 'true'}
         		//type:'swf'
         		});
         	

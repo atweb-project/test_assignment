@@ -6,7 +6,7 @@
         
         MyWidget.call(this, pid, ptype)
 
-      var url = "embedded-player/simpsons.mov"
+      var url = "http://malsup.github.com/video/realvideo.ram"
       var Width = '100%'
       var Height = '100%'
 
@@ -22,21 +22,26 @@
             }
 
            
-            return '<div id="' + this.getId()  +  '" width="100%" height="100%"><a class="media" href="'+ url +'"></a></div>'
+            return '<div id="' + this.getId()  +  '" width="100%" height="100%"><a class="embmedia" href="'+ url +'"></a></div>'
 
         },
         
         this.initElement = function(param){
         	
         	//if( (appGlobals.isInDesignMode() == false))
-        	$('.media' ).media({
+        	$.fn.media.mapFormat('avi','quicktime');
+
+        	
+        	$('.embmedia' ).media({
         		width:  Width,
         		height: Height,
-        		params:	{ wmode: 'opaque', allowfullscreen: 'true'}
+        		//params:	{ wmode: 'opaque', allowfullscreen: 'true'}
         		//type:'swf'
         		});
-        	if( (appGlobals.isInDesignMode() == true))
-        	$('.media object').append('<param name="wmode" value="transparent">');
+        	//if( (appGlobals.isInDesignMode() == true))
+        	// $('.media object').append('<param name="wmode" value="transparent">');
+        	
+        	
         	
         	//alert(frameNumber)
 

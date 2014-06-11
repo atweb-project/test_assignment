@@ -6,7 +6,7 @@
         
         MyWidget.call(this, pid, ptype)
 
-      
+       var Direction = 'vertical'
 
         this.createElement= function (param) {
 
@@ -18,11 +18,46 @@
                 if (typeof (param.text) !== 'undefined') buttonText = param.text
 
             }
-
+            
+         /*   if(Direction = 'vertical'){
+            	return'<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
+         	   '<li><div><img src="images/carousel/slide1.jpg" /></div><div><img src="images/carousel/slide2.jpg" /></div>'+
+        	   '<div><img src="images/carousel/slide3.jpg" /></div><div><img src="images/carousel/slide4.jpg" /></div></li>'+
+         	  '<li><div><img src="images/carousel/slide1.jpg" /></div><div><img src="images/carousel/slide2.jpg" /></div>'+
+       	   '<div><img src="images/carousel/slide3.jpg" /></div><div><img src="images/carousel/slide4.jpg" /></div></li></ul></div>'
+            }*/
            
-            return '<button id="' + this.getId()  +  '" style="width:100%; height:100%">'+ buttonText +'</button>'
+            return '<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
+            	   '<li><img src="images/carousel/slide1.jpg" /></li><li><img src="images/carousel/slide2.jpg" /></li>'+
+            	   '<li><img src="images/carousel/slide3.jpg" /></li><li><img src="images/carousel/slide4.jpg" /></li></ul></div>'
 
         },
+        
+        this.initElement = function(param){
+        	//var flexslider;
+        	
+        	$('.flexslider').flexslider({
+        		animation: "slide",
+        	    animationLoop: false,
+        		//itemWidth: 150,
+        	    //itemMargin: 5,
+        	   minItems: 2, //one condition
+        	   maxItems: 2,  //second condition
+        	    direction: Direction
+        	    /*start: function(flexslider){
+        	    	 if (flexslider.vars.direction == "vertical"){
+        	    		 //alert('yes')
+        	    		 //$('.flex-direction-nav').css('transform', 'rotate(90deg)');
+        	    		 //$('.flex-prev:hover').css('left', '135px!important');
+        	    		// $('.flex-next').css('transform', 'rotate(90deg)');
+        	    	 }
+        	    },*/
+        	    //controlNav: "thumbnails"
+        	
+        	});
+        	
+
+		},
 
         this.createJSON = function() {
 
@@ -71,13 +106,7 @@ CarouselWidget.init = function () {
 CarouselWidget.buttomImage='images/button_icon.png'
 CarouselWidget.typeId= 'carousel'
 CarouselWidget.myClass= 'widget_carousel'
-CarouselWidget.initialWidth='100'
-CarouselWidget.initialHeight= '50'
+CarouselWidget.initialWidth='400'
+CarouselWidget.initialHeight= '270'
 CarouselWidget.actionsSectionId='carouselMenu'
 
-// not actually  needed??
-//ButtonWidget.prototype = MyWidget
-
-//ButtonWidget.prototype = new MyWidget()
-// buttonwidget contructor is not changed
-//ButtonWidget.constructor = MyWidget()

@@ -7,6 +7,11 @@
         MyWidget.call(this, pid, ptype)
 
       var url = "http://malsup.github.com/video/realvideo.ram"
+    	  //Quicktime http://malsup.github.com/video/simpsons.mov
+    	  //FLV http://malsup.github.com/mediaplayer.swf?file=flash/curtain.flv
+    	  //SWF http://malsup.com/jquery/media/flash/snail.swf
+    	  //Youtube http://youtube.com/v/TyvN59L4hJU
+    	  //Real Player http://malsup.github.com/video/realvideo.ram
       var Width = '100%'
       var Height = '100%'
 
@@ -35,11 +40,25 @@
         	$('.embmedia' ).media({
         		width:  Width,
         		height: Height,
-        		//params:	{ wmode: 'opaque', allowfullscreen: 'true'}
-        		//type:'swf'
+        		attrs:  {//wmode:'transparent', autoplay:true
+        						},
+        		params:	{ autostart: true,
+        			controls:'imagewindow,controlpanel' //for RealPlayer
+        			
+        		/*	controller : true,
+        			kioskmode: true,
+        			scale: "tofit",
+        			wmode: "transparent",   //for Quicktime
+        			target: "myself"
+        			//cache: true,
+        			//targetcache:true*/
+        			
+        			
+        				},
+        		//type:'swf' //for youtube
         		});
         	//if( (appGlobals.isInDesignMode() == true))
-        	// $('.media object').append('<param name="wmode" value="transparent">');
+        	// $('.embmedia object').append('<param name="wmode" value="transparent">');//For Quicktime
         	
         	
         	

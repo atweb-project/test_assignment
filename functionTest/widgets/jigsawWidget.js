@@ -22,7 +22,7 @@
             /*return '<div id="' + this.getId() + '" style="width: 80%;margin: 0px auto;"><div class="iframe-container" style="height: 0;width: 100%;padding-bottom: 56.25%;overflow: hidden;position: relative;">'+
             		'<iframe width="100%" height="100%" style=" position: absolute;top:0;left: 0;" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
             			numberOfPieces +'" numberOfRows="'+ aspectH +'" frameborder="0"></iframe><div></div>'*/
-            return '<iframe width="100%" height="100%" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
+            return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
 			numberOfPieces +'" numberOfRows="'+ aspectH +'" frameborder="0"></iframe><div>'
             
         },

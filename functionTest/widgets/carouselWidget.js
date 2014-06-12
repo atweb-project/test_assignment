@@ -19,17 +19,31 @@
 
             }
             
-      /*    if(Direction = 'vertical'){
+          if(Direction = 'vertical'){
             	return'<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
          	   '<li><div><img src="images/carousel/slide1.jpg" /></div><div><img src="images/carousel/slide2.jpg" /></div>'+
         	   '<div><img src="images/carousel/slide3.jpg" /></div><div><img src="images/carousel/slide4.jpg" /></div></li>'+
          	  '<li><div><img src="images/carousel/slide1.jpg" /></div><div><img src="images/carousel/slide2.jpg" /></div>'+
        	   '<div><img src="images/carousel/slide3.jpg" /></div><div><img src="images/carousel/slide4.jpg" /></div></li></ul></div>'
-            }*/
+            }else{
+            
+            /***
+             * 
+             * How to append images in vertical layout 
+             * $('.num').change(function () {
+             * 		 num_val = $(this).val(); // get the number of te elements that will be shown
+             * 		$('.list').empty();
+             * 		 for (i = 0; i < num_val; i++) { // i do a for loop for append each div to the list but it doesn't work it's show me just 1.
+             * 		 $('.list').append('<div>' + i + '</div>');
+             * 		}
+             * 		});
+             */
+             
+        
            
-          /*  return '<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
+            return '<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
             	   '<li><img src="images/carousel/slide1.jpg" /></li><li><img src="images/carousel/slide2.jpg" /></li>'+
-            	   '<li><img src="images/carousel/slide3.jpg" /></li><li><img src="images/carousel/slide4.jpg" /></li></ul></div>'*/
+            	   '<li><img src="images/carousel/slide3.jpg" /></li><li><img src="images/carousel/slide4.jpg" /></li></ul></div>'}
             
           /*  return '<div id="' + this.getId()  +  '" class="slideshow" data-cycle-fx=carousel data-cycle-timeout=1000>'+
             	   '<img src="images/carousel/slide1.jpg" />'+
@@ -39,7 +53,7 @@
             	   '</div><div class="center"><a href="#" id="prev4"><< Prev </a><a href="#" id="next4"> Next >> </a></div>'
 					*/
             
-         return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"></iframe>'
+        // return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"></iframe>'
 					
 					
         },
@@ -47,15 +61,15 @@
         this.initElement = function(param){
         	//var flexslider;
         	//if( (appGlobals.isInDesignMode() == false)) 	
-        	/*$('.flexslider').flexslider({
+        	$('.flexslider').flexslider({
         		animation: "slide",
         	    animationLoop: false,
         		//itemWidth: 150,
-        	    //itemMargin: 5,
+        	   // itemMargin: 5,
         	   minItems: 2, //one condition
-        	   maxItems: 2,  //second condition
+        	   maxItems: 3,  //second condition
         	    direction: Direction,
-        	    slideshow: false
+        	    slideshow: true
         	    /*start: function(flexslider){
         	    	 if (flexslider.vars.direction == "vertical"){
         	    		 //alert('yes')
@@ -66,7 +80,7 @@
         	    },*/
         	    //controlNav: "thumbnails"
         	
-        	//});
+        	});
         	
         	//Cycle2 carousel
         	/*$( '.slideshow' ).cycle({
@@ -79,7 +93,7 @@
         		//autoHeight: "400:270"
         	});*/
         	
-        	$()
+
 
 		},
 
@@ -132,7 +146,7 @@ CarouselWidget.init = function () {
 CarouselWidget.buttomImage='images/button_icon.png'
 CarouselWidget.typeId= 'carousel'
 CarouselWidget.myClass= 'widget_carousel'
-CarouselWidget.initialWidth='200'
+CarouselWidget.initialWidth='400'
 CarouselWidget.initialHeight= '300'
 CarouselWidget.actionsSectionId='carouselMenu'
 

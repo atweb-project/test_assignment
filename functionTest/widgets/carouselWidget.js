@@ -19,7 +19,7 @@
 
             }
             
-          if(Direction = 'vertical'){
+          if(Direction == 'vertical'){
             	return'<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
          	   '<li><div><img src="images/carousel/slide1.jpg" /></div><div><img src="images/carousel/slide2.jpg" /></div>'+
         	   '<div><img src="images/carousel/slide3.jpg" /></div><div><img src="images/carousel/slide4.jpg" /></div></li>'+
@@ -146,7 +146,7 @@ CarouselWidget.init = function () {
 CarouselWidget.buttomImage='images/button_icon.png'
 CarouselWidget.typeId= 'carousel'
 CarouselWidget.myClass= 'widget_carousel'
-CarouselWidget.initialWidth='400'
+CarouselWidget.initialWidth='200'
 CarouselWidget.initialHeight= '300'
 CarouselWidget.actionsSectionId='carouselMenu'
 

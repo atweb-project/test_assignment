@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>slick - the last carousel you'll ever need</title>
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    $('.responsive').slick({
+       slidesToShow: 3,
+       slidesToScroll: 1,
+       autoplay: true,
+       autoplaySpeed: 2000,
+       vertical: true,
+       responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true,
+        vertical: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        vertical: true
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        vertical: true
+      }
+    }
+  ]
+    });
+});
+    
+    </script>
+    <style>
+    body {
+        background:none repeat scroll 0 0 #3498DB;
+        height:100%,
+        width:100%,
+        margin:0;
+        padding:0;
+    }
+    .slick-slider {
+        margin: 30px auto 50px;
+    }
+    .slick-slide img {
+        border: 5px solid #FFFFFF;
+        display: block;
+        max-width: 100%;
+    }
+    .slick-slide .image {
+        padding: 10px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    .content {
+        margin: auto;
+        padding: 20px;
+        width: 600px;
+    }
+    </style>
+</head>
+<body>
+    <div class="content">
+    <h2>Responsive Display</h2>
+                <div class="responsive">
+                    <div><div class="image"><img data-lazy="img/lazyfonz1.png"/></div></div>
+                    <div><div class="image"><img data-lazy="img/lazyfonz2.png"/></div></div>
+                    <div><div class="image"><img data-lazy="img/lazyfonz3.png"/></div></div>
+                    <div><div class="image"><img data-lazy="img/lazyfonz4.png"/></div></div>
+                    <div><div class="image"><img data-lazy="img/lazyfonz5.png"/></div></div>
+                    <div><div class="image"><img data-lazy="img/lazyfonz6.png"/></div></div>
+                </div>
+    </div>       
+</body>
+</html>

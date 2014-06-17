@@ -80,7 +80,7 @@
 
 					if (param[i].prop == 'Orientable') Orientable = param[i].value
 
-						// alert('prop '+frameNumber)
+						// alert('prop '+Orientable)
 
 				}
 

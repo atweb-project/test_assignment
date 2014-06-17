@@ -6,12 +6,12 @@
         
         MyWidget.call(this, pid, ptype)
 
-       var Vertical = false
-       var slidesToShow = 3
-       var slidesToScroll = 1
-       var autoplay = false
-       var autoplaySpeed = 3000
-       var dots = false
+        var Vertical = false
+        var slidesToShow = 3
+        var slidesToScroll = 3
+        var autoStart = false
+        var autoplaySpeed = 3000
+        var dots = false
        
        
         this.createElement = function (param) {
@@ -24,15 +24,17 @@
                 
                 if (typeof (param.slidesToScroll) !== 'undefined') slidesToScroll = param.slidesToScroll
                 
-                if (typeof (param.autoplay) !== 'undefined') autoplay = param.autoplay
+                if (typeof (param.autoStart) !== 'undefined') autoStart = param.autoStart
                 
                 if (typeof (param.autoplaySpeed) !== 'undefined') autoplaySpeed = param.autoplaySpeed
                 
                 if (typeof (param.dots) !== 'undefined') dots = param.dots
+                
+              alert('param '+param.autoStart)
 
             }
 				
-           return '<div id="' + this.getId()  +  '" style="width:100%;height:100%;">'+
+          /* return '<div id="' + this.getId()  +  '" style="width:100%;height:100%;">'+
            		  '<div class="responsive" >'+
            		  '<div><div class="image"><img src="carousel/img/lazyfonz1.png"/></div></div>'+
            		  '<div><div class="image"><img src="carousel/img/lazyfonz2.png"/></div></div>'+
@@ -40,13 +42,16 @@
            		  '<div><div class="image"><img src="carousel/img/lazyfonz4.png"/></div></div>'+
            		  '<div><div class="image"><img src="carousel/img/lazyfonz5.png"/></div></div>'+
            		  '<div><div class="image"><img src="carousel/img/lazyfonz6.png"/></div></div>'+
-           		  '</div></div>'
+           		  '</div></div>'*/
+            
+            return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"'+
+            		'Vertical="'+Vertical+'" slidesToShow="'+slidesToShow+'" slidesToScroll="'+slidesToScroll+'" autoStart="'+autoStart+'" autoplaySpeed="'+autoplaySpeed+'" dots="'+dots+'"></iframe><div>'
 					
         },
         
         this.initElement = function(param){
         	      	
-        	 $('.responsive').slick({
+        /*	 $('.responsive').slick({
         	       slidesToShow: slidesToShow,
         	       slidesToScroll: slidesToScroll,
         	       autoplay: autoplay,
@@ -87,8 +92,8 @@
         	      }
         	    }
         	  ]
-        	    });
-        	
+        	    });*/
+        	alert('init'+autoStart)
 		},
 
         this.propChange = function (param) {
@@ -101,16 +106,23 @@
 
 				if (param[i].prop == 'slidesToScroll') slidesToScroll = param[i].value
 				
-				if (param[i].prop == 'autoplay') autoplay = param[i].value
+				if (param[i].prop == 'autoStart') autoStart = param[i].value
 				
 				if (param[i].prop == 'autoplaySpeed') autoplaySpeed = param[i].value
 
 				if (param[i].prop == 'dots') dots = param[i].value
 
-					 //alert('prop '+Vertical)
+					 alert('prop '+autoStart)
 			}
 			
-			//this.initElement()
+			$('#'+this.getId() ).attr( 'Vertical', Vertical);
+       	 	$('#'+this.getId() ).attr( 'slidesToShow', slidesToShow);
+       	 	$('#'+this.getId() ).attr( 'slidesToScroll', slidesToScroll);
+    	 	$('#'+this.getId() ).attr( 'autoStart', autoStart);
+    	 	$('#'+this.getId() ).attr( 'autoplaySpeed', autoplaySpeed);
+       	 	$('#'+this.getId() ).attr( 'dots', dots);
+       	 
+       	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
 
         },
 
@@ -122,7 +134,7 @@
 
 			$('#slidesToScroll').spinner('value', slidesToScroll)
 			
-			$('#autoplay').prop('checked', autoplay)
+			$('#autoplayCarousel').prop('checked', autoStart)
 			
 			$('#autoplaySpeed').spinner('value', autoplaySpeed)
 
@@ -168,7 +180,7 @@
 		
 		this.chooseAutoplay = function() {
 
-       	 this.myRegisterUniquePropEvent([ {'prop' : 'autoplay', 'ov' : autoplay, 'nv' : $('#autoplay').prop('checked')} ])
+       	 this.myRegisterUniquePropEvent([ {'prop' : 'autoStart', 'ov' : autoStart, 'nv' : $('#autoplayCarousel').prop('checked')} ])
             
        },
        
@@ -194,8 +206,9 @@
 	       },
          
          this.createJSON = function() {
+	    	   alert ("json autoplay " + autoStart )
 
-             return { 'Vertical' : Vertical, 'slidesToShow' : slidesToShow, 'slidesToScroll' : slidesToScroll, 'autoplay' : autoplay, 'autoplaySpeed' : autoplaySpeed, 'dots' : dots}
+             return { 'Vertical': Vertical, 'slidesToShow': slidesToShow, 'slidesToScroll': slidesToScroll, 'autoStart': autoStart, 'autoplaySpeed': autoplaySpeed, 'dots': dots}
 
          }
          
@@ -205,15 +218,15 @@
 // static variables/functions
 
 CarouselWidget.init = function () {
-	$("#carouselMenu").append("<br>Choose direction of the carousel(horizontal or vertical, default is horizontal)<input type='checkbox' id='Vertical' name='Vertical' value='Vertical' onclick='appGlobals.currentObject().chooseDirection()'>")
+	$("#carouselMenu").append("<br>Choose direction of the carousel(horizontal or vertical, default is horizontal)<input type='checkbox' id='Vertical' name='Vertical' value='' onclick='appGlobals.currentObject().chooseDirection()'>")
 	$("#carouselMenu").append("<br>How many slides to show<input type='edit' id='slidesToShow' name='slidesToShow' value='3' >")
     $("#slidesToShow").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().chooseslidesToShow() } })
-	$("#carouselMenu").append("<br>How many slides to scroll<input type='edit' id='slidesToScroll' name='slidesToScroll' value='1' >")
+	$("#carouselMenu").append("<br>How many slides to scroll<input type='edit' id='slidesToScroll' name='slidesToScroll' value='3' >")
     $("#slidesToScroll").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().chooseslidesToScroll() } })
-	$("#carouselMenu").append("<br>Autoplay<input type='checkbox' id='autoplay' name='autoplay' value='autoplay' onclick='appGlobals.currentObject().chooseAutoplay()'>")
+	$("#carouselMenu").append("<br>Autoplay<input type='checkbox' id='autoplayCarousel' name='autoStart' value='' onclick='appGlobals.currentObject().chooseAutoplay()'>")
 	$("#carouselMenu").append("<br>Choose the speed of autoplay<input type='edit' id='autoplaySpeed' name='autoplaySpeed' value='3000' >")
     $("#autoplaySpeed").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().chooseautoplaySpeed() } })
-	$("#carouselMenu").append("<br>Allow dots as navigation<input type='checkbox' id='dots' name='dots' value='dots' onclick='appGlobals.currentObject().chooseDots()'>")
+	$("#carouselMenu").append("<br>Allow dots as navigation<input type='checkbox' id='dots' name='dots' value='' onclick='appGlobals.currentObject().chooseDots()'>")
 }
 
 CarouselWidget.buttomImage='images/button_icon.png'

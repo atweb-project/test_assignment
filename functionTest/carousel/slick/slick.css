@@ -50,7 +50,7 @@
 
  .slick-slider {
         margin: 30px auto 50px;
-        z-index:-1;
+        /*z-index:-1;*/
     }
     .slick-slide img {
         border: 5px solid #666;
@@ -59,4 +59,13 @@
     }
     .slick-slide .image {
         padding: 10px;
+    }
+    
+.content {
+        margin: auto;
+        padding: 0 20px;
+        width: 100%;
+    }
+     * {
+        box-sizing: border-box;
     }

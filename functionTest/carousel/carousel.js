@@ -8,9 +8,10 @@ $(document).ready(function(){
        slidesToScroll = $(window.frameElement).attr('slidesToScroll');
        autoStart = $(window.frameElement).attr('autoStart');
        autoplaySpeed = $(window.frameElement).attr('autoplaySpeed');
-       dots = $(window.frameElement).attr('dots');
+       Dots = $(window.frameElement).attr('dots');
        alert('iframe '+autoStart);
-       alert('and '+dots);
+       alert('and '+$(window.frameElement).attr('dots'));
+       
        
        
    /* $('.responsive').slick({
@@ -72,7 +73,7 @@ $(document).ready(function(){
         draggable: false,
         autoplay: autoStart,
         infinite: true,
-        dots: 'dots',
+        dots: Dots,
         vertical: false
       }
     

@@ -6,147 +6,220 @@
         
         MyWidget.call(this, pid, ptype)
 
-       var Direction = 'vertical'
-
-        this.createElement= function (param) {
-
-            var buttonText = 'Button!'
-
+       var Vertical = false
+       var slidesToShow = 3
+       var slidesToScroll = 1
+       var autoplay = false
+       var autoplaySpeed = 3000
+       var dots = false
+       
+       
+        this.createElement = function (param) {
 
             if (typeof (param) !== 'undefined') {
 
-                if (typeof (param.text) !== 'undefined') buttonText = param.text
+                if (typeof (param.Vertical) !== 'undefined') Vertical = param.Vertical
+                
+                if (typeof (param.slidesToShow) !== 'undefined') slidesToShow = param.slidesToShow
+                
+                if (typeof (param.slidesToScroll) !== 'undefined') slidesToScroll = param.slidesToScroll
+                
+                if (typeof (param.autoplay) !== 'undefined') autoplay = param.autoplay
+                
+                if (typeof (param.autoplaySpeed) !== 'undefined') autoplaySpeed = param.autoplaySpeed
+                
+                if (typeof (param.dots) !== 'undefined') dots = param.dots
 
             }
-            
-          if(Direction == 'vertical'){
-            	return'<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
-         	   '<li><div><img src="images/carousel/slide1.jpg" /></div><div><img src="images/carousel/slide2.jpg" /></div>'+
-        	   '<div><img src="images/carousel/slide3.jpg" /></div><div><img src="images/carousel/slide4.jpg" /></div></li>'+
-         	  '<li><div><img src="images/carousel/slide1.jpg" /></div><div><img src="images/carousel/slide2.jpg" /></div>'+
-       	   '<div><img src="images/carousel/slide3.jpg" /></div><div><img src="images/carousel/slide4.jpg" /></div></li></ul></div>'
-            }else{
-            
-            /***
-             * 
-             * How to append images in vertical layout 
-             * $('.num').change(function () {
-             * 		 num_val = $(this).val(); // get the number of te elements that will be shown
-             * 		$('.list').empty();
-             * 		 for (i = 0; i < num_val; i++) { // i do a for loop for append each div to the list but it doesn't work it's show me just 1.
-             * 		 $('.list').append('<div>' + i + '</div>');
-             * 		}
-             * 		});
-             */
-             
-        
-           
-            return '<div id="' + this.getId()  +  '" width="100%" height="100%" class="flexslider"><ul class="slides">'+
-            	   '<li><img src="images/carousel/slide1.jpg" /></li><li><img src="images/carousel/slide2.jpg" /></li>'+
-            	   '<li><img src="images/carousel/slide3.jpg" /></li><li><img src="images/carousel/slide4.jpg" /></li></ul></div>'}
-            
-          /*  return '<div id="' + this.getId()  +  '" class="slideshow" data-cycle-fx=carousel data-cycle-timeout=1000>'+
-            	   '<img src="images/carousel/slide1.jpg" />'+
-            	   '<img src="images/carousel/slide2.jpg" />'+
-            	   '<img src="images/carousel/slide3.jpg" />'+
-            	   '<img src="images/carousel/slide4.jpg" />'+
-            	   '</div><div class="center"><a href="#" id="prev4"><< Prev </a><a href="#" id="next4"> Next >> </a></div>'
-					*/
-            
-        // return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"></iframe>'
-					
+				
+           return '<div id="' + this.getId()  +  '" style="width:100%;height:100%;">'+
+           		  '<div class="responsive" >'+
+           		  '<div><div class="image"><img src="carousel/img/lazyfonz1.png"/></div></div>'+
+           		  '<div><div class="image"><img src="carousel/img/lazyfonz2.png"/></div></div>'+
+           		  '<div><div class="image"><img src="carousel/img/lazyfonz3.png"/></div></div>'+
+           		  '<div><div class="image"><img src="carousel/img/lazyfonz4.png"/></div></div>'+
+           		  '<div><div class="image"><img src="carousel/img/lazyfonz5.png"/></div></div>'+
+           		  '<div><div class="image"><img src="carousel/img/lazyfonz6.png"/></div></div>'+
+           		  '</div></div>'
 					
         },
         
         this.initElement = function(param){
-        	//var flexslider;
-        	//if( (appGlobals.isInDesignMode() == false)) 	
-        	$('.flexslider').flexslider({
-        		animation: "slide",
-        	    animationLoop: false,
-        		//itemWidth: 150,
-        	   // itemMargin: 5,
-        	   minItems: 2, //one condition
-        	   maxItems: 3,  //second condition
-        	    direction: Direction,
-        	    slideshow: true
-        	    /*start: function(flexslider){
-        	    	 if (flexslider.vars.direction == "vertical"){
-        	    		 //alert('yes')
-        	    		 //$('.flex-direction-nav').css('transform', 'rotate(90deg)');
-        	    		 //$('.flex-prev:hover').css('left', '135px!important');
-        	    		// $('.flex-next').css('transform', 'rotate(90deg)');
-        	    	 }
-        	    },*/
-        	    //controlNav: "thumbnails"
+        	      	
+        	 $('.responsive').slick({
+        	       slidesToShow: slidesToShow,
+        	       slidesToScroll: slidesToScroll,
+        	       autoplay: autoplay,
+        	       autoplaySpeed: autoplaySpeed,
+        	       draggable: false,
+        	       vertical: Vertical,
+        	       dots: dots,
+        	       responsive: [
+        	    {
+        	      breakpoint: 1024,
+        	      settings: {
+        	        slidesToShow: slidesToShow,
+        	        slidesToScroll: slidesToScroll,
+        	        infinite: true,
+        	        dots: dots,
+        	        draggable: false,
+        	        vertical: Vertical
+        	      }
+        	    },
+        	    {
+        	      breakpoint: 600,
+        	      settings: {
+        	        slidesToShow: slidesToShow,
+        	        slidesToScroll: slidesToScroll,
+        	        draggable: false,
+        	        dots: dots,
+        	        vertical: Vertical
+        	      }
+        	    },
+        	    {
+        	      breakpoint: 480,
+        	      settings: {
+        	        slidesToShow: slidesToShow,
+        	        slidesToScroll: slidesToScroll,
+        	        draggable: false,
+        	        dots: dots,
+        	        vertical: Vertical
+        	      }
+        	    }
+        	  ]
+        	    });
         	
-        	});
-        	
-        	//Cycle2 carousel
-        	/*$( '.slideshow' ).cycle({
-        		next:"#next4",
-        		prev:"#prev4",
-        		//carouselSlideDimension:"400",
-        		//carouselFluid: true,
-        		//carouselVisible: 2
-        		//carouselVertical:true
-        		//autoHeight: "400:270"
-        	});*/
-        	
-
-
 		},
 
-        this.createJSON = function() {
+        this.propChange = function (param) {
 
-            return { 'text': $('#'+ this.getId() ).html() }
+			for (var i = 0; i < param.length; i++) {
 
+				if (param[i].prop == 'Vertical') Vertical = param[i].value
+				
+				if (param[i].prop == 'slidesToShow') slidesToShow = param[i].value
+
+				if (param[i].prop == 'slidesToScroll') slidesToScroll = param[i].value
+				
+				if (param[i].prop == 'autoplay') autoplay = param[i].value
+				
+				if (param[i].prop == 'autoplaySpeed') autoplaySpeed = param[i].value
+
+				if (param[i].prop == 'dots') dots = param[i].value
+
+					 //alert('prop '+Vertical)
+			}
+			
+			//this.initElement()
+
+        },
+
+        this.selectionChanged = function()  {
+
+        	$('#Vertical').prop('checked', Vertical)
+			
+			$('#slidesToShow').spinner('value', slidesToShow)
+
+			$('#slidesToScroll').spinner('value', slidesToScroll)
+			
+			$('#autoplay').prop('checked', autoplay)
+			
+			$('#autoplaySpeed').spinner('value', autoplaySpeed)
+
+			$('#dots').prop('checked', dots)
+              
+         },
+         
+        this.chooseDirection = function() {
+
+        	 this.myRegisterUniquePropEvent([ {'prop' : 'Vertical', 'ov' : Vertical, 'nv' : $('#Vertical').prop('checked')} ])
+             
         },
         
-        this.changeLabel= function()
-         {
+        this.chooseslidesToShow = function() {
 
-         //  alert ("button clicked")
-           // alert (  ' currentId '+currentID+" texregisterUniquePropEventt "+ $('#newButtonText').prop('value') )
+			var ns = $('#slidesToShow').spinner("value")
 
-            this.myRegisterUniquePropEvent( [{ 'prop': 'text', 'ov': $('#' + this.getId()  ).html(), 'nv': $('#newButtonText').prop('value') }])
-             
+			if (ns != null || ns != 0) {
 
-        },
+				this.myRegisterUniquePropEvent([ {'prop' : 'slidesToShow', 'ov' : slidesToShow, 'nv' : ns} ])
 
-        this.propChange= function (param) {
+			} else {
 
-           // alert ("button prop change "+this.getId()+" param "+param.length)
+				alert("Numbers only and after the number 1")
+			}
 
-            $('#' + this.getId() ).html(param[0].value)
+		},
+		
+		this.chooseslidesToScroll = function() {
 
-        }
+			var ns = $('#slidesToScroll').spinner("value")
 
+			if (ns != null || ns != 0) {
 
-        ,
+				this.myRegisterUniquePropEvent([ {'prop' : 'slidesToScroll', 'ov' : slidesToScroll, 'nv' : ns} ])
 
-        this.selectionChanged=function()  {
+			} else {
 
-          //  alert(" button selection changed " + $(currentID).html())
+				alert("Numbers only and after the number 1")
+			}
 
-            $('#newButtonText').prop('value', $('#' + this.getId()  ).html())
-              
+		},
+		
+		this.chooseAutoplay = function() {
+
+       	 this.myRegisterUniquePropEvent([ {'prop' : 'autoplay', 'ov' : autoplay, 'nv' : $('#autoplay').prop('checked')} ])
+            
+       },
+       
+       this.chooseautoplaySpeed = function() {
+
+			var ns = $('#autoplaySpeed').spinner("value")
+
+			if (ns != null || ns != 0) {
+
+				this.myRegisterUniquePropEvent([ {'prop' : 'autoplaySpeed', 'ov' : autoplaySpeed, 'nv' : ns} ])
+
+			} else {
+
+				alert("Numbers only and after the number 1")
+			}
+
+		},
+		
+		this.chooseDots = function() {
+
+	       	 this.myRegisterUniquePropEvent([ {'prop' : 'dots', 'ov' : dots, 'nv' : $('#dots').prop('checked')} ])
+	            
+	       },
+         
+         this.createJSON = function() {
+
+             return { 'Vertical' : Vertical, 'slidesToShow' : slidesToShow, 'slidesToScroll' : slidesToScroll, 'autoplay' : autoplay, 'autoplaySpeed' : autoplaySpeed, 'dots' : dots}
 
          }
-        
+         
+                 
     }
 
 // static variables/functions
 
 CarouselWidget.init = function () {
-    $("#carouselMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
+	$("#carouselMenu").append("<br>Choose direction of the carousel(horizontal or vertical, default is horizontal)<input type='checkbox' id='Vertical' name='Vertical' value='Vertical' onclick='appGlobals.currentObject().chooseDirection()'>")
+	$("#carouselMenu").append("<br>How many slides to show<input type='edit' id='slidesToShow' name='slidesToShow' value='3' >")
+    $("#slidesToShow").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().chooseslidesToShow() } })
+	$("#carouselMenu").append("<br>How many slides to scroll<input type='edit' id='slidesToScroll' name='slidesToScroll' value='1' >")
+    $("#slidesToScroll").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().chooseslidesToScroll() } })
+	$("#carouselMenu").append("<br>Autoplay<input type='checkbox' id='autoplay' name='autoplay' value='autoplay' onclick='appGlobals.currentObject().chooseAutoplay()'>")
+	$("#carouselMenu").append("<br>Choose the speed of autoplay<input type='edit' id='autoplaySpeed' name='autoplaySpeed' value='3000' >")
+    $("#autoplaySpeed").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().chooseautoplaySpeed() } })
+	$("#carouselMenu").append("<br>Allow dots as navigation<input type='checkbox' id='dots' name='dots' value='dots' onclick='appGlobals.currentObject().chooseDots()'>")
 }
-
 
 CarouselWidget.buttomImage='images/button_icon.png'
 CarouselWidget.typeId= 'carousel'
 CarouselWidget.myClass= 'widget_carousel'
-CarouselWidget.initialWidth='200'
-CarouselWidget.initialHeight= '300'
+CarouselWidget.initialWidth='520'
+CarouselWidget.initialHeight= '250'
 CarouselWidget.actionsSectionId='carouselMenu'
 

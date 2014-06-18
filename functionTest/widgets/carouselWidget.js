@@ -6,12 +6,12 @@
         
         MyWidget.call(this, pid, ptype)
 
-        var Vertical = false
-        var slidesToShow = 3
-        var slidesToScroll = 3
-        var autoStart = false
-        var autoplaySpeed = 3000
-        var dots = false
+        Vertical = false
+        slidesToShow = 3
+        slidesToScroll = 3
+        autoStart = false
+        autoplaySpeed = 3000
+        dots = false
        
        
         this.createElement = function (param) {
@@ -30,70 +30,16 @@
                 
                 if (typeof (param.dots) !== 'undefined') dots = param.dots
                 
-              alert('param '+param.autoStart)
+              //alert('param '+param.autoStart)
 
             }
-				
-          /* return '<div id="' + this.getId()  +  '" style="width:100%;height:100%;">'+
-           		  '<div class="responsive" >'+
-           		  '<div><div class="image"><img src="carousel/img/lazyfonz1.png"/></div></div>'+
-           		  '<div><div class="image"><img src="carousel/img/lazyfonz2.png"/></div></div>'+
-           		  '<div><div class="image"><img src="carousel/img/lazyfonz3.png"/></div></div>'+
-           		  '<div><div class="image"><img src="carousel/img/lazyfonz4.png"/></div></div>'+
-           		  '<div><div class="image"><img src="carousel/img/lazyfonz5.png"/></div></div>'+
-           		  '<div><div class="image"><img src="carousel/img/lazyfonz6.png"/></div></div>'+
-           		  '</div></div>'*/
             
-            return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"'+
-            		'Vertical="'+Vertical+'" slidesToShow="'+slidesToShow+'" slidesToScroll="'+slidesToScroll+'" autoStart="'+autoStart+'" autoplaySpeed="'+autoplaySpeed+'" dots="'+dots+'"></iframe><div>'
+            return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"></iframe>'
 					
         },
         
         this.initElement = function(param){
-        	      	
-        /*	 $('.responsive').slick({
-        	       slidesToShow: slidesToShow,
-        	       slidesToScroll: slidesToScroll,
-        	       autoplay: autoplay,
-        	       autoplaySpeed: autoplaySpeed,
-        	       draggable: false,
-        	       vertical: Vertical,
-        	       dots: dots,
-        	       responsive: [
-        	    {
-        	      breakpoint: 1024,
-        	      settings: {
-        	        slidesToShow: slidesToShow,
-        	        slidesToScroll: slidesToScroll,
-        	        infinite: true,
-        	        dots: dots,
-        	        draggable: false,
-        	        vertical: Vertical
-        	      }
-        	    },
-        	    {
-        	      breakpoint: 600,
-        	      settings: {
-        	        slidesToShow: slidesToShow,
-        	        slidesToScroll: slidesToScroll,
-        	        draggable: false,
-        	        dots: dots,
-        	        vertical: Vertical
-        	      }
-        	    },
-        	    {
-        	      breakpoint: 480,
-        	      settings: {
-        	        slidesToShow: slidesToShow,
-        	        slidesToScroll: slidesToScroll,
-        	        draggable: false,
-        	        dots: dots,
-        	        vertical: Vertical
-        	      }
-        	    }
-        	  ]
-        	    });*/
-        	alert('init'+autoStart)
+        	
 		},
 
         this.propChange = function (param) {
@@ -112,15 +58,18 @@
 
 				if (param[i].prop == 'dots') dots = param[i].value
 
-					 alert('prop '+autoStart)
+					// alert('prop '+autoStart)
 			}
 			
-			$('#'+this.getId() ).attr( 'Vertical', Vertical);
-       	 	$('#'+this.getId() ).attr( 'slidesToShow', slidesToShow);
-       	 	$('#'+this.getId() ).attr( 'slidesToScroll', slidesToScroll);
-    	 	$('#'+this.getId() ).attr( 'autoStart', autoStart);
-    	 	$('#'+this.getId() ).attr( 'autoplaySpeed', autoplaySpeed);
-       	 	$('#'+this.getId() ).attr( 'dots', dots);
+			if(Vertical == true){
+				// for vertical direction we change the dimensions of the
+				// container
+				$('.elementContainer').css({
+					width:'135',
+					height: '345'					
+				})
+				
+			}
        	 
        	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
 
@@ -206,7 +155,7 @@
 	       },
          
          this.createJSON = function() {
-	    	   alert ("json autoplay " + autoStart )
+	    	  // alert ("json autoplay " + autoStart )
 
              return { 'Vertical': Vertical, 'slidesToShow': slidesToShow, 'slidesToScroll': slidesToScroll, 'autoStart': autoStart, 'autoplaySpeed': autoplaySpeed, 'dots': dots}
 

@@ -1,84 +1,49 @@
 /**
- * 
+ * Carousel call
  */
-$(document).ready(function(){
-    	
-       Vertical = $(window.frameElement).attr('Vertical');
-       slidesToShow = $(window.frameElement).attr('slidesToShow');
-       slidesToScroll = $(window.frameElement).attr('slidesToScroll');
-       autoStart = $(window.frameElement).attr('autoStart');
-       autoplaySpeed = $(window.frameElement).attr('autoplaySpeed');
-       Dots = $(window.frameElement).attr('dots');
-       alert('iframe '+autoStart);
-       alert('and '+$(window.frameElement).attr('dots'));
-       
-       
-       
-   /* $('.responsive').slick({
-        	       slidesToShow: slidesToShow,
-        	       slidesToScroll: slidesToScroll,
-        	       autoplay: autoplay == false ? 1 : 0,
-        	       autoplaySpeed: autoplaySpeed,
-        	       draggable: false,
-        	       vertical: Vertical == false ? 1 : 0,
-        	       dots: dots == false ? 1 : 0,
-        	       responsive: [
-        	    {
-        	      breakpoint: 1024,
-        	      settings: {
-        	        slidesToShow: slidesToShow,
-        	        slidesToScroll: slidesToScroll,
-        	        infinite: true,
-        	        dots: dots == false ? 1 : 0,
-        	        draggable: false,
-        	        vertical: Vertical == false ? 1 : 0
-        	      }
-        	    },
-        	    {
-        	      breakpoint: 600,
-        	      settings: {
-        	        slidesToShow: slidesToShow,
-        	        slidesToScroll: slidesToScroll,
-        	        draggable: false,
-        	        dots: dots == false ? 1 : 0,
-        	        vertical: Vertical == false ? 1 : 0
-        	      }
-        	    },
-        	    {
-        	      breakpoint: 480,
-        	      settings: {
-        	        slidesToShow: slidesToShow,
-        	        slidesToScroll: slidesToScroll,
-        	        draggable: false,
-        	        dots: dots == false ? 1 : 0,
-        	        vertical: Vertical == false ? 1 : 0
-        	      }
-        	    }
-        	  ]
-        	    });*/
-        	   
-       $('.responsive').slick({
-       slidesToShow: slidesToShow,
-       slidesToScroll: slidesToScroll,
-       draggable: false,
-       autoplay: autoStart,
-       autoplaySpeed: 2000,
-       vertical: false,
-       responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: slidesToShow,
-        slidesToScroll: slidesToScroll,
-        draggable: false,
-        autoplay: autoStart,
-        infinite: true,
-        dots: Dots,
-        vertical: false
-      }
-    
-    }
-  ]
-    });
-    
+$(function() {
+	
+	//Lets get the global variables
+	Vertical = parent.Vertical;
+	slidesToShow = parent.slidesToShow;
+	slidesToScroll = parent.slidesToScroll;
+	autoStart = parent.autoStart;
+	autoplaySpeed = parent.autoplaySpeed;
+	dots = parent.dots;
+
+	//Initialization of Carousel 
+	$('.responsive').slick({
+		slidesToShow : slidesToShow,//number of slides to show
+		slidesToScroll : slidesToScroll,//number of slides to scroll each time
+		autoplay : autoStart,//autoplay
+		autoplaySpeed : autoplaySpeed,//speed of autoplay
+		draggable : false,
+		vertical : Vertical,//Direction of carousel
+		dots : dots, //Dot navigation
+		onInit : function() {
+			if (Vertical == true) {
+						//for vertical direction we rearrange the navigation arrows and the navigation dots
+				$('.slick-prev').css({
+					position : 'fixed',
+					left : '50%',
+					top : '3%',
+					margin : '-5px -10px',
+					transform : 'rotate(90deg)'
+				})
+
+				$('.slick-next').css({
+					right : '50%',
+					top : '100%',
+					margin : '0px -10px',
+					transform : 'rotate(90deg)'
+				})
+				
+				$('.slick-dots').css({
+					bottom : '-65px'
+				})
+			}
+		}
+
+	});
+
 });

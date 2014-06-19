@@ -70,8 +70,26 @@
 				})
 				
 			}
-       	 
+			//if (autoStart == true){
+				//return false
+			//}
+        		//autoStart = false
+       	 	/*$('#autoplayCarousel').on('click', function(){
+       	 		alert('checked')
+       	 		
+       	 	})*/
+			//this.autoplayParameter()
+			
        	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
+       	 	//this.autoplayParameter()
+
+        },
+        
+        this.autoplayParameter = function()
+        {
+            if( (appGlobals.isInDesignMode() == false) && ( autoStart == true )) return autoStart='true'
+             
+            return autoStart='false'
 
         },
 
@@ -130,6 +148,7 @@
 		this.chooseAutoplay = function() {
 
        	 this.myRegisterUniquePropEvent([ {'prop' : 'autoStart', 'ov' : autoStart, 'nv' : $('#autoplayCarousel').prop('checked')} ])
+       	
             
        },
        

@@ -10,12 +10,23 @@ $(function() {
 	autoStart = parent.autoStart;
 	autoplaySpeed = parent.autoplaySpeed;
 	dots = parent.dots;
+	
+	/*function AutoPlay(){
+		if ((parent.appGlobals.isInDesignMode() == true)){
+			alert('yes');
+			autoStart = false;
+		}
+		else {
+			autoStart = parent.autoStart;//thymisou na to valeis sto Createjson
+		}
+	}*/
+	alert(parent.appGlobals.currentObject().autoplayParameter())
 
 	//Initialization of Carousel 
 	$('.responsive').slick({
 		slidesToShow : slidesToShow,//number of slides to show
 		slidesToScroll : slidesToScroll,//number of slides to scroll each time
-		autoplay : autoStart,//autoplay
+		autoplay : parent.appGlobals.currentObject().autoplayParameter(),//autoplay
 		autoplaySpeed : autoplaySpeed,//speed of autoplay
 		draggable : false,
 		vertical : Vertical,//Direction of carousel

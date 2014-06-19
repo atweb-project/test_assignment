@@ -12,6 +12,8 @@
         autoStart = false
         autoplaySpeed = 3000
         dots = false
+        
+        MoDe = appGlobals.isInDesignMode()
        
        
         this.createElement = function (param) {
@@ -34,7 +36,7 @@
 
             }
             
-            return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"></iframe>'
+            return '<iframe id="' + this.getId()  +  '" class="myframe" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"></iframe>'
 					
         },
         
@@ -70,9 +72,11 @@
 				})
 				
 			}
-			//if (autoStart == true){
-				//return false
-			//}
+			
+			
+		/*	if( (appGlobals.isInDesignMode() == true) && ( autoStart == true )) {
+				autoStart == 'false'
+			}*/
         		//autoStart = false
        	 	/*$('#autoplayCarousel').on('click', function(){
        	 		alert('checked')
@@ -80,16 +84,20 @@
        	 	})*/
 			//this.autoplayParameter()
 			
-       	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
+			
+       	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) {	return val; });
+			
        	 	//this.autoplayParameter()
+       	 alert('continue')
 
         },
         
-        this.autoplayParameter = function()
+        this.autoplayParameter = function(e)
         {
-            if( (appGlobals.isInDesignMode() == false) && ( autoStart == true )) return autoStart='true'
+            if( (appGlobals.isInDesignMode() == true) && ( autoStart == true )) return autoStart==false
              
-            return autoStart='false'
+            e.preventDefault();
+
 
         },
 
@@ -148,7 +156,16 @@
 		this.chooseAutoplay = function() {
 
        	 this.myRegisterUniquePropEvent([ {'prop' : 'autoStart', 'ov' : autoStart, 'nv' : $('#autoplayCarousel').prop('checked')} ])
-       	
+       /*	if($('#autoplayCarousel').prop('checked') == true ){
+       		//alert('autoplay is checked')
+       		if(appGlobals.isInDesignMode() == true){
+       		autoStart == false
+       		}else {
+       			
+       				autoStart == true
+       			
+       		}
+       	}*/
             
        },
        

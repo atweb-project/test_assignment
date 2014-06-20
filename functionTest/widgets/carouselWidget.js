@@ -39,7 +39,9 @@
         },
         
         this.initElement = function(param){
-        	
+        	Selector = $('.responsive')
+        	alert(Selector)
+        	window.frames[(this.getId())].Selector.slickPlay()
 		},
 
         this.propChange = function (param) {
@@ -80,6 +82,7 @@
        	 	})*/
 			//this.autoplayParameter()
 			
+			
        	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
        	 	//this.autoplayParameter()
 
@@ -87,9 +90,10 @@
         
         this.autoplayParameter = function()
         {
-            if( (appGlobals.isInDesignMode() == false) && ( autoStart == true )) return autoStart='true'
+            if ((appGlobals.isInDesignMode() == true) && ( autoStart == true )) 
              
-            return autoStart='false'
+            alert('yes')
+            $('.responsive').slickPause();
 
         },
 

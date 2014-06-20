@@ -20,13 +20,13 @@ $(function() {
 			autoStart = parent.autoStart;//thymisou na to valeis sto Createjson
 		}
 	}*/
-	alert(parent.appGlobals.currentObject().autoplayParameter())
+	//alert(parent.appGlobals.currentObject().autoplayParameter())
 
 	//Initialization of Carousel 
 	$('.responsive').slick({
 		slidesToShow : slidesToShow,//number of slides to show
 		slidesToScroll : slidesToScroll,//number of slides to scroll each time
-		autoplay : parent.appGlobals.currentObject().autoplayParameter(),//autoplay
+		autoplay : autoStart,//autoplay
 		autoplaySpeed : autoplaySpeed,//speed of autoplay
 		draggable : false,
 		vertical : Vertical,//Direction of carousel
@@ -56,5 +56,12 @@ $(function() {
 		}
 
 	});
+	
+	/*if ((parent.appGlobals.isInDesignMode() == true) && ( autoStart == true )) 
+         
+         alert('yes')
+         $('.responsive').slickPlay();
+	
+	*/
 
 });

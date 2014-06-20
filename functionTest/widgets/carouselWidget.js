@@ -13,9 +13,7 @@
         autoplaySpeed = 3000
         dots = false
         
-        MoDe = appGlobals.isInDesignMode()
-       
-       
+        
         this.createElement = function (param) {
 
             if (typeof (param) !== 'undefined') {
@@ -36,14 +34,12 @@
 
             }
             
-            return '<iframe id="' + this.getId()  +  '" class="myframe" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"></iframe>'
+            return '<iframe id="' + this.getId()  +  '" class="myframe" width="100%" height="100%" src="carousel/carouselWidget.html"  frameborder="0"></iframe>'
 					
         },
         
         this.initElement = function(param){
-        	Selector = $('.responsive')
-        	alert(Selector)
-        	window.frames[(this.getId())].Selector.slickPlay()
+
 		},
 
         this.propChange = function (param) {
@@ -74,43 +70,19 @@
 				})
 				
 			}
-			
-			
-		/*	if( (appGlobals.isInDesignMode() == true) && ( autoStart == true )) {
-				autoStart == 'false'
-			}*/
-        		//autoStart = false
-       	 	/*$('#autoplayCarousel').on('click', function(){
-       	 		alert('checked')
-       	 		
-       	 	})*/
-			//this.autoplayParameter()
-			
-			
-<<<<<<< HEAD
+						
        	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
-=======
-       	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) {	return val; });
-			
->>>>>>> origin/master
-       	 	//this.autoplayParameter()
-       	 alert('continue')
-
+			 
+			this.autoplayParameter()
+       	 
         },
         
-        this.autoplayParameter = function(e)
+        this.autoplayParameter = function()
         {
-<<<<<<< HEAD
+
             if ((appGlobals.isInDesignMode() == true) && ( autoStart == true )) 
              
-            alert('yes')
-            $('.responsive').slickPause();
-=======
-            if( (appGlobals.isInDesignMode() == true) && ( autoStart == true )) return autoStart==false
-             
-            e.preventDefault();
-
->>>>>>> origin/master
+            	$('#'+this.getId()).attr('paramplay','0');
 
         },
 
@@ -127,6 +99,8 @@
 			$('#autoplaySpeed').spinner('value', autoplaySpeed)
 
 			$('#dots').prop('checked', dots)
+			
+			 Prp = true
               
          },
          

@@ -11,21 +11,16 @@ $(function() {
 	autoplaySpeed = parent.autoplaySpeed;
 	dots = parent.dots;
 	
-	alert(parent.MoDe);
+	allowPlay = $(window.frameElement).attr('paramplay');
+	//alert(allowPlay)
 	
 	function AutoPlay(){
-		if (parent.MoDe == true && autoStart == true){
+		if (autoStart == true && allowPlay == 0 ) {
 			
 			$('.responsive').slickPause()
-		}
-<<<<<<< HEAD
-	}*/
-=======
 		
+		}
 	}
-	//AutoPlay();
->>>>>>> origin/master
-	//alert(parent.appGlobals.currentObject().autoplayParameter())
 
 	//Initialization of Carousel 
 	$('.responsive').slick({
@@ -61,16 +56,8 @@ $(function() {
 		}
 
 	});
-<<<<<<< HEAD
-	
-	/*if ((parent.appGlobals.isInDesignMode() == true) && ( autoStart == true )) 
-         
-         alert('yes')
-         $('.responsive').slickPlay();
-	
-	*/
-=======
+
+	//Let's pause the carousel in design mode
 	AutoPlay()
->>>>>>> origin/master
 
 });

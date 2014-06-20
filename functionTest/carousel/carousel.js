@@ -11,15 +11,20 @@ $(function() {
 	autoplaySpeed = parent.autoplaySpeed;
 	dots = parent.dots;
 	
-	/*function AutoPlay(){
-		if ((parent.appGlobals.isInDesignMode() == true)){
-			alert('yes');
-			autoStart = false;
+	alert(parent.MoDe);
+	
+	function AutoPlay(){
+		if (parent.MoDe == true && autoStart == true){
+			
+			$('.responsive').slickPause()
 		}
-		else {
-			autoStart = parent.autoStart;//thymisou na to valeis sto Createjson
-		}
+<<<<<<< HEAD
 	}*/
+=======
+		
+	}
+	//AutoPlay();
+>>>>>>> origin/master
 	//alert(parent.appGlobals.currentObject().autoplayParameter())
 
 	//Initialization of Carousel 
@@ -56,6 +61,7 @@ $(function() {
 		}
 
 	});
+<<<<<<< HEAD
 	
 	/*if ((parent.appGlobals.isInDesignMode() == true) && ( autoStart == true )) 
          
@@ -63,5 +69,8 @@ $(function() {
          $('.responsive').slickPlay();
 	
 	*/
+=======
+	AutoPlay()
+>>>>>>> origin/master
 
 });

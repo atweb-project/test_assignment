@@ -99,9 +99,7 @@
 			$('#autoplaySpeed').spinner('value', autoplaySpeed)
 
 			$('#dots').prop('checked', dots)
-			
-			 Prp = true
-              
+			              
          },
          
         this.chooseDirection = function() {
@@ -143,16 +141,6 @@
 		this.chooseAutoplay = function() {
 
        	 this.myRegisterUniquePropEvent([ {'prop' : 'autoStart', 'ov' : autoStart, 'nv' : $('#autoplayCarousel').prop('checked')} ])
-       /*	if($('#autoplayCarousel').prop('checked') == true ){
-       		//alert('autoplay is checked')
-       		if(appGlobals.isInDesignMode() == true){
-       		autoStart == false
-       		}else {
-       			
-       				autoStart == true
-       			
-       		}
-       	}*/
             
        },
        

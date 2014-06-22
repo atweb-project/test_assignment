@@ -321,7 +321,7 @@ $(function() {
 									}
 								});
 
-						// helper functon to generate location of each piece
+						// helper function to generate location of each piece
 						function getPosition(el) {
 							return {
 								top : parseInt(el.css("top")),

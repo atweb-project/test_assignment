@@ -4,35 +4,65 @@
 $(function() {
 	
 	//Lets get the global variables
-	Vertical = parent.Vertical;
-	slidesToShow = parent.slidesToShow;
-	slidesToScroll = parent.slidesToScroll;
-	autoStart = parent.autoStart;
-	autoplaySpeed = parent.autoplaySpeed;
-	dots = parent.dots;
+	var Vertical = $(window.frameElement).attr('vertical');
+	var slidesToShow = parseInt($(window.frameElement).attr('slidestoshow'));
+	var slidesToScroll = parseInt($(window.frameElement).attr('slidestoscroll'));
+	var autoStart = $(window.frameElement).attr('autostart');
+	var autoplaySpeed = parseInt($(window.frameElement).attr('autoplayspeed'));
+	var dots = $(window.frameElement).attr('dots');
 	
-	allowPlay = $(window.frameElement).attr('paramplay');
+	var allowPlay = $(window.frameElement).attr('paramplay');
 	//alert(allowPlay)
 	
+	function VerticalValue() {
+		if (Vertical == 'false') {
+			Direction = false
+		} else {
+			Direction = true
+		}
+	}
+	
+	function AutoplayValue() {
+		if (autoStart == 'false') {
+			Play = false
+		} else {
+			Play = true
+		}
+	}
+	
+	function DotsValue() {
+		if (dots == 'false') {
+			Dotsv = false
+		} else {
+			Dotsv = true
+		}
+	}
+	
 	function AutoPlay(){
-		if (autoStart == true && allowPlay == 0 ) {
+		if (autoStart == 'true' && allowPlay == 0 ) {
 			
 			$('.responsive').slickPause()
 		
 		}
 	}
-
+	
+	VerticalValue()
+	
+	AutoplayValue()
+	
+	DotsValue()
+	
 	//Initialization of Carousel 
 	$('.responsive').slick({
 		slidesToShow : slidesToShow,//number of slides to show
 		slidesToScroll : slidesToScroll,//number of slides to scroll each time
-		autoplay : autoStart,//autoplay
+		autoplay : Play,//autoplay
 		autoplaySpeed : autoplaySpeed,//speed of autoplay
 		draggable : false,
-		vertical : Vertical,//Direction of carousel
-		dots : dots, //Dot navigation
+		vertical : Direction,//Direction of carousel
+		dots : Dotsv, //Dot navigation
 		onInit : function() {
-			if (Vertical == true) {
+			if (Direction == true) {
 						//for vertical direction we rearrange the navigation arrows and the navigation dots
 				$('.slick-prev').css({
 					position : 'fixed',

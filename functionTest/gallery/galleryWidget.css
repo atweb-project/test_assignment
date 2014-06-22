@@ -1,0 +1,25 @@
+/* Demo styles */
+
+.content {
+	color: #777;
+	font: 12px/1.4 "helvetica neue", arial, sans-serif;
+	max-width: 620px;
+	margin: 0px auto;
+}
+
+a {
+	color: #22BCB9;
+	text-decoration: none;
+}
+
+/* This rule is read by Galleria to define the gallery height: */
+#galleria {
+	height: 300px;
+}
+
+
+/*@media only screen and (max-width: 580px) {
+	#galleria {
+		height:315px;
+	}	
+}

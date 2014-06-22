@@ -1,17 +1,18 @@
-
-
-    
+/*This widget is based on Slick carousel plugin
+ * More info in http://kenwheeler.github.io/slick/
+*/
+   
     function CarouselWidget (pid, ptype ){
 
         
         MyWidget.call(this, pid, ptype)
 
-        Vertical = false
-        slidesToShow = 3
-        slidesToScroll = 3
-        autoStart = false
-        autoplaySpeed = 3000
-        dots = false
+        var Vertical = false
+        var slidesToShow = 3
+        var slidesToScroll = 3
+        var autoStart = false
+        var autoplaySpeed = 3000
+        var dots = false
         
         
         this.createElement = function (param) {
@@ -34,7 +35,9 @@
 
             }
             
-            return '<iframe id="' + this.getId()  +  '" class="myframe" width="100%" height="100%" src="carousel/carouselWidget.html"  frameborder="0"></iframe>'
+            return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="carousel/carouselWidget.html" frameborder="0"'+
+            	   'vertical="'+Vertical+'" slidestoshow="'+slidesToShow+'" slidestoscroll="'+slidesToScroll+'"'+
+            	   'autostart="'+autoStart+'" autoplayspeed="'+autoplaySpeed+'" dots="'+dots+'"></iframe>'
 					
         },
         
@@ -70,6 +73,13 @@
 				})
 				
 			}
+			
+			$('#'+this.getId() ).attr( 'vertical', Vertical)
+        	$('#'+this.getId() ).attr( 'slidestoshow', slidesToShow)
+        	$('#'+this.getId() ).attr( 'slidestoscroll', slidesToScroll)
+        	$('#'+this.getId() ).attr( 'autostart', autoStart)
+        	$('#'+this.getId() ).attr( 'autoplayspeed', autoplaySpeed)
+        	$('#'+this.getId() ).attr( 'dots', dots)
 						
        	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
 			 

@@ -20,7 +20,7 @@
             }
 
            
-            return'<div id="' + this.getId()  +  '" style="width:100%; height:100%;"><ul class="sf-menu" id="example">'+
+            return'<div id="' + this.getId()  +  '" style="width:100%; height:100%;"><ul class="sm sm-blue" id="main-menu">'+
             			'<li class="current">'+
         				'<a href="followed.html">menu item 1</a>'+
         				'<ul>'+
@@ -125,10 +125,13 @@
         },
         
         this.initElement = function(param){
-        	if ((appGlobals.isInDesignMode() == false))
+        	/*if ((appGlobals.isInDesignMode() == false))
         	var example = $('#example').superfish({
 				//add options here if required
-			});
+			});*/
+        	if ((appGlobals.isInDesignMode() == false))
+        	$('#main-menu').smartmenus();
+        	
 		},
 
         this.createJSON = function() {

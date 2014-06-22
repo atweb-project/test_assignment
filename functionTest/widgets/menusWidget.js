@@ -20,9 +20,116 @@
             }
 
            
-            return '<button id="' + this.getId()  +  '" style="width:100%; height:100%">'+ buttonText +'</button>'
+            return'<div id="' + this.getId()  +  '" style="width:100%; height:100%;"><ul class="sf-menu" id="example">'+
+            			'<li class="current">'+
+        				'<a href="followed.html">menu item 1</a>'+
+        				'<ul>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        					'</li>'+
+        					'<li class="current">'+
+        						'<a href="followed.html">long menu item sets sub width</a>'+
+        						'<ul>'+
+        							'<li class="current"><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        						'<ul>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        						'<ul>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        				'</ul>'+
+        			'</li>'+
+        			'<li>'+
+        				'<a href="followed.html">menu item 2</a>'+
+        			'</li>'+
+        			'<li>'+
+        				'<a href="followed.html">menu item 3</a>'+
+        				'<ul>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        						'<ul>'+
+        							'<li><a href="followed.html">short</a></li>'+
+        							'<li><a href="followed.html">short</a></li>'+
+        							'<li><a href="followed.html">short</a></li>'+
+        							'<li><a href="followed.html">short</a></li>'+
+        							'<li><a href="followed.html">short</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        						'<ul>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        						'<ul>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        						'<ul>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        					'<li>'+
+        						'<a href="followed.html">menu item</a>'+
+        						'<ul>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        							'<li><a href="followed.html">menu item</a></li>'+
+        						'</ul>'+
+        					'</li>'+
+        				'</ul>'+
+        			'</li>'+
+        			'<li>'+
+        				'<a href="followed.html">menu item 4</a>'+
+        			'</li>'+	
+        		'</ul></div>'			
 
         },
+        
+        this.initElement = function(param){
+        	if ((appGlobals.isInDesignMode() == false))
+        	var example = $('#example').superfish({
+				//add options here if required
+			});
+		},
 
         this.createJSON = function() {
 
@@ -71,13 +178,6 @@ MenusWidget.init = function () {
 MenusWidget.buttomImage='images/button_icon.png'
 MenusWidget.typeId= 'menus'
 MenusWidget.myClass= 'widget_menus'
-MenusWidget.initialWidth='100'
+MenusWidget.initialWidth='454'
 MenusWidget.initialHeight= '50'
 MenusWidget.actionsSectionId='menusMenu'
-
-// not actually  needed??
-//ButtonWidget.prototype = MyWidget
-
-//ButtonWidget.prototype = new MyWidget()
-// buttonwidget contructor is not changed
-//ButtonWidget.constructor = MyWidget()

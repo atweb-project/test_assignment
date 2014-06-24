@@ -8,6 +8,7 @@
 
         var VertiCal = false
         var NewItemTxt = ''
+        var NewSubItemTxt = ''
 
         this.createElement= function (param) {
 
@@ -16,11 +17,13 @@
                 if (typeof (param.VertiCal) !== 'undefined') VertiCal = param.VertiCal
                 
                 if (typeof (param.NewItemTxt) !== 'undefined') NewItemTxt = param.NewItemTxt
+                
+                if (typeof (param.NewSubItemTxt) !== 'undefined') NewSubItemTxt = param.NewSubItemTxt
 
             }
 
             return '<iframe id="'+ this.getId() +'" width="100%" height="100%" src="menu/menuWidget.html" frameborder="0"'+
-            	   'verticalmenu="'+VertiCal+'" newitem="'+NewItemTxt+'"></iframe>'
+            	   'verticalmenu="'+VertiCal+'" newitem="'+NewItemTxt+'" ></iframe>'
 
         },
         
@@ -40,6 +43,7 @@
 
 				if (param[i].prop == 'VertiCal') VertiCal = param[i].value 
 				if (param[i].prop == 'NewItemTxt') NewItemTxt = param[i].value 
+				if (param[i].prop == 'NewSubItemTxt') NewSubItemTxt = param[i].value 
 					
 				}
 			
@@ -55,6 +59,7 @@
 				
 				$('#'+this.getId() ).attr( 'verticalmenu', VertiCal)
 				$('#'+this.getId() ).attr( 'newitem', NewItemTxt)
+				$('#'+this.getId() ).attr( 'newsubitem', NewSubItemTxt)
 				
 				$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
 
@@ -64,6 +69,7 @@
 
 	    		$('#verticalmenu').prop('checked', VertiCal)
 	    		$('#newItem').prop('value', NewItemTxt)
+	    		$('#newSubItem').prop('value', NewSubItemTxt)
 	              
 
 	    },
@@ -79,12 +85,18 @@
 	    	this.myRegisterUniquePropEvent( [{ 'prop': 'NewItemTxt', 'ov': NewItemTxt, 'nv': $('#newItem').prop('value')}])
 	    	
 	    },
-
+	    
+	    this.addNewSubItem = function() {
+	    	
+	    	this.myRegisterUniquePropEvent( [{ 'prop': 'NewSubItemTxt', 'ov': NewSubItemTxt, 'nv': $('#newSubItem').prop('value')}])
+	    	
+	    },
+	    
         this.createJSON = function() {
 	    	
 	      //alert ("json NewItemTxt " + NewItemTxt )
 
-            return { 'VertiCal': VertiCal, 'NewItemTxt': NewItemTxt }
+            return { 'VertiCal': VertiCal, 'NewItemTxt': NewItemTxt, 'NewSubItemTxt': NewSubItemTxt }
 
         }
                    
@@ -95,6 +107,7 @@
 MenusWidget.init = function () {
     $("#menusMenu").append("<br>Choose vertical layout of the menu(default is horizontal)<input type='checkbox' id='verticalmenu' name='verticalmenu' value='' onclick='appGlobals.currentObject().chooseMenuLayout()'>")
     $("#menusMenu").append("<br>Add new menu item<input type='text' id='newItem'><button onclick='appGlobals.currentObject().addNewItem()'>Add</button>")
+    $("#menusMenu").append("<br>Add new submenu items<input type='text' id='newSubItem'><button onclick='appGlobals.currentObject().addNewSubItem()'>Add</button>")
 }
 MenusWidget.buttomImage='images/button_icon.png'
 MenusWidget.typeId= 'menus'

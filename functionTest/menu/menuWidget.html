@@ -225,7 +225,11 @@
 			
 			var NewItemTxt = $(window.frameElement).attr('newitem');
 			
-			//alert(NewItemTxt)
+			var NewSubItemTxt = $(window.frameElement).attr('newsubitem');
+			
+			
+			
+			alert(NewItemTxt.length)
 						
 			function VerticalValue() {
 				if (VertiCal == 'true') {
@@ -239,7 +243,7 @@
 			}
 			
 			function AddNewItem() {
-				if(NewItemTxt != null){
+				if(NewItemTxt != null || NewItemTxt.length> 0){
 					
 					var $menu = $('#main-menu');
 					
@@ -248,14 +252,35 @@
 					
 					$menu.append('<li><a href="#">'+NewItemTxt+'</a></li>');
 					
+					if(NewItemTxt.length> 0){
+					$menu.children('li:last').append('<ul><li><a href="#">New item</a></li><li><a href="#">New item</a></li><li><a href="#">New item</a></li></ul>');
+					}
 					$menu.smartmenus('refresh');
 				}
 				
 			}
 			
+			/*function AddNewSubItem() {
+			    if(NewItemTxt != null && SubTxt != null){
+			        var SubTxt = NewSubItemTxt.split(",")
+                    alert(SubTxt.length)
+			     var $menu = $('#main-menu');
+			     for(var key in SubTxt) {
+                    var value = SubTxt[key];
+                alert(value)
+			     $menu.children('li:last').append('<ul><li><a href="#">New item</a></li><li><a href="#">New item</a></li><li><a href="#">New item</a></li></ul>');
+
+                // refresh the menu after the DOM operations
+                $menu.smartmenus('refresh');
+			    }
+			   }
+			}*/
+			
 			VerticalValue()
+			
 			AddNewItem()
 			
+			//AddNewSubItem()
 			
   			$('#main-menu').smartmenus({
   				subMenusSubOffsetX: 1,

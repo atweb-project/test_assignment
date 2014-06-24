@@ -222,6 +222,7 @@
 		$(function() {
 			
 			var VertiCal = $(window.frameElement).attr('verticalmenu');
+			
 			var NewItemTxt = $(window.frameElement).attr('newitem');
 			
 			//alert(NewItemTxt)
@@ -241,9 +242,12 @@
 				if(NewItemTxt != null){
 					
 					var $menu = $('#main-menu');
-
+					
+					
 					// append a new main menu item
+					
 					$menu.append('<li><a href="#">'+NewItemTxt+'</a></li>');
+					
 					$menu.smartmenus('refresh');
 				}
 				

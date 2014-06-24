@@ -20,7 +20,14 @@
             }
 
            
-            return '<button id="' + this.getId()  +  '" style="width:100%; height:100%">'+ buttonText +'</button>'
+           // return '<div id="' + this.getId()  +  '" style="width:100%; height:100%"><video id="video" width="320" height="240" autoplay></video><button id="snap" class="sexyButton">Snap Photo</button>'+
+           // 	   '<canvas id="canvas" width="320" height="240"></canvas></div>'
+            return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="camera/cameraWidget.html" frameborder="0"></iframe><div>'
+
+        },
+        
+        this.initElement = function(param) {
+        	
 
         },
 
@@ -47,10 +54,7 @@
 
             $('#' + this.getId() ).html(param[0].value)
 
-        }
-
-
-        ,
+        },
 
         this.selectionChanged=function()  {
 
@@ -71,8 +75,8 @@ CameraWidget.init = function () {
 CameraWidget.buttomImage='images/button_icon.png'
 CameraWidget.typeId= 'camera'
 CameraWidget.myClass= 'widget_camera'
-CameraWidget.initialWidth='100'
-CameraWidget.initialHeight= '50'
+CameraWidget.initialWidth='650'
+CameraWidget.initialHeight= '300'
 CameraWidget.actionsSectionId='cameraMenu'
 
 // not actually  needed??

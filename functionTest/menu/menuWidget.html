@@ -247,12 +247,10 @@
 					
 					var $menu = $('#main-menu');
 					
-					
-					// append a new main menu item
-					
+					// append a new main menu item	
 					$menu.append('<li><a href="#">'+NewItemTxt+'</a></li>');
 					
-					if(NewItemTxt.length> 0){
+					if(NewItemTxt.length> 0 ){
 					$menu.children('li:last').append('<ul><li><a href="#">New item</a></li><li><a href="#">New item</a></li><li><a href="#">New item</a></li></ul>');
 					}
 					$menu.smartmenus('refresh');

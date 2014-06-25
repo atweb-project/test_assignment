@@ -1,64 +1,83 @@
-
-
-    
     function CheckboxWidget (pid, ptype ){
 
         
         MyWidget.call(this, pid, ptype)
 
-      
+        var checkboxText = 'Put you text here'
+        var checkboxChecked = false
 
         this.createElement= function (param) {
 
-            var buttonText = 'Button!'
-
-
             if (typeof (param) !== 'undefined') {
 
-                if (typeof (param.text) !== 'undefined') buttonText = param.text
+                if (typeof (param.checkboxText) !== 'undefined') checkboxText = param.checkboxText
+                
+                if (typeof (param.checkboxChecked) !== 'undefined') checkboxChecked = param.checkboxChecked
 
             }
 
-           
-            return '<button id="' + this.getId()  +  '" style="width:100%; height:100%">'+ buttonText +'</button>'
-
-        },
-
-        this.createJSON = function() {
-
-            return { 'text': $('#'+ this.getId() ).html() }
+            return '<input type="checkbox" id="'+ this.getId() +'" name="'+ this.getId() +'" value="">'+
+            	   '<label for="'+ this.getId() +'">'+ checkboxText +'</label>'
 
         },
         
-        this.changeLabel= function()
-         {
+        this.initElement = function(param) {
+        	
+        	$('#'+this.getId()).prop('checked',checkboxChecked)
+        },
 
-         //  alert ("button clicked")
-           // alert (  ' currentId '+currentID+" texregisterUniquePropEventt "+ $('#newButtonText').prop('value') )
+        this.createJSON = function() {
+        		//alert('preview '+checkboxChecked)
+            return { 'checkboxText': checkboxText, 'checkboxChecked': checkboxChecked }
 
-            this.myRegisterUniquePropEvent( [{ 'prop': 'text', 'ov': $('#' + this.getId()  ).html(), 'nv': $('#newButtonText').prop('value') }])
-             
+        },
+        
+        this.changecheckboxLabel= function() {
 
+            this.myRegisterUniquePropEvent( [{ 'prop': 'checkboxText', 'ov': checkboxText, 'nv': $('#newcheckboxText').prop('value') }])
+            // alert( $('#newcheckboxText').prop('value'))
+
+        },
+        
+        this.chooseIfChecked = function() {
+        	//alert($('#checkedvalue').prop('checked'))      	
+        	this.myRegisterUniquePropEvent([ {'prop' : 'checkboxChecked', 'ov' : checkboxChecked, 'nv' : $('#checkedvalue').prop('checked')} ])
+        },
+        
+        this.checkisChecked = function() {
+        	
+        	var checkbox = $('#'+this.getId())
+            isChecked = checkbox.is(':checked')
+            
+		        if (isChecked) {
+		        	checkbox.prop('checked', false);
+
+		        } else {
+		        	checkbox.prop('checked', true);
+		        }
+        	
         },
 
         this.propChange= function (param) {
 
-           // alert ("button prop change "+this.getId()+" param "+param.length)
+        	for (var i = 0; i < param.length; i++) {
+        		if (param[i].prop == 'checkboxText') checkboxText = param[i].value 
+        		
+        		if (param[i].prop == 'checkboxChecked') checkboxChecked = param[i].value 
+        	}
+        	
+        	$("label[for="+ this.getId() +"]").text(checkboxText);
+        	        	
+        	this.checkisChecked()
+        	
+        	//alert('check '+checkboxChecked)
+        },
 
-            $('#' + this.getId() ).html(param[0].value)
+        this.selectionChanged = function()  {
 
-        }
-
-
-        ,
-
-        this.selectionChanged=function()  {
-
-          //  alert(" button selection changed " + $(currentID).html())
-
-            $('#newButtonText').prop('value', $('#' + this.getId()  ).html())
+            $('#newcheckboxText').prop('value', checkboxText)
+            $('#checkedvalue').prop('checked', checkboxChecked)
               
-
          }
         
     }
@@ -66,18 +85,12 @@
 // static variables/functions
 
 CheckboxWidget.init = function () {
-    $("#checkboxMenu").append("  Text:<input type='text' id='newButtonText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
+    $("#checkboxMenu").append("Checkbox Text:<input type='text' id='newcheckboxText'><button onclick='appGlobals.currentObject().changecheckboxLabel()'>Update</button>")
+    $("#checkboxMenu").append("<br>Initially checked or unchecked<input type='checkbox' id='checkedvalue' name='checkedvalue' value='' onclick='appGlobals.currentObject().chooseIfChecked()'>")
 }
 CheckboxWidget.buttomImage='images/button_icon.png'
 CheckboxWidget.typeId= 'checkbox'
 CheckboxWidget.myClass= 'widget_checkbox'
-CheckboxWidget.initialWidth='100'
+CheckboxWidget.initialWidth='200'
 CheckboxWidget.initialHeight= '50'
 CheckboxWidget.actionsSectionId='checkboxMenu'
-
-// not actually  needed??
-//ButtonWidget.prototype = MyWidget
-
-//ButtonWidget.prototype = new MyWidget()
-// buttonwidget contructor is not changed
-//ButtonWidget.constructor = MyWidget()

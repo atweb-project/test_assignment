@@ -67,8 +67,9 @@
         	}
         	
         	$("label[for="+ this.getId() +"]").text(checkboxText);
-        	        	
-        	this.checkisChecked()
+        	  
+        	$('#'+this.getId()).prop('checked',checkboxChecked)
+        	//this.checkisChecked()
         	
         	//alert('check '+checkboxChecked)
         },

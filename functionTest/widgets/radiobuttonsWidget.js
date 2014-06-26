@@ -5,7 +5,14 @@
         
         var initialString = 'man,woman,child'
         	
-        var radioChecked = false
+        var radioChecked = ''
+        	
+        var hiddenField = $('#hiddenfield')
+        	val = hiddenField.val()
+        
+        hiddenField.val(val == "false" ? "true" : "false")
+        
+        var radioPressed =  hiddenField.val()
       
 
         this.createElement= function (param) {
@@ -15,6 +22,10 @@
             	if (typeof (param.initialString) !== 'undefined') initialString = param.initialString
 
             	if (typeof (param.radioChecked) !== 'undefined') radioChecked = param.radioChecked
+            	
+            	if (typeof (param.radioPressed) !== 'undefined') radioPressed = param.radioPressed
+            	
+            	//alert('create '+radioPressed)
 
             }
              
@@ -37,8 +48,9 @@
         },
 
         this.createJSON = function() {
+        	//alert('json '+radioPressed)
 
-            return { 'initialString': initialString, 'radioChecked': radioChecked }
+            return { 'initialString': initialString, 'radioChecked': radioChecked, 'radioPressed': radioPressed }
 
         },
         
@@ -57,8 +69,10 @@
         },
         
         this.nValues = function() {
-        	$('#newradiobtn').prop('value')
-        	$('#newradiobtn').prop('checked')
+        	//$('#newradiobtn').prop('value')
+        	//$('#newradiobtn').prop('checked')
+        	//alert('yes')
+        	this.myRegisterUniquePropEvent( [{ 'prop': 'radioPressed', 'ov': radioPressed, 'nv': $('#hiddenfield').prop('checked') }])
         },
         
         this.checkradioisChecked = function() {
@@ -78,6 +92,9 @@
         		if (param[i].prop == 'initialString') initialString = param[i].value 
         		
         		if (param[i].prop == 'radioChecked') radioChecked = param[i].value 
+        		
+        		if (param[i].prop == 'radioPressed') radioPressed = param[i].value 
+        		
         	}
         	//alert($('#newradiobtn').prop('value'))
         	
@@ -92,6 +109,8 @@
         	}
         	
         	this.checkradioisChecked()
+        	//alert(radioPressed)
+        	//$('#'+this.getId()+' input[type=radio][value='+radioChecked+']').prop("checked",radioPressed)
 
         },
 
@@ -101,7 +120,7 @@
         	$('#newradiobtnText').prop('value', initialString)
 
         	$('#newradiobtn').prop('value', radioChecked)
-        	$('#newradiobtn').attr('checked', newValue)
+        	$('#hiddenfield').prop('value', radioPressed)
         	//$('#'+this.getId()+' input[type=radio][value='+newValue+']').attr('checked', radioChecked)
               
          }
@@ -112,7 +131,8 @@
 
 RadiobWidget.init = function () {
 	$("#radiobuttonsMenu").append("Choose radio button names(please put names seperated by comma):<input type='text' id='newradiobtnText'><button onclick='appGlobals.currentObject().radiobtnText()'>Update</button>")
-    $("#radiobuttonsMenu").append("<br>Choose which radio button to preselect:<input type='text' id='newradiobtn'><button onclick='appGlobals.currentObject().changeRadioCheckedBtn()'>Update</button>")
+    $("#radiobuttonsMenu").append("<br>Choose which radio button to preselect:<input type='text' id='newradiobtn'><button onclick='appGlobals.currentObject().changeRadioCheckedBtn();appGlobals.currentObject().nValues()'>Update</button>")
+     $("#radiobuttonsMenu").append("<br><input type='hidden' id='hiddenfield' value='false'>")
 }
 RadiobWidget.buttomImage='images/button_icon.png'
 RadiobWidget.typeId= 'radiobtns'

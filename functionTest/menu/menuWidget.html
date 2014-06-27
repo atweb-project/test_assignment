@@ -40,7 +40,7 @@
     </head>
     <body>
        	<ul class="sm sm-blue" id="main-menu">
-			<li>
+			<!--<li>
 				<a href="#">menu item 1</a>
 				<ul>
 					<li>
@@ -215,7 +215,7 @@
 						</ul>
 					</li>
 				</ul>
-			</li>
+			</li>-->
 		</ul>
 		<!--<a id="menu-button"></a>-->
 		<script>
@@ -223,13 +223,19 @@
 			
 			var VertiCal = $(window.frameElement).attr('verticalmenu');
 			
+			var initialMenuItems = $(window.frameElement).attr('menuitems');
+			
+			var Getmenuitems = $(window.frameElement).attr('getmenuitems');
+			
+			var SubMenuItems = $(window.frameElement).attr('submenuitems');
+			
 			var NewItemTxt = $(window.frameElement).attr('newitem');
 			
 			var NewSubItemTxt = $(window.frameElement).attr('newsubitem');
 			
+			//alert(initialMenuItems)
 			
-			
-			alert(NewItemTxt.length)
+			//alert(NewItemTxt.length)
 						
 			function VerticalValue() {
 				if (VertiCal == 'true') {
@@ -242,7 +248,7 @@
 				} 
 			}
 			
-			function AddNewItem() {
+			/*function AddNewItem() {
 				if(NewItemTxt != null || NewItemTxt.length> 0){
 					
 					var $menu = $('#main-menu');
@@ -256,6 +262,51 @@
 					$menu.smartmenus('refresh');
 				}
 				
+			}*/
+			
+			function MenuItems() {
+			    
+			    if(initialMenuItems != null || initialMenuItems.length> 0){
+			    
+			    var Items = initialMenuItems.split(",")
+			    
+			    var $menu = $('#main-menu');
+            
+                for (var i = 0; i < Items.length; i++) {
+                                    
+                $menu.append("<li class='"+Items[i].replace(/\s/g, "") +"'><a href='#'>"+Items[i]+"</a></li>")
+                
+                $menu.smartmenus('refresh');
+            }
+			    
+			    }
+			    else {
+			        alert('Please fill at least on item')
+			    }
+			    
+			    
+			}
+			
+			function SubMenuitems() {
+			    
+			    if(SubMenuItems != null || SubMenuItems.length> 0 && Getmenuitems != null || Getmenuitems.length > 0) {
+			        
+			        var SubItems = SubMenuItems.split(",")
+			        	        
+			        alert(Getmenuitems)
+			        
+			        $('.'+Getmenuitems.replace(/\s/g, '')).append("<ul></ul>")
+			        
+			        for (var i = 0; i < SubItems.length; i++) {
+			         
+			               $('.'+Getmenuitems.replace(/\s/g, '')+ ' ul').append("<li class='"+SubItems[i]+"'><a href='#'>"+SubItems[i]+"</a></li>") 
+			         
+			       }
+			       
+			       $('#main-menu').smartmenus('refresh');
+			        
+			    }
+			    
 			}
 			
 			/*function AddNewSubItem() {
@@ -276,7 +327,11 @@
 			
 			VerticalValue()
 			
-			AddNewItem()
+			MenuItems()
+			
+			//SubMenuitems()
+			
+			//AddNewItem()
 			
 			//AddNewSubItem()
 			

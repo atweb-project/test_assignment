@@ -9,7 +9,7 @@
         var VertiCal = false
         var initialMenuItems = 'item 1,item 2,item 3'
         var	Getmenuitems = 'item 1'
-        var SubMenuItems = ''
+        var SubMenuItems = 'subitem 1,subitem 2,subitem 3'
         
         
         var NewItemTxt = ''
@@ -87,7 +87,8 @@
 				
 				$('#'+this.getId() ).attr( 'verticalmenu', VertiCal)
 				$('#'+this.getId() ).attr( 'menuitems', initialMenuItems)
-				$('#'+this.getId() ).attr( 'menuitems', SubMenuItems)
+				$('#'+this.getId() ).attr( 'getmenuitems', Getmenuitems)
+				$('#'+this.getId() ).attr( 'submenuitems', SubMenuItems)
 				$('#'+this.getId() ).attr( 'newitem', NewItemTxt)
 				$('#'+this.getId() ).attr( 'newsubitem', NewSubItemTxt)
 				
@@ -135,7 +136,13 @@
 	    
 	    this.getMenuItems = function() {
 	    	
-
+	    	//Thought
+	    	/*if(Getmenuitems != $('#menuitem').prop('value'))
+	    		{
+	    		//alert('different')
+	    		$('#submenuitems').prop('value','')
+	    		
+	    		}*/
 	    	
 	    /*	var GetValues = getmenuitems.split(",")
         	
@@ -180,7 +187,7 @@
 MenusWidget.init = function () {
     $("#menusMenu").append("<br>Choose vertical layout of the menu(default is horizontal)<input type='checkbox' id='verticalmenu' name='verticalmenu' value='' onclick='appGlobals.currentObject().chooseMenuLayout()'>")
     $("#menusMenu").append("<br>Menu items<input type='text' id='initialmenuitems'><button onclick='appGlobals.currentObject().chooseMenuItems()'>Add</button>")
-    $("#menusMenu").append("<div>Choose menu item<select id='menuitem' onchange='appGlobals.currentObject().getMenuItems()'></select></div>")
+    $("#menusMenu").append("<div>Choose menu item in order to put submenu items<select id='menuitem' onchange='appGlobals.currentObject().getMenuItems()'></select></div>")
     $("#menusMenu").append("Choose Submenu Items<input type='text' id='submenuitems'><button onclick='appGlobals.currentObject().chooseSubMenuItems()'>Add</button>")
     
     $("#menusMenu").append("<br>Add new menu item<input type='text' id='newItem'><button onclick='appGlobals.currentObject().addNewItem()'>Add</button>")

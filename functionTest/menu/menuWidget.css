@@ -1,0 +1,8 @@
+#main-menu {
+	position: relative;
+	z-index: 9999;
+	width: auto;
+}
+#main-menu ul {
+	width: 12em; /* fixed width only please - you can use the "subMenusMinWidth"/"subMenusMaxWidth" script options to override this if you like */
+}

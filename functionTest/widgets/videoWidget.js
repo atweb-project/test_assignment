@@ -1,4 +1,7 @@
-
+/*
+ * This widget is based on the jQuery Media Plugin, 
+ * http://malsup.com/jquery/media
+ */
 
     
     function VideoWidget (pid, ptype ){
@@ -6,23 +9,23 @@
         
         MyWidget.call(this, pid, ptype)
 
-      var url = "http://malsup.github.com/video/realvideo.ram"
+      var url = "http://malsup.github.com/video/simpsons.mov"
     	  //Quicktime http://malsup.github.com/video/simpsons.mov
     	  //FLV http://malsup.github.com/mediaplayer.swf?file=flash/curtain.flv
     	  //SWF http://malsup.com/jquery/media/flash/snail.swf
     	  //Youtube http://youtube.com/v/TyvN59L4hJU
     	  //Real Player http://malsup.github.com/video/realvideo.ram
+    	  //windows media player http://malsup.github.com/video/ski.wmv
       var Width = '100%'
       var Height = '100%'
+      var AutoPLay = false
 
         this.createElement= function (param) {
-
-        	
-
 
             if (typeof (param) !== 'undefined') {
 
             	if ( typeof (param.url) !== 'undefined') url = param.url
+            	if ( typeof (param.AutoPLay) !== 'undefined') AutoPLay = param.AutoPLay
 
             }
 
@@ -33,80 +36,156 @@
         
         this.initElement = function(param){
         	
-        	//if( (appGlobals.isInDesignMode() == false))
         	$.fn.media.mapFormat('avi','quicktime');
+        	
+        	var typeOfFile = url
+        	
+        	var extension = typeOfFile.split('.').pop();
+        	//alert(extension)
+        	
+        	switch (extension) { 
+		     case 'mov' :
+		    	 
+		    	 $('.embmedia' ).media({
+		        		width:  Width,
+		        		height: Height,
+		        		src: url,
+		        		wmode:'transparent',
+		        		autoplay:  this.autoPlayparam(),
+		        		params:	{
+		        			controller : true,
+		        			kioskmode: true,
+		        			scale: "tofit",
+		        			wmode: "transparent",   //for Quicktime
+		        			target: "myself"
+		        			},
+		        		});
+		    	 
+		    	 break;
+		     case 'avi' :
+		    	 
+		    	 $('.embmedia' ).media({
+		        		width:  Width,
+		        		height: Height,
+		        		src: url,
+		        		wmode:'transparent',
+		        		autoplay:  this.autoPlayparam(),
+		        		params:	{
+		        			controller : true,
+		        			kioskmode: true,
+		        			scale: "tofit",
+		        			wmode: "transparent",   //for Quicktime
+		        			target: "myself"
+		        			},
+		        		});
+		    	 
+		    
+		    	 break;
+		     case 'ram' :
+		    	 
+		    	 $('.embmedia' ).media({
+		        		width:  Width,
+		        		height: Height,
+		        		src: url,
+		        		wmode:'transparent',
+		        		params:	{
+		        			autostart: this.autoPlayparam(),
+		        			controls:'imagewindow,controlpanel',//for RealPlayer*/	
+		        			console:'_master'
+		        			},
+		        		});
+		    	 
+		    	 break;
+		     default:	 
+		    	 
+		    if(url.indexOf("youtube.com/")){
+		    	$('.embmedia' ).media({
+		    		//src: url+this.autoPlayparamYoutube(), 
+	        		width:  Width,
+	        		height: Height,
+	        		wmode:'transparent',
+	        		type:'swf' //for youtube
+	        		});
+			     
+	        	
+		    }	else {
+		    	$('.embmedia' ).media({
+	        		width:  Width,
+	        		height: Height,
+	        		src: url,
+	        		wmode:'transparent',
+	        		autoplay:  this.autoPlayparam()
 
+	        		});
+		    	
+		    } 
+		     
+        }
+        	if( (appGlobals.isInDesignMode() == true))
+        	 $('.embmedia object').append('<param name="wmode" value="transparent">');//For Quicktime
         	
-        	$('.embmedia' ).media({
-        		width:  Width,
-        		height: Height,
-        		attrs:  {//wmode:'transparent', autoplay:true
-        						},
-        		params:	{ autostart: true,
-        			controls:'imagewindow,controlpanel' //for RealPlayer
-        			
-        		/*	controller : true,
-        			kioskmode: true,
-        			scale: "tofit",
-        			wmode: "transparent",   //for Quicktime
-        			target: "myself"
-        			//cache: true,
-        			//targetcache:true*/
-        			
-        			
-        				},
-        		//type:'swf' //for youtube
-        		});
-        	//if( (appGlobals.isInDesignMode() == true))
-        	// $('.embmedia object').append('<param name="wmode" value="transparent">');//For Quicktime
-        	
-        	
-        	
-        	//alert(frameNumber)
 
 		},
 		
-		this.cleanSource = function() {
-            var s =  $('#'+this.getId() ).attr('src')
-            alert(s)
-            var i = s.indexOf("?") // get rid of question mark as not mark as url 
-            return s.substring(0,i) 
-        },
+		this.autoPlayparam = function() {
+			if( (appGlobals.isInDesignMode() == false) && (AutoPLay == true)) return 'true'
+            
+            return ''
+		},
+		
+		//For YouTube
+		
+		/*this.autoPlayparamYoutube = function() {
+			
+			if( (appGlobals.isInDesignMode() == false) && (AutoPLay == true)) return '&autoplay=1'
+			
+			return ''
+			
+		},*/
+		
 
         this.createJSON = function() {
 
-            return { 'url': url }
+            return { 'url': url, 'AutoPLay':AutoPLay }
 
         },
         
-        this.changeLabel= function()
+        this.changeURL= function()
          {
 
-         //  alert ("button clicked")
-           // alert (  ' currentId '+currentID+" texregisterUniquePropEventt "+ $('#newButtonText').prop('value') )
-
-            this.myRegisterUniquePropEvent( [{ 'prop': 'text', 'ov': $('#' + this.getId()  ).html(), 'nv': $('#newButtonText').prop('value') }])
+            this.myRegisterUniquePropEvent( [{ 'prop': 'url', 'ov': url, 'nv': $('#newvideoURLText').prop('value') }])
              
-
+        },
+        
+        this.changAutoplay = function() {
+        	
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'AutoPLay', 'ov': AutoPLay, 'nv': $('#autoplayPlayer').prop('checked') }])
+        	
         },
 
         this.propChange= function (param) {
 
            // alert ("button prop change "+this.getId()+" param "+param.length)
 
-            $('#' + this.getId() ).html(param[0].value)
+        	 for (var i = 0; i < param.length; i++) {
 
-        }
+                 if (param[i].prop == 'url') url=  param[i].value 
+                   
+                 if (param[i].prop == 'AutoPLay') AutoPLay = param[i].value
 
 
-        ,
+             }
+        	 
+        	 this.initElement()
+
+        },
 
         this.selectionChanged=function()  {
 
           //  alert(" button selection changed " + $(currentID).html())
 
-            $('#newButtonText').prop('value', $('#' + this.getId()  ).html())
-              
+            $('#newvideoURLText').prop('value', url)
+            $('#autoplayPlayer').prop('checked', AutoPLay )
 
          }
         
@@ -115,7 +194,8 @@
 // static variables/functions
 
     VideoWidget.init = function () {
-    	$("#videoMenu").append("URL<input type='text' id='newvideoURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
+    	$("#videoMenu").append("URL<br><input type='text' id='newvideoURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
+    	$("#videoMenu").append("<br>Autoplay<input type='checkbox' id='autoplayPlayer' name='autoplay' value='' onclick='appGlobals.currentObject().changAutoplay()'>")
 }
 VideoWidget.buttomImage='images/button_icon.png'
 VideoWidget.typeId= 'video'
@@ -124,9 +204,3 @@ VideoWidget.initialWidth='480'
 VideoWidget.initialHeight= '260'
 VideoWidget.actionsSectionId='videoMenu'
 
-// not actually  needed??
-//ButtonWidget.prototype = MyWidget
-
-//ButtonWidget.prototype = new MyWidget()
-// buttonwidget contructor is not changed
-//ButtonWidget.constructor = MyWidget()

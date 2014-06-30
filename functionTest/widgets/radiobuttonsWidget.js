@@ -39,7 +39,7 @@
         	
         	for (var i = 0; i < Options.length; i++) {
         		
-        		$('#'+this.getId() ).append("<input type='radio' name='' value='"+Options[i]+"'>"+Options[i]+"<br>")
+        		$('#'+this.getId() ).append("<input type='radio' name='group' value='"+Options[i]+"'>"+Options[i]+"<br>")
         	}
         	
         	$('#'+this.getId()+' input[type=radio][value='+radioChecked+']').prop('checked', true)

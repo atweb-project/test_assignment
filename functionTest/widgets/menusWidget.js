@@ -131,10 +131,10 @@
 
 MenusWidget.init = function () {
     $("#menusMenu").append("<br>Choose vertical layout of the menu(default is horizontal)<input type='checkbox' id='verticalmenu' name='verticalmenu' value='' onclick='appGlobals.currentObject().chooseMenuLayout()'>")
-    $("#menusMenu").append("<br>Menu items<br><textarea id='initialmenuitems'></textarea><br><button onclick='appGlobals.currentObject().chooseMenuItems()'>Update</button>")
-    $("#menusMenu").append("<br>Choose links for menu items<textarea id='menuitemlinks'></textarea><br><button onclick='appGlobals.currentObject().chooseMenuItemLinks()'>Update</button>")    
+    $("#menusMenu").append("<br>Choose menu items seperated by comma<br><textarea id='initialmenuitems'></textarea><br><button onclick='appGlobals.currentObject().chooseMenuItems()'>Update</button>")
+    $("#menusMenu").append("<br>Choose links for menu items seperated by comma<textarea id='menuitemlinks'></textarea><br><button onclick='appGlobals.currentObject().chooseMenuItemLinks()'>Update</button>")    
     $("#menusMenu").append("<br>Choose menu items in order to put submenu items<textarea id='menuitem'></textarea><br><button onclick='appGlobals.currentObject().getMenuItems()'>Update</button>")
-    $("#menusMenu").append("Choose Submenu Items<textarea id='submenuitems'></textarea><br><button onclick='appGlobals.currentObject().chooseSubMenuItems()'>Update</button>")
+    $("#menusMenu").append("<br>Choose Submenu Items seperated by '/' for each menu item<textarea id='submenuitems'></textarea><br><button onclick='appGlobals.currentObject().chooseSubMenuItems()'>Update</button>")
     $("#menusMenu").append("<br>Choose Submenu Item Links<textarea id='submenulinks'></textarea><br><button onclick='appGlobals.currentObject().chooseSubItemLinks()'>Update</button>")
 }
 MenusWidget.buttomImage='images/button_icon.png'

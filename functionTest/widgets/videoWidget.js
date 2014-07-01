@@ -30,99 +30,14 @@
             }
 
            
-            return '<div id="' + this.getId()  +  '" width="100%" height="100%"><a class="embmedia" href="'+ url +'"></a></div>'
+            return '<iframe style="width: 100%; height: 100%;" id="' + this.getId() + '" src="embedded-player/videoWidget.html" frameborder="0" allowfullscreen="true"></iframe>'
 
         },
         
         this.initElement = function(param){
+        	//if( appGlobals.isInDesignMode() == false)
         	
-        	$.fn.media.mapFormat('avi','quicktime');
-        	
-        	var typeOfFile = url
-        	
-        	var extension = typeOfFile.split('.').pop();
-        	//alert(extension)
-        	
-        	switch (extension) { 
-		     case 'mov' :
-		    	 
-		    	 $('.embmedia' ).media({
-		        		width:  Width,
-		        		height: Height,
-		        		src: url,
-		        		wmode:'transparent',
-		        		autoplay:  this.autoPlayparam(),
-		        		params:	{
-		        			controller : true,
-		        			kioskmode: true,
-		        			scale: "tofit",
-		        			wmode: "transparent",   //for Quicktime
-		        			target: "myself"
-		        			},
-		        		});
-		    	 
-		    	 break;
-		     case 'avi' :
-		    	 
-		    	 $('.embmedia' ).media({
-		        		width:  Width,
-		        		height: Height,
-		        		src: url,
-		        		wmode:'transparent',
-		        		autoplay:  this.autoPlayparam(),
-		        		params:	{
-		        			controller : true,
-		        			kioskmode: true,
-		        			scale: "tofit",
-		        			wmode: "transparent",   //for Quicktime
-		        			target: "myself"
-		        			},
-		        		});
-		    	 
-		    
-		    	 break;
-		     case 'ram' :
-		    	 
-		    	 $('.embmedia' ).media({
-		        		width:  Width,
-		        		height: Height,
-		        		src: url,
-		        		wmode:'transparent',
-		        		params:	{
-		        			autostart: this.autoPlayparam(),
-		        			controls:'imagewindow,controlpanel',//for RealPlayer*/	
-		        			console:'_master'
-		        			},
-		        		});
-		    	 
-		    	 break;
-		     default:	 
-		    	 
-		    if(url.indexOf("youtube.com/")){
-		    	$('.embmedia' ).media({
-		    		//src: url+this.autoPlayparamYoutube(), 
-	        		width:  Width,
-	        		height: Height,
-	        		wmode:'transparent',
-	        		type:'swf' //for youtube
-	        		});
-			     
-	        	
-		    }	else {
-		    	$('.embmedia' ).media({
-	        		width:  Width,
-	        		height: Height,
-	        		src: url,
-	        		wmode:'transparent',
-	        		autoplay:  this.autoPlayparam()
-
-	        		});
-		    	
-		    } 
-		     
-        }
-        	if( (appGlobals.isInDesignMode() == true))
-        	 $('.embmedia object').append('<param name="wmode" value="transparent">');//For Quicktime
+        	$('video,audio').mediaelementplayer(/* Options */);
         	
 
 		},

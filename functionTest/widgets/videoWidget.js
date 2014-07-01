@@ -37,7 +37,7 @@
         this.initElement = function(param){
         	//if( appGlobals.isInDesignMode() == false)
         	
-        	$('video,audio').mediaelementplayer(/* Options */);
+        	//$('video,audio').mediaelementplayer(/* Options */);
         	
 
 		},

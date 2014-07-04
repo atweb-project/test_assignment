@@ -91,5 +91,6 @@
 						startVolume : StartVolume,
 						loop : AllowLoop()
 
-					});
+	});
+
 });

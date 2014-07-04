@@ -37,7 +37,7 @@
             }
 
            
-            return '<iframe style="width: 100%; height: 100%;" id="' + this.getId() + '" src="embedded-player/videoWidget.html" frameborder="0" '+
+            return '<iframe width="100%" height="100%" id="' + this.getId() + '" src="embedded-player/videoWidget.html" frameborder="0" '+
              	   'allowfullscreen="true" webkitAllowFullScreen="true" mozallowfullscreen="true" autostart="'+AutoPLay+'" videofullscreen="'+FullScreen+'" '+
              	   'volume="'+startVolume+'" loop="'+Loop+'" url="'+url+'" urlie="'+urlIE+'" urlogg ="'+urlOGG+'" poster="'+PosTer+'"></iframe>'
 

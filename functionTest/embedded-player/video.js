@@ -8,11 +8,13 @@
 	var allowPlay = $(window.frameElement).attr('paramplay');
 	var allowFullScreen = $(window.frameElement).attr('videofullscreen');
 	var StartVolume = $(window.frameElement).attr('volume');
-	var Loop = $(window.frameElement).attr('loop');
+	var LOOP = $(window.frameElement).attr('allowloop');
 	var URL = $(window.frameElement).attr('url');
 	var URLIE = $(window.frameElement).attr('urlie');
 	var URLOGG = $(window.frameElement).attr('urlogg');
 	var PosTer = $(window.frameElement).attr('poster');
+	
+	//alert(LOOP)
 	
 	//alert(URLOGG)
 	// var typeOfFile = URL
@@ -77,10 +79,12 @@
 
 	function AllowLoop() {
 
-		if (Loop == 'true')
-			return 'true'
-
-		return 'false'
+		if (LOOP == 'true'){
+		//	alert(LOOP)
+			return true
+		}
+		//alert(LOOP)
+		return false
 	}
 
 	AutoPlayValue()

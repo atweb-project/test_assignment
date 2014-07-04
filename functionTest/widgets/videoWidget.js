@@ -16,7 +16,7 @@
       var AutoPLay = false
       var FullScreen = true
       var startVolume = 0.8
-      var Loop = false
+      var LOOP = false
      
       
 
@@ -31,7 +31,7 @@
             	if ( typeof (param.AutoPLay) !== 'undefined') AutoPLay = param.AutoPLay
             	if ( typeof (param.FullScreen) !== 'undefined') FullScreen = param.FullScreen
             	if ( typeof (param.startVolume) !== 'undefined') startVolume = param.startVolume
-            	if ( typeof (param.Loop) !== 'undefined') Loop = param.Loop
+            	if ( typeof (param.LOOP) !== 'undefined') LOOP = param.LOOP
            	
 
             }
@@ -39,7 +39,7 @@
            
             return '<iframe width="100%" height="100%" id="' + this.getId() + '" src="embedded-player/videoWidget.html" frameborder="0" '+
              	   'allowfullscreen="true" webkitAllowFullScreen="true" mozallowfullscreen="true" autostart="'+AutoPLay+'" videofullscreen="'+FullScreen+'" '+
-             	   'volume="'+startVolume+'" loop="'+Loop+'" url="'+url+'" urlie="'+urlIE+'" urlogg ="'+urlOGG+'" poster="'+PosTer+'"></iframe>'
+             	   'volume="'+startVolume+'" allowloop="'+LOOP+'" url="'+url+'" urlie="'+urlIE+'" urlogg ="'+urlOGG+'" poster="'+PosTer+'"></iframe>'
 
         },
         
@@ -109,7 +109,7 @@
         
         this.selectLoop = function() {
         	
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'Loop', 'ov': Loop, 'nv': $('#allowloop').prop('checked') }])
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'LOOP', 'ov': LOOP, 'nv': $('#allowloop').prop('checked') }])
         	
         },
         
@@ -133,7 +133,7 @@
                  
                  if (param[i].prop == 'startVolume') startVolume = param[i].value
                  
-                 if (param[i].prop == 'Loop') Loop = param[i].value
+                 if (param[i].prop == 'LOOP') LOOP = param[i].value
                  
 
              }
@@ -145,7 +145,7 @@
         	 $('#'+this.getId() ).attr( 'autostart', AutoPLay)
         	 $('#'+this.getId() ).attr( 'videofullscreen', FullScreen)
         	 $('#'+this.getId() ).attr( 'volume', startVolume)
-        	 $('#'+this.getId() ).attr( 'loop', Loop)
+        	 $('#'+this.getId() ).attr( 'allowloop', LOOP)
         	 
         	 $('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; })
         	 
@@ -164,14 +164,14 @@
             $('#autoplayPlayer').prop('checked', AutoPLay )
             $('#allowfullscreen').prop('checked', FullScreen )
             $('#volume').spinner('value', startVolume)
-            $('#allowloop').prop('checked', Loop )
+            $('#allowloop').prop('checked', LOOP )
 
 
         },
          
         this.createJSON = function() {
 
-             return { 'url': url, 'urlIE': urlIE,'urlOGG': urlOGG,'PosTer': PosTer, 'AutoPLay':AutoPLay, 'FullScreen': FullScreen,'startVolume': startVolume,'Loop': Loop}
+             return { 'url': url, 'urlIE': urlIE,'urlOGG': urlOGG,'PosTer': PosTer, 'AutoPLay':AutoPLay, 'FullScreen': FullScreen,'startVolume': startVolume,'LOOP': LOOP}
 
         }
         

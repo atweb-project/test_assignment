@@ -16,12 +16,33 @@
       <input type="range" id="scale" value="4" min="3" max="5" step="1">
       <label>Hard</label>
     </form>
+    <p id="time">
+                    Current time: <span>00:00:00</span>
+   </p>
     <br>
-  </div>
+    <button id="start">
+                    Start!
+                </button>
+                <button id="restart">
+                    Quit?
+                </button>
+                
+  </div><br>
   <div id="main" class="main">
-    <canvas id="puzzle" width="360px" height="360px"></canvas>
+      
+    <canvas id="puzzle" width="360px" height="360px"><img src = 'http://127.0.0.1/test_assignment/functionTest/jigsaw/lake.jpg' /></canvas>
   </div>
   <script>
+  
+  // time tracking
+    timer = {};
+    currentTime = {};
+    timerDisplay = $('#slider').find("#time").find("span");
+    
+    currentTime.seconds = 0;
+                        currentTime.minutes = 0;
+                        currentTime.hours = 0;
+  
   	var context = document.getElementById('puzzle').getContext('2d');
 
 var img = new Image();
@@ -46,12 +67,12 @@ var solved = false;
 var boardParts;
 setBoard();
 
-document.getElementById('scale').onchange = function() {
-  tileCount = this.value;
+//document.getElementById('scale').onchange = function() {
+  tileCount = 2;
   tileSize = boardSize / tileCount;
   setBoard();
   drawTiles();
-};
+//};
 
 document.getElementById('puzzle').onclick = function(e) {
   clickLoc.x = Math.floor((e.pageX - this.offsetLeft) / tileSize);
@@ -60,8 +81,41 @@ document.getElementById('puzzle').onclick = function(e) {
     slideTile(emptyLoc, clickLoc);
     drawTiles();
   }
+  
+  
+  
   if (solved) {
-    setTimeout(function() {alert("You solved it!");}, 500);
+    setTimeout(function() {alert("You solved it!");
+    
+    clearInterval(timer);
+
+    var totalSeconds = (currentTime.hours * 60 * 60)+ (currentTime.minutes * 60)+ currentTime.seconds;
+
+                                            // check if there is a bestTime in localstorage (check if puzzleBestTime exists)
+                                            if (localStorage.getItem("puzzleBestTime")) {
+                                                var bestTime = localStorage.getItem("puzzleBestTime");
+
+                                                if (totalSeconds < bestTime) {
+                                                    // save new best time
+                                                    localStorage.setItem("puzzleBestTime",
+                                                            totalSeconds);
+
+                                                   alert("You got a new best time!");
+                                                }
+                                            } else {
+                                                // save current time
+                                                localStorage.setItem(
+                                                        "puzzleBestTime",
+                                                        totalSeconds);
+
+                                                // display message
+                                               alert("You got a new best time!");
+                                            }
+    
+    
+    }, 500);
+    
+    
   }
 };
 
@@ -121,6 +175,54 @@ function checkSolved() {
   }
   solved = flag;
 }
+
+$("#start").on("click", function(e) {
+if (timer) {
+                            clearInterval(timer);
+                            timerDisplay.text("00:00:00");
+                        }
+
+                        // start the timer with setInterval, reset seconds, minutes, and hours to 0
+                        timer = setInterval(updatetime, 1000);
+                        
+
+                        // update the timer display every second
+                        function updatetime() {
+
+                            // stop timer if 24 hours
+                            if (currentTime.hours === 23
+                                    && currentTime.minutes === 59
+                                    && currentTime.seconds === 59) {
+                                clearinterval(timer);
+                            } else if (currentTime.minutes === 59
+                                    && currentTime.seconds === 59) {
+                                // increment hours if applicable
+                                currentTime.hours++;
+                                currentTime.minutes = 0;
+                                currentTime.seconds = 0;
+                            } else if (currentTime.seconds === 59) {
+                                // increment minutes if applicable
+                                currentTime.minutes++;
+                                currentTime.seconds = 0;
+                            } else {
+                                // increment seconds
+                                currentTime.seconds++;
+                            }
+
+                            // build time string (see if we need to pad the beginning of the time with a 0 - e.g, 09 seconds)
+                            newHours = (currentTime.hours <= 9) ? "0"
+                                    + currentTime.hours : currentTime.hours;
+                            newMins = (currentTime.minutes <= 9) ? "0"
+                                    + currentTime.minutes : currentTime.minutes;
+                            newSecs = (currentTime.seconds <= 9) ? "0"
+                                    + currentTime.seconds : currentTime.seconds;
+
+                            // update display via an array instead of string concatenation - COMPLICATED!
+                            timerDisplay.text([ newHours, ":", newMins, ":",
+                                    newSecs ].join(""));
+                        }
+
+});
 
   </script>
 </body>

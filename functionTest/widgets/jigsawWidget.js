@@ -112,7 +112,7 @@ JigsawWidget.init = function () {
 JigsawWidget.buttomImage='images/button_icon.png'
 JigsawWidget.typeId= 'jigsaw'
 JigsawWidget.myClass= 'widget_jigsaw'
-JigsawWidget.initialWidth='650'
-JigsawWidget.initialHeight= '350'
+JigsawWidget.initialWidth='230'
+JigsawWidget.initialHeight= '330'
 JigsawWidget.actionsSectionId='jigsawMenu'
 

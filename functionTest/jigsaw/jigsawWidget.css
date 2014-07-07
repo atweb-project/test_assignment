@@ -1,54 +1,41 @@
-.clearfix:before, .clearfix:after {
-	content: "\0020";
-	display: block;
-	height: 0;
+ 
+body {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
 	overflow: hidden;
-}
-.clearfix:after {
-	clear: both;
+	position: absolute;
 }
 
-.clearfix {
-	zoom: 1;
+#main {
+	width: 100%;
+	height: 100%;
+}
+
+#buttons {
+	float: right;
+	width: 30%;
 }
 
 img {
-	width: 100%;
+	float: left;
+	width: 65%;
 	height: 100%;
-	max-width:100%;
+	max-width: 100%;
 }
 
 #puzzle {
-	/*width: 620px;*/
-	max-width: 100%
-	padding: 5px;
-	margin: auto;
+	max-width: 100% margin : auto;
 	border: 1px solid #aaa;
 	border-radius: 5px;
 	background-color: #eee;
-	
-	width: 100%;
-	height:100%;
-}
-#figure {
-	width: 80%;
-	height: 300px;
-	border: 1px solid #aaa;
-	position: relative;
 	float: left;
-	background-color: #fff;
+	width: 65%;
+	display: none;
+	height: 100%;
 }
-#ui {
-	width: 100px;
-	padding: 10px 0 0 10px;
-	float: left;
-}
-#ui button {
-	margin-bottom: 1em;
-}
-#ui p {
-	font-size: 1em;
-}
+
 #start, #restart {
-	width: 60px;
+	max-width: 100%;
 }
+

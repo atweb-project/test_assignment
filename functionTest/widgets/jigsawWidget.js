@@ -1,30 +1,32 @@
-
-
-    
+ 
     function JigsawWidget (pid, ptype ){
 
         
         MyWidget.call(this, pid, ptype)
 
-        var numberOfPieces = 6
-        var aspectH = 2
+        var url = "lake.jpg"
+        var numberOfPieces = 3
 
         this.createElement= function (param) {
 
             if (typeof (param) !== 'undefined') {
+            	
+            	if ( typeof (param.url) !== 'undefined') url = param.url
 
             	if (typeof (param.numberOfPieces) !== 'undefined') numberOfPieces = param.numberOfPieces
                 
-                if (typeof (param.aspectH) !== 'undefined') aspectH = param.aspectH
 
             }
        
-            /*return '<div id="' + this.getId() + '" style="width: 80%;margin: 0px auto;"><div class="iframe-container" style="height: 0;width: 100%;padding-bottom: 56.25%;overflow: hidden;position: relative;">'+
-            		'<iframe width="100%" height="100%" style=" position: absolute;top:0;left: 0;" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
-            			numberOfPieces +'" numberOfRows="'+ aspectH +'" frameborder="0"></iframe><div></div>'*/
             return '<iframe id="' + this.getId()  +  '" width="100%" height="100%" src="jigsaw/jigsawWidget.html" numberOfPieces="'+ 
-			numberOfPieces +'" numberOfRows="'+ aspectH +'" frameborder="0"></iframe><div>'
+			numberOfPieces +'" puzzleurl="'+ url +'" frameborder="0"></iframe><div>'
             
+        },
+        
+        this.changeURLJigsaw = function() {
+			
+            this.myRegisterUniquePropEvent( [{ 'prop': 'url', 'ov': url, 'nv': $('#newjigsawURLText').prop('value') }])
+                         
         },
         
         this.numberOfPieces = function () {
@@ -43,24 +45,7 @@
 
 
         },
-        
-        this.numberOfRows = function () {
-
-            var ns = $('#numberOfRows').spinner( "value" )
-
-            if (ns != null) {
-
-                this.myRegisterUniquePropEvent(  [{ 'prop': 'aspectH', 'ov': aspectH, 'nv': ns }])
-
-            } 
-            else {
-
-                alert ("Numbers only")
-            }
-
-
-        },
-        
+                
         this.initElement = function(param){
         	
 
@@ -70,29 +55,29 @@
 
         	for (var i = 0; i < param.length; i++) {
 
-				if (param[i].prop == 'numberOfPieces') numberOfPieces = param[i].value
-				
-				if (param[i].prop == 'aspectH') aspectH = param[i].value
+        		if (param[i].prop == 'url') url = param[i].value
+        		
+        		if (param[i].prop == 'numberOfPieces') numberOfPieces = param[i].value
+								
         	}
         	
+        	$('#'+this.getId() ).attr( 'puzzleurl', url);
         	$('#'+this.getId() ).attr( 'numberOfPieces', numberOfPieces);
-       	 	$('#'+this.getId() ).attr( 'numberOfRows', aspectH);
        	 	$('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; });
 
         },
 
         this.selectionChanged=function()  {
 
-        	$('#numberOfPieces').spinner('value', numberOfPieces)
+        	$('#newjigsawURLText').prop('value', url)
         	
-        	$('#numberOfRows').spinner('value', aspectH)
-              
-
+        	$('#numberOfPieces').spinner('value', numberOfPieces)
+        	         
          },
          
          this.createJSON = function() {
 
-             return { 'numberOfPieces': numberOfPieces,'aspectH':aspectH}
+             return { 'url':url, 'numberOfPieces': numberOfPieces}
 
          }
         
@@ -101,18 +86,16 @@
 // static variables/functions
 
 JigsawWidget.init = function () {
-	$("#jigsawMenu").append("<br>Number of pieces to divide<input type='edit' id='numberOfPieces' name='numberOfPieces' value='6' >")
+	$("#jigsawMenu").append("Image URL<br><input type='text' id='newjigsawURLText'><button onclick='appGlobals.currentObject().changeURLJigsaw()'>Update</button>")
+	
+	$("#jigsawMenu").append("<br>Number of pieces to divide(The structure is always a square for example 3x3)<input type='edit' id='numberOfPieces' name='numberOfPieces' value='3' >")
 
     $("#numberOfPieces").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().numberOfPieces() } });
-
-    $("#jigsawMenu").append("<br>Number of rows to divide(Please make sure that the number of pieces with number of rows divides exactly)<br><input type='edit' id='numberOfRows' name='numberOfRows' value='2' >")
-
-    $("#numberOfRows").spinner({ min: 0, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().numberOfRows() } });
 }
 JigsawWidget.buttomImage='images/button_icon.png'
 JigsawWidget.typeId= 'jigsaw'
 JigsawWidget.myClass= 'widget_jigsaw'
-JigsawWidget.initialWidth='230'
+JigsawWidget.initialWidth='530'
 JigsawWidget.initialHeight= '330'
 JigsawWidget.actionsSectionId='jigsawMenu'
 

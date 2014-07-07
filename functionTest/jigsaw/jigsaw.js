@@ -52,6 +52,33 @@ $(function() {
 	timerDisplay = container.find("#time").find("span");
 
 	// ---- generate puzzle pieces ---- //
+	//if (document.documentElement.clientWidth < 600) {
+		// don’t download complicated script
+		// use low-source images instead of full-source ones
+		//alert('yes')
+	//}
+	
+	var detectViewPort = function(){
+	    var viewPortWidth = $(window).width();
+	    if (viewPortWidth < 500){
+	    //...The rest of your above code.
+	    	pieceW = Math.floor(pieceW /2)
+	    	pieceH = Math.floor(pieceH /2)
+	    	$('#puzzle').append('<p>Resized</p>')
+	    	location.reload();
+	    }
+	    if (viewPortWidth > 500){
+	    	$('#puzzle p').remove()
+	    }
+	}
+
+	
+	  detectViewPort();
+	
+
+	$(window).resize(function () {
+	   detectViewPort();
+	});
 
 	// loops through twice for both height and width
 	for (var x = 0, y = aspectH; x < y; x++) {

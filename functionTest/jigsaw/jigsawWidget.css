@@ -30,9 +30,7 @@ img {
 	border-radius: 5px;
 	background-color: #eee;
 	float: left;
-	
-	display: none;
-	
+	display: none;	
 }
 
 #start, #restart {

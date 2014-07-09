@@ -1,0 +1,45 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 100%; /* this sets 1em to equal approximately 16px */
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    line-height: 1.3em;
+    margin: 0 0 1em;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.drag-canvas {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+canvas {
+    /* Prevent 'copy' option > http://www.bernskiold.com/2011/02/02/tips-and-tricks-for-ios-web-development/ */
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+    
+    /* 
+        Microsoft have their own variation...
+        
+        -ms-touch-action: none;
+        
+        ...but without having access to a Windows Phone 7 I'm not 100% sure if this will have the intended result.
+        
+        See: http://blogs.msdn.com/b/ie/archive/2012/04/20/guidelines-for-building-touch-friendly-sites.aspx
+    */
+}
+
+.allow {
+    margin-top: 1em;
+    text-align: center;
+    width: 760px;
+}

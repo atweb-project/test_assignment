@@ -30,10 +30,10 @@
   </div><br>
   <div id="main" class="main">
       
-    <canvas id="puzzle" width="360px" height="360px"><img src = 'http://127.0.0.1/test_assignment/functionTest/jigsaw/lake.jpg' /></canvas>
+    <canvas id="puzzle" width="360px" height="360px"></canvas>
   </div>
   <script>
-  
+  $(function() {
   // time tracking
     timer = {};
     currentTime = {};
@@ -222,6 +222,7 @@ if (timer) {
                                     newSecs ].join(""));
                         }
 
+});
 });
 
   </script>

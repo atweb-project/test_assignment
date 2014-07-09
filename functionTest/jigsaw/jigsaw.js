@@ -20,17 +20,21 @@ $(function() {
 	 currentTime.seconds = 0;
 	 currentTime.minutes = 0;
 	 currentTime.hours = 0;
-		
-	var context = $('#puzzle').get(0).getContext('2d');
-
+	 htmlCanvas	= document.getElementById('puzzle')
+	var context = htmlCanvas.getContext('2d');
+	
 	var img = new Image();
 	img.src = PuzzleURL;
 	
 	$(img).on('load', function(){
+		window.addEventListener('resize', resizeCanvas, false);
+		htmlCanvas.width = window.innerWidth;
+        htmlCanvas.height = window.innerHeight;
 		drawTiles()
-	})
+	});
 
-	var boardSize = document.getElementById('puzzle').width;
+	var boardSize = htmlCanvas.width;
+	alert(boardSize);
 	var tileCount = $(window.frameElement).attr('numberOfPieces');
 
 	var tileSize = boardSize / tileCount;
@@ -273,5 +277,35 @@ $(function() {
 	
 	
 	});
+	
+	 function resize_canvas(){
+         canvas = document.getElementById("puzzle");
+         if (canvas.width  < window.innerWidth)
+         {
+             canvas.width  = window.innerWidth;
+             return parseInt(canvas.width);
+         }
+
+         //if (canvas.height < window.innerHeight)
+       //  {
+      //      canvas.height = window.innerHeight;
+         }
+   //  }
+	 
+	 function initialize() {
+         // Register an event listener to
+         // call the resizeCanvas() function each time 
+         // the window is resized.
+         window.addEventListener('resize', resizeCanvas, false);
+         
+         // Draw canvas border for the first time.
+         resizeCanvas();
+     }
+	 
+	 function resizeCanvas() {
+         htmlCanvas.width = window.innerWidth;
+         htmlCanvas.height = window.innerHeight;
+        
+     }
 	
 });

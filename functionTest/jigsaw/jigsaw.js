@@ -6,21 +6,35 @@ $(function() {
 
 	// ---- variables ---- //
 	var PuzzleURL = $(window.frameElement).attr('puzzleurl');
+	var Mode = $(window.frameElement).attr('parammode');
 	
 	$('#main').append('<img id="poster" src="'+ PuzzleURL +'" />');
 	
 	var imgS = document.getElementById('poster');
-	
+	//alert(imgS.width)
 	var widthS = imgS.clientWidth;
 	var heightS = imgS.clientHeight;
 	var canvas = document.getElementById('puzzle')
 	canvas.width = widthS
-	canvas.height = widthS
+	canvas.height = heightS-2
 	
-	$("#start").on("click", function(e) {	
+	var context = document.getElementById('puzzle').getContext('2d');
+	
+	if(Mode == 0){
+		//$('#poster').remove();
 		$('img').css('display','none');
 		$('#puzzle').css('display','block');
-
+		var img = new Image();
+		img.src = PuzzleURL
+		img.height = widthS;
+	    img.width = widthS;
+	    $(img).on('load', function(){
+	    context.drawImage(img, 0, 0, canvas.width, canvas.height)
+	    })
+	}
+	
+	$("#start").one("click", function(e) {	
+		
 	timer = {};
 	currentTime = {};
 	timerDisplay = $('#buttons').find("#time").find("span b");
@@ -29,12 +43,11 @@ $(function() {
 	currentTime.minutes = 0;
 	currentTime.hours = 0;
 
-	var context = $('#puzzle').get(0).getContext('2d');
-	
-	var img = new Image();
-	img.src = PuzzleURL;
-	
-	$(img).on('load', function(){
+	var imgNew = new Image()
+    imgNew.src = canvas.toDataURL("image/jpg")
+    //alert(imgNew.src)
+	$(imgNew).on('load', function(){
+		//context.drawImage(img, 0, 0, widthS, widthS)
 		drawTiles()
 	});
 
@@ -43,7 +56,7 @@ $(function() {
 	var tileCount = $(window.frameElement).attr('numberOfPieces');
 
 	var tileSize = boardSize / tileCount;
-
+	
 	var clickLoc = new Object;
 	clickLoc.x = 0;
 	clickLoc.y = 0;
@@ -245,7 +258,7 @@ $(function() {
 	      var x = boardParts[i][j].x;
 	      var y = boardParts[i][j].y;
 	      if(i != emptyLoc.x || j != emptyLoc.y || solved == true) {
-	        context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize,
+	        context.drawImage(imgNew, x * tileSize, y * tileSize, tileSize  , tileSize,
 	            i * tileSize, j * tileSize, tileSize, tileSize);
 	      }
 	    }
@@ -282,5 +295,6 @@ $(function() {
 	
 	
 	});
+	
 	
 });

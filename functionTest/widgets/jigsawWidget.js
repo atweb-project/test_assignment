@@ -48,6 +48,9 @@
                 
         this.initElement = function(param){
         	
+        	 if (appGlobals.isInDesignMode() == false)  
+	             
+	            	$('#'+this.getId()).attr('parammode','0');
 
 		},
         

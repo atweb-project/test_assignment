@@ -26,7 +26,7 @@ $(function() {
 		$('#puzzle').css('display','block');
 		var img = new Image();
 		img.src = PuzzleURL
-		img.height = widthS;
+		img.height = heightS-2;
 	    img.width = widthS;
 	    $(img).on('load', function(){
 	    context.drawImage(img, 0, 0, canvas.width, canvas.height)
@@ -56,6 +56,9 @@ $(function() {
 	var tileCount = $(window.frameElement).attr('numberOfPieces');
 
 	var tileSize = boardSize / tileCount;
+	//alert(tileSize)
+	var tileSizeH = document.getElementById('puzzle').height / tileCount;
+	//alert(tileSizeH)
 	
 	var clickLoc = new Object;
 	clickLoc.x = 0;
@@ -72,7 +75,7 @@ $(function() {
 
 	$('#puzzle').on('mousemove', function(e) {
 	  clickLoc.x = Math.floor((e.pageX - this.offsetLeft) / tileSize);
-	  clickLoc.y = Math.floor((e.pageY - this.offsetTop) / tileSize);
+	  clickLoc.y = Math.floor((e.pageY - this.offsetTop) / tileSizeH);
 	});
 
 	$('#puzzle').on('click', function() {
@@ -258,8 +261,8 @@ $(function() {
 	      var x = boardParts[i][j].x;
 	      var y = boardParts[i][j].y;
 	      if(i != emptyLoc.x || j != emptyLoc.y || solved == true) {
-	        context.drawImage(imgNew, x * tileSize, y * tileSize, tileSize  , tileSize,
-	            i * tileSize, j * tileSize, tileSize, tileSize);
+	        context.drawImage(imgNew, x * tileSize, y * tileSizeH, tileSize  , tileSizeH,
+	            i * tileSize, j * tileSizeH, tileSize, tileSizeH);
 	      }
 	    }
 	  }

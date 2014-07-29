@@ -38,7 +38,7 @@ function FacebookWidget (pid, ptype)
             
             alert(Share)
 
-            $('#'+this.getId() ).attr( 'src',  '//www.facebook.com/plugins/like.php?href='+url+'&amp;width&amp;layout='+Layout+'&amp;action='+ActionType+'&amp;show_faces='+Showfaces+'&amp;share='+Share+'&amp;' )
+            $('#'+this.getId() ).attr( 'src',  '//www.facebook.com/plugins/like.php?href='+url+'&width&layout='+Layout+'&action='+ActionType+'&show_faces='+Showfaces+'&share='+Share+'&;' )
                       
         },
 
@@ -137,7 +137,7 @@ function FacebookWidget (pid, ptype)
    
 
 FacebookWidget.buttomImage= 'images/button_icon.png'
-FacebookWidget.typeId= 'facebook'
+FacebookWidget.typeId= 'facebook_buttons'
 FacebookWidget.myClass= 'widget_facebook'
 FacebookWidget.initialWidth= '200'
 FacebookWidget.initialHeight= '100'

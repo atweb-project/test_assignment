@@ -61,11 +61,15 @@
 		
 		<!-- gallery widget -->
 		<script src="widgets/galleryWidget.js" type="text/javascript"></script>
+		
+		<!-- facebook widget -->
+        <script src="widgets/facebookWidget.js" type="text/javascript"></script>
 
 		<script>
 		
 		 $(document).ready(function () {
 		 	
+		 	widgetSetup( FacebookWidget) 
 		 	widgetSetup( CheckboxWidget )
 		 	widgetSetup( RadiobWidget )
 		 	widgetSetup( VideoWidget )
@@ -81,7 +85,7 @@
 			widgetSetup( YoutubeWidget )
 			widgetSetup( TextWidget )
 			widgetSetup( HTMLWidget ) 
-			   
+						   
 		
 			showWidgets()
 					

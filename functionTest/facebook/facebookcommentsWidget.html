@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Facebook Widget</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+        <!--<link href="cameraWidget.css" rel="stylesheet" type="text/css" />-->
+        <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        <style>
+        .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
+    width: 100% !important;
+}
+
+        </style>
+    </head>
+    <body>
+      <div id="fb-root"></div>
+        <script>
+            ( function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id))
+                        return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <div class="fb-comments" data-href="http://example.com/comments" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
+    </body>
+</html>

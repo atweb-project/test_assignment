@@ -3,7 +3,7 @@
  * Facebook Buttons Widget
  */
 
-function FacebookBtnWidget (pid, ptype)
+function FacebookPostsWidget (pid, ptype)
 {
        
      MyWidget.call(this,pid,ptype)       
@@ -36,7 +36,7 @@ function FacebookBtnWidget (pid, ptype)
              }
               
 
-            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="//www.facebook.com/plugins/like.php?href='+url+'&amp;width&amp;layout='+Layout+'&amp;action='+ActionType+'&amp;show_faces='+Showfaces+'&amp;share='+Share+'&amp;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>'
+            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="facebook/facebookpostsWidget.html" scrolling="no" frameborder="0" allowTransparency="true"></iframe>'
             
         },
 
@@ -133,33 +133,33 @@ function FacebookBtnWidget (pid, ptype)
     }
    
 
-FacebookBtnWidget.buttomImage= 'images/button_icon.png'
-FacebookBtnWidget.typeId= 'fb_buttons'
-FacebookBtnWidget.myClass= 'widget_facebook'
-FacebookBtnWidget.initialWidth= '200'
-FacebookBtnWidget.initialHeight= '100'
-FacebookBtnWidget.actionsSectionId= 'facebookMenu'
+FacebookPostsWidget.buttomImage= 'images/button_icon.png'
+FacebookPostsWidget.typeId= 'fb_posts'
+FacebookPostsWidget.myClass= 'widget_facebook_posts'
+FacebookPostsWidget.initialWidth= '400'
+FacebookPostsWidget.initialHeight= '350'
+FacebookPostsWidget.actionsSectionId= 'facebookpostsMenu'
 
 
-FacebookBtnWidget.init= function () {
+FacebookPostsWidget.init= function () {
 
-    $("#facebookMenu").append("URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
+    $("#facebookpostsMenu").append("URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
 
-    $("#facebookMenu").append("<div>Choose layout<select id='layout' onchange='appGlobals.currentObject().getLayout()'>"+
+    $("#facebookpostsMenu").append("<div>Choose layout<select id='layout' onchange='appGlobals.currentObject().getLayout()'>"+
     							"<option value='standard'>standard</option>"+
     							"<option value='box_count'>box_count</option>"+
     							"<option value='button_count'>button_count</option>"+
     							"<option value='button'>button</option>"+
     							"</select></div>")
    
-    $("#facebookMenu").append("<div>Choose action type<select id='actiontype' onchange='appGlobals.currentObject().getactiontype()'>"+
+    $("#facebookpostsMenu").append("<div>Choose action type<select id='actiontype' onchange='appGlobals.currentObject().getactiontype()'>"+
     							"<option value='like'>like</option>"+
     							"<option value='recommend'>recommend</option>"+
     							"</select></div>")
 
-    $("#facebookMenu").append("<br>Show share button<input type='checkbox' id='showsharebutton' onclick='appGlobals.currentObject().showShareButton()'>")
+    $("#facebookpostsMenu").append("<br>Show share button<input type='checkbox' id='showsharebutton' onclick='appGlobals.currentObject().showShareButton()'>")
     
-    $("#facebookMenu").append("<br>Show Friend's faces<input type='checkbox' id='showfaces' onclick='appGlobals.currentObject().showFaces()'>")
+    $("#facebookpostsMenu").append("<br>Show Friend's faces<input type='checkbox' id='showfaces' onclick='appGlobals.currentObject().showFaces()'>")
 
 
 }

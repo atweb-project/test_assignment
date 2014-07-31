@@ -76,11 +76,14 @@
         
         <!-- twitter feed widget -->
         <script src="widgets/twitterfeedWidget.js" type="text/javascript"></script>
+        
+        <!-- twitter follow button widget -->
+        <script src="widgets/twitterFollowbtnWidget.js" type="text/javascript"></script>
 
 		<script>
 		
 		 $(document).ready(function () {
-		 	
+		 	widgetSetup( TwitterFollowBtnWidget)
 		 	widgetSetup( TwitterFeedWidget)
 		 	widgetSetup( TwitterBtnWidget)
 		 	widgetSetup( FacebookCommentsWidget)

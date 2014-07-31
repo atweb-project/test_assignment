@@ -3,7 +3,6 @@
     <head>
         <title>Facebook Widget</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-        <!--<link href="cameraWidget.css" rel="stylesheet" type="text/css" />-->
         <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
         <style>
         
@@ -11,8 +10,12 @@
     </head>
     <body>
         <script>
+         $(function() {
+             
+             var URL = $(window.frameElement).attr('url')
+             
             $.ajax({
-                url : 'https://api.twitter.com/1/statuses/oembed.json?id=133640144317198338&align=center',
+                url : 'https://api.twitter.com/1/statuses/oembed.json?id='+URL+'&align=center',
                 type : 'GET',
                 dataType : 'jsonp',
                 async : true,
@@ -26,7 +29,11 @@
                     
                     alert('Network error has occurred, please check your connection and try again!')
                 }
-            });
+              })
+            
+            })
+            
+            
         </script>
         <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         <div class="result"></div>

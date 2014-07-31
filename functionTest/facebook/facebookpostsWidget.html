@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Facebook Widget</title>
+        <title>Facebook Posts Widget</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-        <!--<link href="cameraWidget.css" rel="stylesheet" type="text/css" />-->
         <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
         <style>
         .fb_iframe_widget,
@@ -12,6 +11,15 @@
             width: 100% !important;
         }
         </style>
+        <script>
+         $(function() {
+             
+             var URL = $(window.frameElement).attr('url');
+             
+             $('.fb-post').attr('data-href', URL)
+             
+         })
+        </script>
     </head>
     <body>
       <div id="fb-root"></div>
@@ -26,6 +34,6 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
         </script>
-        <div class="fb-post" data-href="https://www.facebook.com/FacebookDevelopers/posts/10151471074398553" data-width="350"></div>
+        <div class="fb-post" data-width="350"></div>
     </body>
 </html>

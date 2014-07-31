@@ -1,6 +1,6 @@
 
 /*
- * Facebook Buttons Widget
+ * Facebook Comments Widget
  */
 
 function FacebookCommentsWidget (pid, ptype)
@@ -8,11 +8,9 @@ function FacebookCommentsWidget (pid, ptype)
        
      MyWidget.call(this,pid,ptype)       
         
-        var url = "https://developers.facebook.com/docs/plugins/"
-     	var Layout = "standard"
-        var ActionType = "like"
-        var Share = true
-        var Showfaces = true
+        var url = "http://example.com/comments"
+     	var NumPosts = 5
+        var ColorScheme = "light"
 
 
        // alert (" this.id is "+ this.getId() )
@@ -23,20 +21,17 @@ function FacebookCommentsWidget (pid, ptype)
 
                 if ( typeof (param.url) !== 'undefined') url = param.url
 
-                if (typeof (param.Layout) !== 'undefined') Layout = param.Layout
+                if (typeof (param.NumPosts) !== 'undefined') NumPosts = param.NumPosts
 
-                if (typeof (param.ActionType) !== 'undefined') ActionType = param.ActionType
-
-                if (typeof (param.Share) !== 'undefined') Share = param.Share
-
-                if( typeof (param.Showfaces) !== 'undefined') Showfaces = param.Showfaces
+                if (typeof (param.ColorScheme) !== 'undefined') ColorScheme = param.ColorScheme
 
                 //alert(" param.url "+param.url+"  param.allowFullscreen " + param.allowFullscreen + " number of params " + param.length)
 
              }
               
 
-            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="facebook/facebookcommentsWidget.html" scrolling="no" frameborder="0" allowTransparency="true"></iframe>'
+            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="facebook/facebookcommentsWidget.html" scrolling="no" frameborder="0" '+
+            'allowTransparency="true" url="'+url+'" numposts="'+NumPosts+'" colorscheme="'+ColorScheme+'"></iframe>'
             
         },
 
@@ -47,20 +42,18 @@ function FacebookCommentsWidget (pid, ptype)
 
                 if (param[i].prop == 'url') url =  param[i].value 
                   
-                if (param[i].prop == 'Layout') Layout = param[i].value
+                if (param[i].prop == 'NumPosts') NumPosts = param[i].value
 
-                if( param[i].prop == 'ActionType' ) ActionType = param[i].value
-
-                if (param[i].prop == 'Share') Share = param[i].value
-
-                if( param[i].prop == 'Showfaces') Showfaces = param[i].value
-
+                if( param[i].prop == 'ColorScheme' ) ColorScheme = param[i].value
 
             }
             
             //alert(Share)
 
-            $('#'+this.getId() ).attr( 'src',  '//www.facebook.com/plugins/like.php?href='+url+'&width&layout='+Layout+'&action='+ActionType+'&show_faces='+Showfaces+'&share='+Share+'&;' )
+            $('#'+this.getId() ).attr( 'url', url)
+            $('#'+this.getId() ).attr( 'numposts', NumPosts)
+            $('#'+this.getId() ).attr( 'colorscheme', ColorScheme)
+            $('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; })
                       
         },
 
@@ -68,16 +61,12 @@ function FacebookCommentsWidget (pid, ptype)
 
             //alert (" button selection changed")
 
-            $('#newFacebookURLText').prop('value', url )
+            $('#newFacebookCommentsURLText').prop('value', url )
             
-            $('#layout').prop('value', Layout )
+            $('#comments').prop('value', NumPosts )
             
-            $('#actiontype').prop('value', ActionType )
+            $('#getcolor').prop('value', ColorScheme)
             
-            $('#showsharebutton').prop('checked', Share )
-            
-            $('#showfaces').prop('checked', Showfaces )
-
        },
 
        this.initElement = function()
@@ -89,43 +78,26 @@ function FacebookCommentsWidget (pid, ptype)
         
         this.changeURL = function ()
         {
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'url', 'ov': url, 'nv': $('#newFacebookURLText').prop('value') }])
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'url', 'ov': url, 'nv': $('#newFacebookCommentsURLText').prop('value') }])
 
         },
 
 
-        this.getLayout = function()
+        this.getCommentsNum = function()
         {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'Layout', 'ov': Layout, 'nv': $('#layout').prop('value') }])
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'NumPosts', 'ov': NumPosts, 'nv': $('#comments').prop('value') }])
 
         },
         
-        this.getactiontype = function()
+        this.getcolor = function()
         {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'ActionType', 'ov': ActionType, 'nv': $('#actiontype').prop('value') }])
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'ColorScheme', 'ov': ColorScheme, 'nv': $('#getcolor').prop('value') }])
 
         },
-
-
-        this.showShareButton = function ()
-        {
-
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'Share', 'ov': Share, 'nv': $('#showsharebutton').prop('checked') }])
-
-        },
-
-
-        this.showFaces = function ()
-         {
-             
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'Showfaces', 'ov': Showfaces, 'nv': $('#showfaces').prop('checked') }])
-
-         },
-
 
        this.createJSON = function () {
          
-            return { 'url': url,'Layout': Layout,'ActionType': ActionType, 'Share': Share, 'Showfaces': Showfaces } 
+            return { 'url': url,'NumPosts': NumPosts,'ColorScheme': ColorScheme } 
         }
         
 
@@ -141,26 +113,17 @@ FacebookCommentsWidget.initialHeight= '350'
 FacebookCommentsWidget.actionsSectionId= 'facebookcommentsMenu'
 
 
-FacebookPostsWidget.init= function () {
+FacebookCommentsWidget.init= function () {
 
-    $("#facebookcommentsMenu").append("URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
+	$("#facebookcommentsMenu").append("URL<input type='text' id='newFacebookCommentsURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
 
-    $("#facebookcommentsMenu").append("<div>Choose layout<select id='layout' onchange='appGlobals.currentObject().getLayout()'>"+
-    							"<option value='standard'>standard</option>"+
-    							"<option value='box_count'>box_count</option>"+
-    							"<option value='button_count'>button_count</option>"+
-    							"<option value='button'>button</option>"+
-    							"</select></div>")
+    $("#facebookcommentsMenu").append("<br>Choose the number of comments to show <input type='edit' id='comments' name='comments' value='' >")
+    $("#comments").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().getCommentsNum() } })
    
-    $("#facebookcommentsMenu").append("<div>Choose action type<select id='actiontype' onchange='appGlobals.currentObject().getactiontype()'>"+
-    							"<option value='like'>like</option>"+
-    							"<option value='recommend'>recommend</option>"+
+    $("#facebookcommentsMenu").append("<div>Choose the color of the scheme<select id='getcolor' onchange='appGlobals.currentObject().getcolor()'>"+
+    							"<option value='light'>light</option>"+
+    							"<option value='dark'>dark</option>"+
     							"</select></div>")
-
-    $("#facebookcommentsMenu").append("<br>Show share button<input type='checkbox' id='showsharebutton' onclick='appGlobals.currentObject().showShareButton()'>")
-    
-    $("#facebookcommentsMenu").append("<br>Show Friend's faces<input type='checkbox' id='showfaces' onclick='appGlobals.currentObject().showFaces()'>")
-
 
 }
 

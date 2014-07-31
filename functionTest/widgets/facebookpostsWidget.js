@@ -1,6 +1,6 @@
 
 /*
- * Facebook Buttons Widget
+ * Facebook Posts Widget
  */
 
 function FacebookPostsWidget (pid, ptype)
@@ -8,11 +8,7 @@ function FacebookPostsWidget (pid, ptype)
        
      MyWidget.call(this,pid,ptype)       
         
-        var url = "https://developers.facebook.com/docs/plugins/"
-     	var Layout = "standard"
-        var ActionType = "like"
-        var Share = true
-        var Showfaces = true
+        var url = "https://www.facebook.com/FacebookDevelopers/posts/10151471074398553"
 
 
        // alert (" this.id is "+ this.getId() )
@@ -23,20 +19,12 @@ function FacebookPostsWidget (pid, ptype)
 
                 if ( typeof (param.url) !== 'undefined') url = param.url
 
-                if (typeof (param.Layout) !== 'undefined') Layout = param.Layout
-
-                if (typeof (param.ActionType) !== 'undefined') ActionType = param.ActionType
-
-                if (typeof (param.Share) !== 'undefined') Share = param.Share
-
-                if( typeof (param.Showfaces) !== 'undefined') Showfaces = param.Showfaces
-
                 //alert(" param.url "+param.url+"  param.allowFullscreen " + param.allowFullscreen + " number of params " + param.length)
 
              }
               
 
-            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="facebook/facebookpostsWidget.html" scrolling="no" frameborder="0" allowTransparency="true"></iframe>'
+            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="facebook/facebookpostsWidget.html" scrolling="no" frameborder="0" allowTransparency="true" url='+url+'></iframe>'
             
         },
 
@@ -47,20 +35,12 @@ function FacebookPostsWidget (pid, ptype)
 
                 if (param[i].prop == 'url') url =  param[i].value 
                   
-                if (param[i].prop == 'Layout') Layout = param[i].value
-
-                if( param[i].prop == 'ActionType' ) ActionType = param[i].value
-
-                if (param[i].prop == 'Share') Share = param[i].value
-
-                if( param[i].prop == 'Showfaces') Showfaces = param[i].value
-
-
             }
             
             //alert(Share)
 
-            $('#'+this.getId() ).attr( 'src',  '//www.facebook.com/plugins/like.php?href='+url+'&width&layout='+Layout+'&action='+ActionType+'&show_faces='+Showfaces+'&share='+Share+'&;' )
+            $('#'+this.getId() ).attr( 'url', url)
+            $('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; })
                       
         },
 
@@ -68,16 +48,8 @@ function FacebookPostsWidget (pid, ptype)
 
             //alert (" button selection changed")
 
-            $('#newFacebookURLText').prop('value', url )
+            $('#newFacebookPostsURLText').prop('value', url )
             
-            $('#layout').prop('value', Layout )
-            
-            $('#actiontype').prop('value', ActionType )
-            
-            $('#showsharebutton').prop('checked', Share )
-            
-            $('#showfaces').prop('checked', Showfaces )
-
        },
 
        this.initElement = function()
@@ -89,43 +61,14 @@ function FacebookPostsWidget (pid, ptype)
         
         this.changeURL = function ()
         {
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'url', 'ov': url, 'nv': $('#newFacebookURLText').prop('value') }])
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'url', 'ov': url, 'nv': $('#newFacebookPostsURLText').prop('value') }])
 
         },
-
-
-        this.getLayout = function()
-        {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'Layout', 'ov': Layout, 'nv': $('#layout').prop('value') }])
-
-        },
-        
-        this.getactiontype = function()
-        {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'ActionType', 'ov': ActionType, 'nv': $('#actiontype').prop('value') }])
-
-        },
-
-
-        this.showShareButton = function ()
-        {
-
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'Share', 'ov': Share, 'nv': $('#showsharebutton').prop('checked') }])
-
-        },
-
-
-        this.showFaces = function ()
-         {
-             
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'Showfaces', 'ov': Showfaces, 'nv': $('#showfaces').prop('checked') }])
-
-         },
 
 
        this.createJSON = function () {
          
-            return { 'url': url,'Layout': Layout,'ActionType': ActionType, 'Share': Share, 'Showfaces': Showfaces } 
+            return { 'url': url } 
         }
         
 
@@ -143,9 +86,9 @@ FacebookPostsWidget.actionsSectionId= 'facebookpostsMenu'
 
 FacebookPostsWidget.init= function () {
 
-    $("#facebookpostsMenu").append("URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
+   $("#facebookpostsMenu").append("URL<input type='text' id='newFacebookPostsURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
 
-    $("#facebookpostsMenu").append("<div>Choose layout<select id='layout' onchange='appGlobals.currentObject().getLayout()'>"+
+  /*  $("#facebookpostsMenu").append("<div>Choose layout<select id='layout' onchange='appGlobals.currentObject().getLayout()'>"+
     							"<option value='standard'>standard</option>"+
     							"<option value='box_count'>box_count</option>"+
     							"<option value='button_count'>button_count</option>"+
@@ -160,7 +103,7 @@ FacebookPostsWidget.init= function () {
     $("#facebookpostsMenu").append("<br>Show share button<input type='checkbox' id='showsharebutton' onclick='appGlobals.currentObject().showShareButton()'>")
     
     $("#facebookpostsMenu").append("<br>Show Friend's faces<input type='checkbox' id='showfaces' onclick='appGlobals.currentObject().showFaces()'>")
-
+*/
 
 }
 

@@ -7,16 +7,16 @@
         <style>
         .fb_iframe_widget,
         .fb_iframe_widget > span,
-        .fb_iframe_widget iframe {
+        .fb_iframe_widget iframe { 
             width: 100% !important;
         }
         </style>
         <script>
          $(function() {
              
-             var URL = $(window.frameElement).attr('url');
+             var URLP = $(window.frameElement).attr('urlp');
              
-             $('.fb-post').attr('data-href', URL)
+             $('.fb-post').attr('data-href', URLP)
              
          })
         </script>

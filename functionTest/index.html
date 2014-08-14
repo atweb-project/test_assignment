@@ -62,15 +62,9 @@
 		<!-- gallery widget -->
 		<script src="widgets/galleryWidget.js" type="text/javascript"></script>
 		
-		<!-- facebook buttons widget -->
+		<!-- facebook widget -->
         <script src="widgets/facebookWidget.js" type="text/javascript"></script>
-        
-        <!-- facebook embedded posts widget -->
-        <script src="widgets/facebookpostsWidget.js" type="text/javascript"></script>
-        
-        <!-- facebook embedded comments widget -->
-        <script src="widgets/facebookcommentsWidget.js" type="text/javascript"></script>
-        
+             
         <!-- twitter button widget -->
         <script src="widgets/twitterWidget.js" type="text/javascript"></script>
         
@@ -83,12 +77,11 @@
 		<script>
 		
 		 $(document).ready(function () {
+		     
 		 	widgetSetup( TwitterFollowBtnWidget)
 		 	widgetSetup( TwitterFeedWidget)
 		 	widgetSetup( TwitterBtnWidget)
-		 	//widgetSetup( FacebookCommentsWidget)
-		 	//widgetSetup( FacebookPostsWidget) 
-		 	widgetSetup( FacebookBtnWidget) 
+		 	widgetSetup( FacebookWidget) 
 		 	widgetSetup( CheckboxWidget )
 		 	widgetSetup( RadiobWidget )
 		 	widgetSetup( VideoWidget )

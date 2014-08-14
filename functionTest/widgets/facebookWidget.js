@@ -3,7 +3,7 @@
  * Facebook PLugins Widget
  */
 
-function FacebookBtnWidget (pid, ptype)
+function FacebookWidget (pid, ptype)
 {
        
      MyWidget.call(this,pid,ptype) 
@@ -165,12 +165,12 @@ function FacebookBtnWidget (pid, ptype)
 	            	$('#fbposts').hide()
 	            	
 	            	// container
-	    				$('container' + this.elementNum).css({
+	    				$(".elementContainer:has(#"+ this.getId() +")").css({
 	    					width:'200',
-	    					height: '100',
-	    					background:'red'
+	    					height: '100'
 	    				})
-		    	 alert('container' + this.elementNum)
+		    	// alert('container' + getNumberAtEnd())
+
 		         break;
 		     case 'posts' : 
 		    	 
@@ -187,7 +187,7 @@ function FacebookBtnWidget (pid, ptype)
 	            	$('#fbposts').show()
 	            	
     				// container
-	    				$('.elementContainer').css({
+	    				$(".elementContainer:has(#"+ this.getId() +")").css({
 	    					width:'400',
 	    					height: '350'					
 	    				})
@@ -209,7 +209,7 @@ function FacebookBtnWidget (pid, ptype)
 	            	$('#fbposts').hide()
 		    	 
 	            	// container
-	    				$('.elementContainer').css({
+	    				$(".elementContainer:has(#"+ this.getId() +")").css({
 	    					width:'400',
 	    					height: '380'					
 	    				})
@@ -337,15 +337,15 @@ function FacebookBtnWidget (pid, ptype)
     }
    
 
-FacebookBtnWidget.buttomImage= 'images/button_icon.png'
-FacebookBtnWidget.typeId= 'fb_buttons'
-FacebookBtnWidget.myClass= 'widget_facebook'
-FacebookBtnWidget.initialWidth= '200'
-FacebookBtnWidget.initialHeight= '100'
-FacebookBtnWidget.actionsSectionId= 'facebookMenu'
+FacebookWidget.buttomImage= 'images/button_icon.png'
+FacebookWidget.typeId= 'facebook'
+FacebookWidget.myClass= 'widget_facebook'
+FacebookWidget.initialWidth= '200'
+FacebookWidget.initialHeight= '100'
+FacebookWidget.actionsSectionId= 'facebookMenu'
 
 
-FacebookBtnWidget.init = function () {
+FacebookWidget.init = function () {
 	
 	$("#facebookMenu").append(
 

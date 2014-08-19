@@ -1,16 +1,16 @@
 
 /*
- * Twitter Button Widget
+ * Twitter Widget
  */
 
-function TwitterBtnWidget (pid, ptype)
+function TwitterWidget (pid, ptype)
 {
        
      MyWidget.call(this,pid,ptype)   
      
      	var TwPlugin = "buttons"
        
-     //Twitter buttons plugin
+     //Tweet button plugin
         var url = "http://example.com/comments"
      	var Count = "horizontal"
         
@@ -72,6 +72,8 @@ function TwitterBtnWidget (pid, ptype)
                 
                 if (param[i].prop == 'urlFo') urlFo = param[i].value
                 
+                if (param[i].prop == 'User') User = param[i].value
+                
                 if (param[i].prop == 'showUserName') showUserName = param[i].value
                 
                 if (param[i].prop == 'Show_Count') Show_Count = param[i].value
@@ -79,30 +81,173 @@ function TwitterBtnWidget (pid, ptype)
 
             }
             
-            $('#'+this.getId() ).attr( 'url', url)
-            $('#'+this.getId() ).attr( 'count', Count)
-            $('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; })
-
-           
-                      
+            if ((appGlobals.isInDesignMode() == true) && ( TwPlugin == 'buttons' )) {
+            	
+            	$('#twbuttons-' + this.getId()).attr( 'url', url) 
+            	$('#twbuttons-' + this.getId()).attr( 'count', Count)
+            	$('#twbuttons-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
+            	
+             }
+            
+            if ((appGlobals.isInDesignMode() == true) && ( TwPlugin == 'feeds' )) {
+            	
+            	$('#twfeeds-' + this.getId()).attr( 'url', urlF) 
+            	$('#twfeeds-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
+            	
+             }
+            
+            if ((appGlobals.isInDesignMode() == true) && ( TwPlugin == 'follow' )) {
+            	
+            	$('#twfollow-' + this.getId()).attr( 'url', urlFo) 
+            	$('#twfollow-' + this.getId()).attr( 'user', User) 
+            	$('#twfollow-' + this.getId()).attr( 'showusername', showUserName) 
+            	$('#twfollow-' + this.getId()).attr( 'showcount', Show_Count)
+            	$('#twfollow-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
+            	
+             }
+            
+              
         },
 
        this.selectionChanged = function()  {
 
             //alert (" button selection changed")
+        	
+        	$('#twplugin').prop('value', TwPlugin )
 
             $('#newTwitterURLText').prop('value', url )
             
             $('#lcount').prop('value', Count )
            // alert($('#lcount').prop('value'))
             
+            $('#newTwitterFeedURLText').prop('value', urlF )
+            
+            $('#newTwitterfollowURLText').prop('value', urlFo )
+            
+            $('#newUserfollowURLText').prop('value', User )
+            
+            $('#showuser').prop('checked', showUserName )
+            
+            $('#showcount').prop('checked', Show_Count )
+            
+            var TPluginValue = TwPlugin 
+        	
+        	switch (TPluginValue) { 
+		     case 'buttons' : 
+
+		    	 	$('#twbtn').show()
+	                
+	            	$('#twbuttons-' + this.getId()).show()
+	            	
+	            	$('#twfeeds-' + this.getId()).hide()
+	            	
+	            	$('#twfeeds').hide()
+	            	
+	            	$('#twfollow-' + this.getId()).hide()
+	            	
+	            	$('#twfollow').hide()
+	            	
+	            	// container
+	    				$(".elementContainer:has(#"+ this.getId() +")").css({
+	    					width:'100',
+	    					height: '100'
+	    				})
+		    	// alert('container' + getNumberAtEnd())
+
+		         break;
+		     case 'feeds' : 
+		    	 
+		    	 	$('#twbtn').hide()
+	                
+	            	$('#twbuttons-' + this.getId()).hide()
+	            	
+	            	$('#twfollow-' + this.getId()).hide()
+	            	
+	            	$('#twfollow').hide()
+	            	
+	            	$('#twfeeds-' + this.getId()).show()
+	            	
+	            	$('#twfeeds').show()
+	            	
+    				// container
+	    				$(".elementContainer:has(#"+ this.getId() +")").css({
+	    					width:'400',
+	    					height: '300'					
+	    				})
+	    				
+			 
+		         break;
+		     case 'follow' : 
+		    	 
+		    	 	$('#twbtn').hide()
+	                
+	            	$('#twbuttons-' + this.getId()).hide()
+	            	
+	            	$('#twfollow-' + this.getId()).show()
+	            	
+	            	$('#twfollow').show()
+	            	
+	            	$('#twfeeds-' + this.getId()).hide()
+	            	
+	            	$('#twfeeds').hide()
+		    	 
+	            	// container
+	    				$(".elementContainer:has(#"+ this.getId() +")").css({
+	    					width:'200',
+	    					height: '50'					
+	    				})
+	            	
+		         break;      
+        	}
+            
        },
 
        this.initElement = function()
        {
-
+    	   
+    	   if ((appGlobals.isInDesignMode() == false))
+    		   
+    		   var TPluginPreviewValue = TwPlugin 
+           	
+           	switch (TPluginPreviewValue) { 
+   		     case 'buttons' : 
+	 	 	                
+   	            	$('#twbuttons-' + this.getId()).show()
+   	            	
+   	            	$('#twfollow-' + this.getId()).hide()
+   	            	
+   	            	$('#twfeeds-' + this.getId()).hide()
+   	            	   		    	 
+   		         break;
+   		     case 'feeds' : 
+   		    	 	                
+   	            	$('#twbuttons-' + this.getId()).hide()
+   	            	
+   	            	$('#twfollow-' + this.getId()).hide()
+   	            	
+   	            	$('#twfeeds-' + this.getId()).show()
+   	            	
+   		         break;
+   		     case 'follow' : 
+   		    	 
+   	            	$('#twbuttons-' + this.getId()).hide()
+   	            	
+   	            	$('#twfollow-' + this.getId()).show()
+   	            	
+   	            	$('#twfeeds-' + this.getId()).hide()
+   	            	
+   			
+   		         break;      
+           	}
             
             	
+        },
+        
+        this.getTWPlugin = function ()
+        {
+                    
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'TwPlugin', 'ov': TwPlugin, 'nv': $('#twplugin').prop('value') }])
+
         },
         
         this.changeURL = function ()
@@ -118,10 +263,41 @@ function TwitterBtnWidget (pid, ptype)
 
         },
         
+        this.changeURLF = function ()
+        {
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'urlF', 'ov': urlF, 'nv': $('#newTwitterFeedURLText').prop('value') }])
+
+        },
+        
+        this.changeURLFo = function ()
+        {
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'urlFo', 'ov': urlFo, 'nv': $('#newTwitterfollowURLText').prop('value') }])
+
+        },
+
+
+        this.changeUsername = function()
+        {
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'User', 'ov': User, 'nv': $('#newUserfollowURLText').prop('value') }])
+
+        },
+        
+        this.showUser = function()
+        {
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'showUserName', 'ov': showUserName, 'nv': $('#showuser').prop('checked') }])
+
+        },
+        
+        this.showCount = function()
+        {
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'Show_Count', 'ov': Show_Count, 'nv': $('#showcount').prop('checked') }])
+
+        },
+        
 
        this.createJSON = function () {
          
-            return { 'url': url,'Count': Count } 
+            return { 'TwPlugin': TwPlugin, 'url': url, 'Count': Count, 'urlF': urlF, 'urlFo': urlFo, 'User': User, 'showUserName': showUserName, 'Show_Count':Show_Count } 
         }
         
 
@@ -129,23 +305,41 @@ function TwitterBtnWidget (pid, ptype)
     }
    
 
-TwitterBtnWidget.buttomImage= 'images/button_icon.png'
-TwitterBtnWidget.typeId= 'tw_button'
-TwitterBtnWidget.myClass= 'widget_twitter'
-TwitterBtnWidget.initialWidth= '100'
-TwitterBtnWidget.initialHeight= '100'
-TwitterBtnWidget.actionsSectionId= 'twitterMenu'
+TwitterWidget.buttomImage= 'images/button_icon.png'
+TwitterWidget.typeId= 'twitter'
+TwitterWidget.myClass= 'widget_twitter'
+TwitterWidget.initialWidth= '100'
+TwitterWidget.initialHeight= '100'
+TwitterWidget.actionsSectionId= 'twitterMenu'
 
 
-TwitterBtnWidget.init= function () {
+TwitterWidget.init= function () {
+	
+	$("#twitterMenu").append(
 
-   $("#twitterMenu").append("URL<input type='text' id='newTwitterURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>")
+			"<div>Choose twitter social plugin<select id='twplugin' onchange='appGlobals.currentObject().getTWPlugin()'>"+
+			"<option value='buttons'>Tweet Button</option>"+
+			"<option value='feeds'>Feeds</option>"+
+			"<option value='follow'>Follow Button</option>"+
+			"</select></div><br>")
 
-   $("#twitterMenu").append("<div>Choose layout<select id='lcount' onchange='appGlobals.currentObject().getTweetLayout()'>"+
+   $("#twitterMenu").append("<div id='twbtn'>URL<input type='text' id='newTwitterURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>"+
+
+   							"<div>Choose layout<select id='lcount' onchange='appGlobals.currentObject().getTweetLayout()'>"+
     							"<option value='horizontal'>horizontal</option>"+
     							"<option value='vertical'>vertical</option>"+
     							"<option value='none'>none</option>"+
-    							"</select></div>")   							
+    							"</select></div></div>")   	
+    							
+   $("#twitterMenu").append("<div id='twfeeds'>Status Id<input type='text' id='newTwitterFeedURLText'><button onclick='appGlobals.currentObject().changeURLF()'>Update</button></div>")
+   
+   $("#twitterMenu").append("<div id='twfollow'>URL<input type='text' id='newTwitterfollowURLText'><button onclick='appGlobals.currentObject().changeURLFo()'>Update</button>"+
+   
+   							"<br>User to follow<input type='text' id='newUserfollowURLText'><button onclick='appGlobals.currentObject().changeUsername()'>Update</button>"+
+   
+							"<br>Show user name<input type='checkbox' id='showuser' onclick='appGlobals.currentObject().showUser()'>"+
+    
+							"<br>Show Followers count display<input type='checkbox' id='showcount' onclick='appGlobals.currentObject().showCount()'></div>")
 
 }
 

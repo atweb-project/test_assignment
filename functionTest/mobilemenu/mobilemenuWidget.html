@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+        <script>
+        $(function() {
+            var Position = $(window.frameElement).attr('position');
+
+            function SetPosition() {
+                if(Position == "right"){
+                    $('#menubtn').removeClass('ui-btn-left')
+                    $('#menubtn').addClass('ui-btn-right')
+                   /* $('#nav-panel').removeClass('ui-panel-position-left')
+                    $('#nav-panel').addClass('ui-panel-position-right')
+                    $('.ui-panel-wrapper').removeClass('ui-panel-page-content-position-left')
+                    $('.ui-panel-wrapper').addClass('ui-panel-page-content-position-right')*/
+                   
+            //    $('#nav-panel').attr('data-position','right')
+                        $( "#nav-panel" ).trigger( "updatelayout" );
+                        $('#nav-panel').panel({position:'right'}); 
+                    
+                    
+                  /*  $('#mobilemenu').append('<div data-role="panel" data-display="push" id="nav-panel" data-position="right">'+
+                '<ul data-role="listview" class="ui-nodisc-icon ui-alt-icon">'+
+                    '<li data-icon="delete">'+
+                        '<a href="#" data-rel="close">Close menu</a>'+
+                    '</li>'+
+                    '<li>'+
+                        '<a href="#">Accordion</a>'+
+                    '</li>'+
+                    '<li>'+
+                        '<a href="#">Ajax Navigation</a>'+
+                    '</li>'+
+                '</ul>'+
+            '</div>')
+                    
+                   $( "#nav-panel" ).panel();
+                    */
+                    
+                } else {
+                    $('#menubtn').removeClass('ui-btn-right')
+                    $('#menubtn').addClass('ui-btn-left')
+                    $('#nav-panel').removeClass('ui-panel-position-right')                  
+                    $('#nav-panel').addClass('ui-panel-position-left')
+                }
+                
+                $( "#nav-panel" ).trigger( "updatelayout" );
+            }
+            
+            SetPosition()
+        })
+        </script>
+    </head>
+    <body>
+        <div data-role="page" class="ui-responsive-panel" id="mobilemenu">
+            <div data-role="header">
+                <h1>Mobile Menu</h1>
+                <a id="menubtn" href="#nav-panel" class="ui-nodisc-icon ui-alt-icon" data-icon="bars" data-iconpos="notext">Menu</a>
+            </div>
+            <div data-role="panel" data-display="push" id="nav-panel">
+                <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon">
+                    <li data-icon="delete">
+                        <a href="#" data-rel="close">Close menu</a>
+                    </li>
+                    <li>
+                        <a href="#">Accordion</a>
+                    </li>
+                    <li>
+                        <a href="#">Ajax Navigation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

@@ -7,6 +7,9 @@
         MyWidget.call(this, pid, ptype)
 
         
+        var austDay //= $( "#datepicker" ).prop('value')
+       // var Fdate = austDay.split(",")
+        //alert(res)
         var Position = 'left' 
         var DisplayMode = 'push'
         var SwipeMove = false
@@ -17,7 +20,7 @@
 
             if (typeof (param) !== 'undefined') {
 
-                if (typeof (param.Position) !== 'undefined') Position = param.Position
+                if (typeof (param.austDay) !== 'undefined') austDay = param.austDay
                 
                 if (typeof (param.DisplayMode) !== 'undefined') DisplayMode = param.DisplayMode
                 
@@ -30,21 +33,24 @@
             }
 
            
-            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="mobilemenu/mobilemenuWidget.html" scrolling="no" frameborder="0" allowTransparency="true" position="'+
-            		Position+'" displaymode="'+DisplayMode+'" swipemove="'+SwipeMove+'" menuitems="'+initialMenuItems+'" menulinks="'+menuLinks+'"></iframe>'
-
+            //return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="mobilemenu/mobilemenuWidget.html" scrolling="no" frameborder="0" allowTransparency="true" position="'+
+            //		Position+'" displaymode="'+DisplayMode+'" swipemove="'+SwipeMove+'" menuitems="'+initialMenuItems+'" menulinks="'+menuLinks+'"></iframe>'
+          //  return '<p>Counting down to 26 January <span class="year">2014</span>.</p><div id="' + this.getId() + '"></div>'
+            return '<iframe width="100%" id="' + this.getId() + '" height="100%" src="countdown/countdownWidget.html" scrolling="no" frameborder="0" allowTransparency="true" fdate="'+austDay+'"></iframe> '
+            
+            
         },
 
         this.createJSON = function() {
 
-            return { 'Position': Position, 'DisplayMode': DisplayMode, 'SwipeMove': SwipeMove, 'initialMenuItems': initialMenuItems, 'menuLinks': menuLinks }
+            return { 'austDay': austDay, 'DisplayMode': DisplayMode, 'SwipeMove': SwipeMove, 'initialMenuItems': initialMenuItems, 'menuLinks': menuLinks }
 
         },
         
-        this.getPosition= function()
+        this.getCountdownDate= function()
          {
 
-            this.myRegisterUniquePropEvent( [{ 'prop': 'Position', 'ov': Position, 'nv': $('#pos').prop('value') }])
+            this.myRegisterUniquePropEvent( [{ 'prop': 'austDay', 'ov': austDay, 'nv': $('#datepicker').prop('value') }])
              
         },
         
@@ -75,7 +81,12 @@
 	    },
 	    
 	    this.initElement = function(param){
-        	
+	    /*	var austDay = new Date();
+	    	austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
+	    	$('.year').text(austDay.getFullYear());
+	    	$('#' + this.getId()).countdown({until: austDay});
+	    	*/
+
     	    
 		},
 
@@ -83,7 +94,7 @@
 
         	 for (var i = 0; i < param.length; i++) {
 
-                 if (param[i].prop == 'Position') Position =  param[i].value 
+                 if (param[i].prop == 'austDay') austDay =  param[i].value 
                  
                  if (param[i].prop == 'DisplayMode') DisplayMode =  param[i].value 
                  
@@ -95,7 +106,7 @@
               
         	 }
         	 
-        	 $('#' + this.getId()).attr( 'position', Position)
+        	 $('#' + this.getId()).attr( 'fdate', austDay)
         	 $('#' + this.getId()).attr( 'displaymode', DisplayMode)
         	 $('#' + this.getId()).attr( 'swipemove', SwipeMove)
         	 $('#'+this.getId() ).attr( 'menuitems', initialMenuItems)
@@ -106,7 +117,7 @@
 
         this.selectionChanged=function()  {
 
-        	$('#pos').prop('value', Position)
+        	$('#datepicker').prop('value', austDay)
         	$('#dmode').prop('value', DisplayMode)
         	$('#swipem').prop('checked', SwipeMove)
         	$('#initialmobilemenuitems').prop('value', initialMenuItems)
@@ -120,12 +131,10 @@
 // static variables/functions
 
     CountdownWidget.init = function () {
-    $("#countdownMenu").append("<div>Choose position of the menu<select id='pos' onchange='appGlobals.currentObject().getPosition()'>"+
-							"<option value='left'>left</option>"+
-							"<option value='right'>right</option>"+
-							"</select></div>")
+    $("#countdownMenu").append("Choose date for the countdown<input type='text' id='datepicker' onchange='appGlobals.currentObject().getCountdownDate()'>")
+    $( "#datepicker" ).datepicker({ dateFormat: "yy,m,d" , minDate: 1, defaultDate: 1}).datepicker("setDate", "1");
 							
-	$("#countdownMenu").append("<div>Choose the display mode of the menu<select id='dmode' onchange='appGlobals.currentObject().getDisplayMode()'>"+
+	/*$("#countdownMenu").append("<div>Choose the display mode of the menu<select id='dmode' onchange='appGlobals.currentObject().getDisplayMode()'>"+
 							"<option value='push'>push</option>"+
 							"<option value='overlay'>overlay</option>"+
 							"<option value='reveal'>reveal</option>"+
@@ -136,11 +145,12 @@
 	$("#countdownMenu").append("<br>Choose menu items seperated by comma<br><textarea id='initialmobilemenuitems'></textarea><br><button onclick='appGlobals.currentObject().chooseMenuItems()'>Update</button>")
 	
     $("#countdownMenu").append("<br>Choose links for menu items seperated by comma<textarea id='mobilemenuitemlinks'></textarea><br><button onclick='appGlobals.currentObject().chooseMenuItemLinks()'>Update</button>") 
+*/
 }
 CountdownWidget.buttomImage='images/button_icon.png'
 CountdownWidget.typeId= 'countdown'
 CountdownWidget.myClass= 'widget_countdown'
-CountdownWidget.initialWidth='360'
-CountdownWidget.initialHeight= '240'
+CountdownWidget.initialWidth='250'
+CountdownWidget.initialHeight= '60'
 CountdownWidget.actionsSectionId='countdownMenu'
 

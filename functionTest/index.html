@@ -72,14 +72,16 @@
         <script src="widgets/mobilemenuWidget.js" type="text/javascript"></script>
                
         <!-- countdown widget -->
-        <!--<link rel="stylesheet" type="text/css" href="countdown/jquery.countdown.css">
-        <script src="countdown/jquery.plugin.min.js" type="text/javascript"></script>
-        <script src="countdown/jquery.countdown.min.js" type="text/javascript"></script>-->
         <script src="widgets/countdownWidget.js" type="text/javascript"></script>
+        
+        <!-- stopwatch widget -->
+        <script src="widgets/stopwatchWidget.js" type="text/javascript"></script>
+        
 		<script>
 		
 		 $(document).ready(function () {
-		     
+		    
+		    widgetSetup( StopwatchWidget) 
 		 	widgetSetup( CountdownWidget)
 		 	widgetSetup( MobileMenuWidget)
 		 	widgetSetup( TwitterWidget)

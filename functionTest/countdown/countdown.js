@@ -6,19 +6,26 @@ $(function () {
 	var FDate = AustDate.split(",")
 	var Compactlayout = $(window.frameElement).attr('compactlayout')
 	//alert(Compactlayout)
+	var allowInit = $(window.frameElement).attr('paraminit');
 
 	if (Compactlayout == 'false') {
 		Compactlayout = false
 	}
 
+	if (allowInit == 1 ) {
 	$('#defaultCountdown').countdown({
 		until : new Date(FDate),
 		compact : Compactlayout
 	})
-	$('#pauseButton').click(function() {
-		var pause = $(this).text() === 'Pause'
-		$(this).text(pause ? 'Resume' : 'Pause')
-		$('#defaultCountdown').countdown(pause ? 'pause' : 'resume')
+	
+	$('#defaultCountdown').countdown('pause')
+	
+	}
+	
+	$('#defaultCountdown').countdown({
+		until : new Date(FDate),
+		compact : Compactlayout
 	})
-    
+	
+	$('.is-countdown').css({border:0})
 })

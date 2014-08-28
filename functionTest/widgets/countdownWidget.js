@@ -47,6 +47,10 @@
        
 	    
 	    this.initElement = function(param){
+    	   
+    	   if ((appGlobals.isInDesignMode() == true)) 
+               
+           	$('#'+this.getId()).attr('paraminit','1');
 
 		},
 
@@ -90,6 +94,6 @@ CountdownWidget.buttomImage='images/button_icon.png'
 CountdownWidget.typeId= 'countdown'
 CountdownWidget.myClass= 'widget_countdown'
 CountdownWidget.initialWidth='250'
-CountdownWidget.initialHeight= '85'
+CountdownWidget.initialHeight= '47'
 CountdownWidget.actionsSectionId='countdownMenu'
 

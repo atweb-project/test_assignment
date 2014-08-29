@@ -8,7 +8,7 @@ function QrCodeWidget (pid, ptype)
        
      MyWidget.call(this,pid,ptype) 
      
-     	var FbPlugin = "buttons"
+     	var TypeQrcode = "text"
         
       //FB buttons plugin
      	var url = "https://developers.facebook.com/docs/plugins/"
@@ -33,7 +33,7 @@ function QrCodeWidget (pid, ptype)
             
             if( typeof(param) !== 'undefined') {
             	
-            	if( typeof (param.FbPlugin) !== 'undefined') FbPlugin = param.FbPlugin
+            	if( typeof (param.TypeQrcode) !== 'undefined') TypeQrcode = param.TypeQrcode
 
                 if ( typeof (param.url) !== 'undefined') url = param.url
 
@@ -75,7 +75,7 @@ function QrCodeWidget (pid, ptype)
 
             for (var i = 0; i < param.length; i++) {
             	
-            	if (param[i].prop == 'FbPlugin') FbPlugin =  param[i].value
+            	if (param[i].prop == 'TypeQrcode') TypeQrcode =  param[i].value
 
                 if (param[i].prop == 'url') url =  param[i].value 
                   
@@ -99,7 +99,7 @@ function QrCodeWidget (pid, ptype)
             }
             
             //alert(urlP)
-            if ((appGlobals.isInDesignMode() == true) && ( FbPlugin == 'buttons' )) {
+          /*  if ((appGlobals.isInDesignMode() == true) && ( FbPlugin == 'buttons' )) {
             	
             	$('#fbbuttons-' + this.getId()).attr( 'src',  '//www.facebook.com/plugins/like.php?href='+url+'&width&layout='+Layout+'&action='+ActionType+'&show_faces='+Showfaces+'&share='+Share+'&;' )
             
@@ -120,7 +120,7 @@ function QrCodeWidget (pid, ptype)
             
             	 $('#fbcomments-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
             	 
-             }
+             }  */
 
         },
 
@@ -128,7 +128,7 @@ function QrCodeWidget (pid, ptype)
 
             //alert (" button selection changed")
         	
-        	$('#fbplugin').prop('value', FbPlugin )
+        	$('#qrtype').prop('value', TypeQrcode )
 
             $('#newFacebookURLText').prop('value', url )
             
@@ -156,12 +156,18 @@ function QrCodeWidget (pid, ptype)
     	  // if ((appGlobals.isInDesignMode() == false))
     	   $('#' + this.getId()).ClassyQR({
     		    create: true,
-    		    type: 'text',
+    		    type: TypeQrcode,
     		    text: 'This is the text to embed'
     		});  
     		  
             
             	
+       },
+       
+       this.getType = function ()
+       {
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'TypeQrcode', 'ov': TypeQrcode, 'nv': $('#qrtype').prop('value') }])
+
        },
         
        this.changeURL = function ()
@@ -233,7 +239,7 @@ function QrCodeWidget (pid, ptype)
 
        this.createJSON = function () {
          
-            return { 'FbPlugin': FbPlugin, 'url': url,'Layout': Layout,'ActionType': ActionType, 'Share': Share, 'Showfaces': Showfaces, 'urlP': urlP, 'urlC': urlC, 'NumPosts':NumPosts, 'ColorScheme': ColorScheme } 
+            return { 'TypeQrcode': TypeQrcode, 'url': url,'Layout': Layout,'ActionType': ActionType, 'Share': Share, 'Showfaces': Showfaces, 'urlP': urlP, 'urlC': urlC, 'NumPosts':NumPosts, 'ColorScheme': ColorScheme } 
         }
         
 
@@ -251,14 +257,19 @@ QrCodeWidget.actionsSectionId= 'qrcodeMenu'
 
 QrCodeWidget.init = function () {
 	
-/*	$("#qrcodeMenu").append(
+	$("#qrcodeMenu").append(
 
-				"<div>Choose facebook social plugin<select id='fbplugin' onchange='appGlobals.currentObject().getPlugin()'>"+
-				"<option value='buttons'>Buttons</option>"+
-				"<option value='posts'>Posts</option>"+
-				"<option value='comments'>Comments</option>"+
+				"<div>Choose the type of qr code<select id='qrtype' onchange='appGlobals.currentObject().getType()'>"+
+				"<option value='text'>Text</option>"+
+				"<option value='email'>Email</option>"+
+				"<option value='location'>Location</option>"+
+				"<option value='sms'>Sms</option>"+
+				"<option value='call'>Call</option>"+
+				"<option value='url'>Url</option>"+
+				"<option value='wifi'>Wifi</option>"+
+				"<option value='contact'>Contact</option>"+
 				"</select></div><br>")
-
+/*
 
     $("#qrcodeMenu").append("<div id='fbbtn'>URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>"+
 

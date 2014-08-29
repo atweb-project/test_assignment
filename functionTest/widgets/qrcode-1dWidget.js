@@ -99,7 +99,7 @@ function QrCodeWidget (pid, ptype)
             }
             
             //alert(urlP)
-          /*  if ((appGlobals.isInDesignMode() == true) && ( FbPlugin == 'buttons' )) {
+       /*     if ((appGlobals.isInDesignMode() == true) && ( FbPlugin == 'buttons' )) {
             	
             	$('#fbbuttons-' + this.getId()).attr( 'src',  '//www.facebook.com/plugins/like.php?href='+url+'&width&layout='+Layout+'&action='+ActionType+'&show_faces='+Showfaces+'&share='+Share+'&;' )
             
@@ -120,7 +120,7 @@ function QrCodeWidget (pid, ptype)
             
             	 $('#fbcomments-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
             	 
-             }  */
+             }*/
 
         },
 
@@ -148,7 +148,7 @@ function QrCodeWidget (pid, ptype)
             
             $('#getcolor').prop('value', ColorScheme)
                       
-                    
+                   // alert(TypeQrcode)
        },
 
        this.initElement = function()
@@ -164,7 +164,7 @@ function QrCodeWidget (pid, ptype)
             	
        },
        
-       this.getType = function ()
+       this.getQrType = function ()
        {
             this.myRegisterUniquePropEvent(  [{ 'prop': 'TypeQrcode', 'ov': TypeQrcode, 'nv': $('#qrtype').prop('value') }])
 
@@ -258,18 +258,17 @@ QrCodeWidget.actionsSectionId= 'qrcodeMenu'
 QrCodeWidget.init = function () {
 	
 	$("#qrcodeMenu").append(
+			"<div>Choose the type of qr code<select id='qrtype' onchange='appGlobals.currentObject().getQrType()'>"+
+			"<option value='text'>Text</option>"+
+			"<option value='email'>Email</option>"+
+			"<option value='location'>Location</option>"+
+			"<option value='sms'>Sms</option>"+
+			"<option value='call'>Call</option>"+
+			"<option value='url'>Url</option>"+
+			"<option value='wifi'>Wifi</option>"+
+			"<option value='contact'>Contact</option>"+
+			"</select></div><br>")
 
-				"<div>Choose the type of qr code<select id='qrtype' onchange='appGlobals.currentObject().getType()'>"+
-				"<option value='text'>Text</option>"+
-				"<option value='email'>Email</option>"+
-				"<option value='location'>Location</option>"+
-				"<option value='sms'>Sms</option>"+
-				"<option value='call'>Call</option>"+
-				"<option value='url'>Url</option>"+
-				"<option value='wifi'>Wifi</option>"+
-				"<option value='contact'>Contact</option>"+
-				"</select></div><br>")
-/*
 
     $("#qrcodeMenu").append("<div id='fbbtn'>URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>"+
 
@@ -298,7 +297,7 @@ QrCodeWidget.init = function () {
     						  "<option value='dark'>dark</option>"+
     						  "</select></div></div>")
 
-    $("#comments").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().getCommentsNum() } })    */
+    $("#comments").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().getCommentsNum() } })    
 
 }
 

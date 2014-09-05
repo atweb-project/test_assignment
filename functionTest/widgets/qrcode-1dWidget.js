@@ -10,7 +10,11 @@ function QrCodeWidget (pid, ptype)
      
      	var TypeQrcode = "text"
         
-      //FB buttons plugin
+      //QR code plugin
+     	var QrcodeText = 'This is the text to embed'
+     	var NumBer = '6957218212'
+     	var EmaIL = 'dikostaras@yahoo.gr'
+     	var SuBject = 'this is the subject to embed'
      	var url = "https://developers.facebook.com/docs/plugins/"
      	var Layout = "standard"
         var ActionType = "like"
@@ -29,11 +33,18 @@ function QrCodeWidget (pid, ptype)
 
        // alert (" this.id is "+ this.getId() )
         this.createElement = function (param) {
-   
-            
+    	             
             if( typeof(param) !== 'undefined') {
             	
             	if( typeof (param.TypeQrcode) !== 'undefined') TypeQrcode = param.TypeQrcode
+            	
+            	if( typeof (param.QrcodeText) !== 'undefined') QrcodeText = param.QrcodeText
+            	
+            	if( typeof (param.NumBer) !== 'undefined') NumBer = param.NumBer
+            	
+            	if( typeof (param.EmaIL) !== 'undefined') EmaIL = param.EmaIL
+            	
+            	if( typeof (param.SuBject) !== 'undefined') SuBject = param.SuBject
 
                 if ( typeof (param.url) !== 'undefined') url = param.url
 
@@ -76,12 +87,18 @@ function QrCodeWidget (pid, ptype)
             for (var i = 0; i < param.length; i++) {
             	
             	if (param[i].prop == 'TypeQrcode') TypeQrcode =  param[i].value
+            	
+            	if (param[i].prop == 'QrcodeText') QrcodeText =  param[i].value
+            	
+            	if (param[i].prop == 'NumBer') NumBer = param[i].value
+            	
+            	if( param[i].prop == 'EmaIL' ) EmaIL = param[i].value
+            	
+            	if( param[i].prop == 'SuBject' ) SuBject = param[i].value
 
                 if (param[i].prop == 'url') url =  param[i].value 
                   
-                if (param[i].prop == 'Layout') Layout = param[i].value
-
-                if( param[i].prop == 'ActionType' ) ActionType = param[i].value
+                
 
                 if (param[i].prop == 'Share') Share = param[i].value
 
@@ -129,6 +146,14 @@ function QrCodeWidget (pid, ptype)
             //alert (" button selection changed")
         	
         	$('#qrtype').prop('value', TypeQrcode )
+        	
+        	$('#newqrText').prop('value', QrcodeText )
+        	
+        	$('#number').prop('value', NumBer )
+        	
+        	$('#emailText').prop('value', EmaIL )
+        	
+        	$('#subjectText').prop('value', SuBject )
 
             $('#newFacebookURLText').prop('value', url )
             
@@ -157,7 +182,10 @@ function QrCodeWidget (pid, ptype)
     	   $('#' + this.getId()).ClassyQR({
     		    create: true,
     		    type: TypeQrcode,
-    		    text: 'This is the text to embed'
+    		    text: QrcodeText,
+    		    number: NumBer,
+    		    email: EmaIL,
+    		    subject: SuBject
     		});  
     		  
             
@@ -169,6 +197,11 @@ function QrCodeWidget (pid, ptype)
             this.myRegisterUniquePropEvent(  [{ 'prop': 'TypeQrcode', 'ov': TypeQrcode, 'nv': $('#qrtype').prop('value') }])
 
        },
+       
+       this.changeLabel = function()
+       {
+    	   this.myRegisterUniquePropEvent(  [{ 'prop': 'QrcodeText', 'ov': QrcodeText, 'nv': $('#newqrText').prop('value') }])
+       },
         
        this.changeURL = function ()
        {
@@ -176,24 +209,22 @@ function QrCodeWidget (pid, ptype)
 
        },
 
-
-       this.getLayout = function()
+       this.getNumber = function()
        {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'Layout', 'ov': Layout, 'nv': $('#layout').prop('value') }])
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'NumBer', 'ov': NumBer, 'nv': $('#number').prop('value') }])
 
        },
         
-       this.getactiontype = function()
+       this.getEmail = function()
        {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'ActionType', 'ov': ActionType, 'nv': $('#actiontype').prop('value') }])
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'EmaIL', 'ov': EmaIL, 'nv': $('#emailText').prop('value') }])
 
        },
 
-
-        this.showShareButton = function ()
+        this.getEmailSubject = function ()
         {
 
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'Share', 'ov': Share, 'nv': $('#showsharebutton').prop('checked') }])
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'SuBject', 'ov': SuBject, 'nv': $('#subjectText').prop('checked') }])
 
         },
 
@@ -239,7 +270,7 @@ function QrCodeWidget (pid, ptype)
 
        this.createJSON = function () {
          
-            return { 'TypeQrcode': TypeQrcode, 'url': url,'Layout': Layout,'ActionType': ActionType, 'Share': Share, 'Showfaces': Showfaces, 'urlP': urlP, 'urlC': urlC, 'NumPosts':NumPosts, 'ColorScheme': ColorScheme } 
+            return { 'TypeQrcode': TypeQrcode, 'QrcodeText': QrcodeText, 'NumBer': NumBer, 'EmaIL': EmaIL, 'SuBject': SuBject, 'url': url,'ActionType': ActionType, 'Share': Share, 'Showfaces': Showfaces, 'urlP': urlP, 'urlC': urlC, 'NumPosts':NumPosts, 'ColorScheme': ColorScheme } 
         }
         
 
@@ -268,9 +299,16 @@ QrCodeWidget.init = function () {
 			"<option value='wifi'>Wifi</option>"+
 			"<option value='contact'>Contact</option>"+
 			"</select></div><br>")
+	
+	$("#qrcodeMenu").append("Text:<input type='text' id='newqrText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
 
-
-    $("#qrcodeMenu").append("<div id='fbbtn'>URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>"+
+    $("#qrcodeMenu").append("<br>Number:<br><input type='number' id='number'><br><button onclick='appGlobals.currentObject().changeNumber()'>Update</button>")
+    
+    $("#qrcodeMenu").append("<br>Email:<input type='email' id='emailText'><button onclick='appGlobals.currentObject().getEmail()'>Update</button>")
+    
+    $("#qrcodeMenu").append("<br>Email Subject:<input type='text' id='subjectText'><button onclick='appGlobals.currentObject().getEmailSubject()'>Update</button>")
+	
+	$("#qrcodeMenu").append("<div id='n'>URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>"+
 
     							"<div>Choose layout<select id='layout' onchange='appGlobals.currentObject().getLayout()'>"+
     							"<option value='standard'>standard</option>"+

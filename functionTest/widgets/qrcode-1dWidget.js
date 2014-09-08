@@ -8,33 +8,29 @@ function QrCodeWidget (pid, ptype)
        
      MyWidget.call(this,pid,ptype) 
      
-     	var TypeQrcode = "text"
-        
+     var QRPlugin = "qrcode"
+              
       //QR code plugin
+    	var TypeQrcode = "text"
      	var QrcodeText = 'This is the text to embed'
      	var NumBer = '6957218212'
      	var EmaIL = 'dikostaras@yahoo.gr'
      	var SuBject = 'this is the subject to embed'
-     	var url = "https://developers.facebook.com/docs/plugins/"
-     	var Layout = "standard"
-        var ActionType = "like"
-        var Share = true
-        var Showfaces = true
-        
-
-    //FB posts plugin    
-        var urlP = "https://www.facebook.com/FacebookDevelopers/posts/10151471074398553"
-        
-   //FB comments plugin
-        var urlC = "http://example.com/comments"
-        var NumPosts = 4
-        var ColorScheme = "light"
-        	
-
+     	var Latitude = '51.5286416'
+     	var Longitude = '-0.1015987'
+     	var AddRess = '1st Floor, Elizabeth House, York Road, London, SE1 7NQ, United Kingdom'
+     	var NaMe = 'Inspired Mobile'
+     	var url = "http://inspired-mobile.com/"
+     
+     //Barcode plugin
+     	var BarcodeNumber = '1234567890128'
+       	
        // alert (" this.id is "+ this.getId() )
         this.createElement = function (param) {
     	             
             if( typeof(param) !== 'undefined') {
+            	
+            	if( typeof (param.QRPlugin) !== 'undefined') QRPlugin = param.QRPlugin
             	
             	if( typeof (param.TypeQrcode) !== 'undefined') TypeQrcode = param.TypeQrcode
             	
@@ -45,46 +41,36 @@ function QrCodeWidget (pid, ptype)
             	if( typeof (param.EmaIL) !== 'undefined') EmaIL = param.EmaIL
             	
             	if( typeof (param.SuBject) !== 'undefined') SuBject = param.SuBject
+            	
+            	if( typeof (param.Latitude) !== 'undefined') Latitude = param.Latitude
+            	
+            	if( typeof (param.Longitude) !== 'undefined') Longitude = param.Longitude
+            	
+            	if (typeof (param.AddRess) !== 'undefined') AddRess = param.AddRess
+            	
+            	if (typeof (param.NaMe) !== 'undefined') NaMe = param.NaMe
 
                 if ( typeof (param.url) !== 'undefined') url = param.url
 
-                if (typeof (param.Layout) !== 'undefined') Layout = param.Layout
-
-                if (typeof (param.ActionType) !== 'undefined') ActionType = param.ActionType
-
-                if (typeof (param.Share) !== 'undefined') Share = param.Share
-
-                if( typeof (param.Showfaces) !== 'undefined') Showfaces = param.Showfaces
-                           
-                if( typeof (param.urlP) !== 'undefined') urlP = param.urlP
-                
-                if( typeof (param.urlC) !== 'undefined') urlC = param.urlC
-                
-                if( typeof (param.NumPosts) !== 'undefined') NumPosts = param.NumPosts
-                
-                if( typeof (param.ColorScheme) !== 'undefined') ColorScheme = param.ColorScheme
+                if (typeof (param.BarcodeNumber) !== 'undefined') BarcodeNumber = param.BarcodeNumber
 
                 //alert(" param.url "+param.url+"  param.allowFullscreen " + param.allowFullscreen + " number of params " + param.length)
-
+                	alert(QRPlugin)
              }
             
 
-            return '<div  id="' + this.getId() + '" class="code" style="width:100%; height:100%;">'+
-            	   //'<iframe width="100%" id="fbbuttons-' + this.getId() + '" height="100%" src="//www.facebook.com/plugins/like.php?href='+url+'&amp;width&amp;layout='+Layout+'&amp;action='+ActionType+'&amp;show_faces='+Showfaces+'&amp;share='+Share+'&amp;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>'+
-            	  // '<iframe width="100%" id="fbposts-' + this.getId() + '" style="display:none;" height="100%" src="facebook/facebookpostsWidget.html" scrolling="no" frameborder="0" allowTransparency="true" urlp='+urlP+'></iframe>'+
-            	 //  '<iframe width="100%" id="fbcomments-' + this.getId() + '"  style="display:none;" height="100%" src="facebook/facebookcommentsWidget.html" scrolling="no" frameborder="0" '+
-                 //  'allowTransparency="true" urlc="'+urlC+'" numposts="'+NumPosts+'" colorscheme="'+ColorScheme+'"></iframe>
-            	   '</div>'
-            
-            
-           
-           
+            return '<div id="' + this.getId() + '">'+
+            		'<div  id="qr-' + this.getId() + '" class="code" style="width:100%; height:100%;"></div>'+
+            		'<iframe width="100%" id="barcode-' + this.getId() + '" height="100%" style="display:none;" src="qrcode/1dWidget.html" scrolling="no" frameborder="0" allowTransparency="true" barcodenumber="'+BarcodeNumber+'"></iframe></div>'
+       
         },
 
         this.propChange = function (param) {
 
 
             for (var i = 0; i < param.length; i++) {
+            	
+            	if (param[i].prop == 'QRPlugin') QRPlugin =  param[i].value
             	
             	if (param[i].prop == 'TypeQrcode') TypeQrcode =  param[i].value
             	
@@ -95,55 +81,35 @@ function QrCodeWidget (pid, ptype)
             	if( param[i].prop == 'EmaIL' ) EmaIL = param[i].value
             	
             	if( param[i].prop == 'SuBject' ) SuBject = param[i].value
+            	
+            	if( param[i].prop == 'Latitude' ) Latitude = param[i].value
+            	
+            	if( param[i].prop == 'Longitude' ) Longitude = param[i].value
+            	
+            	if( param[i].prop == 'AddRess' ) AddRess = param[i].value
+            	
+            	if( param[i].prop == 'NaMe' ) NaMe = param[i].value
 
                 if (param[i].prop == 'url') url =  param[i].value 
                   
-                
-
-                if (param[i].prop == 'Share') Share = param[i].value
-
-                if( param[i].prop == 'Showfaces') Showfaces = param[i].value
-                
-                if( param[i].prop == 'urlP') urlP = param[i].value
-                
-                if( param[i].prop == 'urlC') urlC = param[i].value
-                
-                if( param[i].prop == 'NumPosts') NumPosts = param[i].value
-                
-                if( param[i].prop == 'ColorScheme') ColorScheme = param[i].value
-
+                if (param[i].prop == 'BarcodeNumber') BarcodeNumber = param[i].value
 
             }
-            
-            //alert(urlP)
-       /*     if ((appGlobals.isInDesignMode() == true) && ( FbPlugin == 'buttons' )) {
+                        
+            if ( QRPlugin == 'barcode' ) {
             	
-            	$('#fbbuttons-' + this.getId()).attr( 'src',  '//www.facebook.com/plugins/like.php?href='+url+'&width&layout='+Layout+'&action='+ActionType+'&show_faces='+Showfaces+'&share='+Share+'&;' )
-            
+            	$('#barcode-' + this.getId()).attr('barcodenumber', BarcodeNumber)
+            	
+            	$('#barcode-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
             }
-            
-             if ((appGlobals.isInDesignMode() == true) && ( FbPlugin == 'posts' )) {
-            	
-            	$('#fbposts-' + this.getId()).attr( 'urlp', urlP)  
-            	$('#fbposts-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
-            	
-             }
-         
-             if ((appGlobals.isInDesignMode() == true) && ( FbPlugin == 'comments' )) {
-            	 
-            	 $('#fbcomments-' + this.getId()).attr( 'urlc', urlC) 
-            	 $('#fbcomments-' + this.getId()).attr( 'numposts', NumPosts)
-            	 $('#fbcomments-' + this.getId()).attr( 'colorscheme', ColorScheme)
-            
-            	 $('#fbcomments-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
-            	 
-             }*/
 
         },
 
        this.selectionChanged = function()  {
 
             //alert (" button selection changed")
+        	
+        	$('#codetype').prop('value', QRPlugin )
         	
         	$('#qrtype').prop('value', TypeQrcode )
         	
@@ -154,42 +120,81 @@ function QrCodeWidget (pid, ptype)
         	$('#emailText').prop('value', EmaIL )
         	
         	$('#subjectText').prop('value', SuBject )
+        	
+        	$('#latitude').prop('value', Latitude )
+        	
+        	$('#longitude').prop('value', Longitude )
+        	
+        	$('#address').prop('value', AddRess )
+        	
+        	$('#name').prop('value', NaMe )
 
-            $('#newFacebookURLText').prop('value', url )
+            $('#newURLText').prop('value', url )
             
-            $('#layout').prop('value', Layout )
+            $('#barcodenumber').prop('value', BarcodeNumber )
             
-            $('#actiontype').prop('value', ActionType )
-            
-            $('#showsharebutton').prop('checked', Share )
-            
-            $('#showfaces').prop('checked', Showfaces )
-            
-            $('#newFacebookPostsURLText').prop('value', urlP )
-            
-            $('#newFacebookCommentsURLText').prop('value', urlC )
-            
-            $('#comments').prop('value', NumPosts )
-            
-            $('#getcolor').prop('value', ColorScheme)
-                      
+            if (QRPlugin === 'qrcode') {
+            	
+            	$('#qroption').show()
+                
+            	$('#qr-' + this.getId()).show()
+            	
+            	$('#barcode-' + this.getId()).hide()
+            	
+            	$('#barcode').hide()
+            }   
+            if (QRPlugin === 'barcode') {
+            	
+            	$('#qroption').hide()
+                
+            	$('#qr-' + this.getId()).hide()
+            	
+            	$('#barcode-' + this.getId()).show()
+            	
+            	$('#barcode').show()
+            }
                    // alert(TypeQrcode)
        },
 
        this.initElement = function()
        {
     	  // if ((appGlobals.isInDesignMode() == false))
-    	   $('#' + this.getId()).ClassyQR({
+    	       	   
+    	   if (QRPlugin === 'qrcode') {
+    		   
+    	   $('#barcode-' + this.getId()).hide()  
+    	     	   
+    	   $('#qr-' + this.getId()).ClassyQR({
     		    create: true,
     		    type: TypeQrcode,
     		    text: QrcodeText,
     		    number: NumBer,
     		    email: EmaIL,
-    		    subject: SuBject
+    		    subject: SuBject,
+    		    latitude: Latitude,
+    		    longitude: Longitude,
+    		    address: AddRess,
+    		    name: NaMe,
+    		    url: url
     		});  
-    		  
-            
+    	   
+    	   }
+    	   
+    	   if (QRPlugin === 'barcode') {
+    		 
+    		   $('#barcode-' + this.getId()).show()
+    		   
+    		   $('#qr-' + this.getId()).hide()
+    	   }
+    	   
+    	   //alert(QRPlugin)
             	
+       },
+       
+       this.getCodeType = function ()
+       {
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'QRPlugin', 'ov': QRPlugin, 'nv': $('#codetype').prop('value') }])
+
        },
        
        this.getQrType = function ()
@@ -205,7 +210,7 @@ function QrCodeWidget (pid, ptype)
         
        this.changeURL = function ()
        {
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'url', 'ov': url, 'nv': $('#newFacebookURLText').prop('value') }])
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'url', 'ov': url, 'nv': $('#newURLText').prop('value') }])
 
        },
 
@@ -227,50 +232,59 @@ function QrCodeWidget (pid, ptype)
             this.myRegisterUniquePropEvent(  [{ 'prop': 'SuBject', 'ov': SuBject, 'nv': $('#subjectText').prop('checked') }])
 
         },
+        
+        this.getLatitude = function ()
+        {
 
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'Latitude', 'ov': Latitude, 'nv': $('#latitude').prop('value') }])
 
-        this.showFaces = function ()
+        },
+        
+        this.getLongitude = function ()
+        {
+
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'Longitude', 'ov': Longitude, 'nv': $('#longitude').prop('value') }])
+
+        },
+        
+        this.getAddress = function ()
+        {
+
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'AddRess', 'ov': AddRess, 'nv': $('#address').prop('value') }])
+
+        },
+        
+        this.getName = function ()
+        {
+
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'NaMe', 'ov': NaMe, 'nv': $('#name').prop('value') }])
+
+        },
+
+        this.getBarcodenumber = function ()
         {
              
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'Showfaces', 'ov': Showfaces, 'nv': $('#showfaces').prop('checked') }])
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'BarcodeNumber', 'ov': BarcodeNumber, 'nv': $('#barcodenumber').prop('value') }])
 
         },
          
-        this.changeURLP = function ()
-        {
-             this.myRegisterUniquePropEvent(  [{ 'prop': 'urlP', 'ov': urlP, 'nv': $('#newFacebookPostsURLText').prop('value') }])
-
-        },
-         
-        this.changeURLC = function ()
-        {
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'urlC', 'ov': urlC, 'nv': $('#newFacebookCommentsURLText').prop('value') }])
-
-        }, 
-        
-        this.getCommentsNum = function()
-        {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'NumPosts', 'ov': NumPosts, 'nv': $('#comments').prop('value') }])
-
-        },
-        
-        this.getcolor = function()
-        {
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'ColorScheme', 'ov': ColorScheme, 'nv': $('#getcolor').prop('value') }])
-
-        },
-        
-        this.getPlugin = function ()
-        {
-                    
-            this.myRegisterUniquePropEvent(  [{ 'prop': 'FbPlugin', 'ov': FbPlugin, 'nv': $('#fbplugin').prop('value') }])
-
-       },
-
-
        this.createJSON = function () {
          
-            return { 'TypeQrcode': TypeQrcode, 'QrcodeText': QrcodeText, 'NumBer': NumBer, 'EmaIL': EmaIL, 'SuBject': SuBject, 'url': url,'ActionType': ActionType, 'Share': Share, 'Showfaces': Showfaces, 'urlP': urlP, 'urlC': urlC, 'NumPosts':NumPosts, 'ColorScheme': ColorScheme } 
+
+				 return {
+					'QRPlugin' : QRPlugin,
+					'TypeQrcode' : TypeQrcode,
+					'QrcodeText' : QrcodeText,
+					'NumBer' : NumBer,
+					'EmaIL' : EmaIL,
+					'SuBject' : SuBject,
+					'url' : url,
+					'Latitude' : Latitude,
+					'Longitude' : Longitude,
+					'AddRess' : AddRess,
+					'NaMe' : NaMe,
+					'BarcodeNumber' : BarcodeNumber
+				} 
         }
         
 
@@ -279,7 +293,7 @@ function QrCodeWidget (pid, ptype)
    
 
 QrCodeWidget.buttomImage= 'images/button_icon.png'
-QrCodeWidget.typeId= 'qrcode'
+QrCodeWidget.typeId= 'qr-1dcode'
 QrCodeWidget.myClass= 'widget_qrcode'
 QrCodeWidget.initialWidth= '230'
 QrCodeWidget.initialHeight= '230'
@@ -289,7 +303,13 @@ QrCodeWidget.actionsSectionId= 'qrcodeMenu'
 QrCodeWidget.init = function () {
 	
 	$("#qrcodeMenu").append(
-			"<div>Choose the type of qr code<select id='qrtype' onchange='appGlobals.currentObject().getQrType()'>"+
+			"<div id='choosecode'>Choose the type of code<select id='codetype' onchange='appGlobals.currentObject().getCodeType()'>"+
+			"<option value='qrcode'>QR</option>"+
+			"<option value='barcode'>Barcode</option>"+
+			"</select></div>")
+	
+	$("#qrcodeMenu").append(
+			"<div id='qroption'>Choose the type of qr code<select id='qrtype' onchange='appGlobals.currentObject().getQrType()'>"+
 			"<option value='text'>Text</option>"+
 			"<option value='email'>Email</option>"+
 			"<option value='location'>Location</option>"+
@@ -298,44 +318,27 @@ QrCodeWidget.init = function () {
 			"<option value='url'>Url</option>"+
 			"<option value='wifi'>Wifi</option>"+
 			"<option value='contact'>Contact</option>"+
-			"</select></div><br>")
-	
-	$("#qrcodeMenu").append("Text:<input type='text' id='newqrText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>")
-
-    $("#qrcodeMenu").append("<br>Number:<br><input type='number' id='number'><br><button onclick='appGlobals.currentObject().changeNumber()'>Update</button>")
+			"</select><br>"+
+			
+			"Text:<input type='text' id='newqrText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>"+
+			
+			"<br>Number:<br><input type='number' id='number'><br><button onclick='appGlobals.currentObject().changeNumber()'>Update</button>"+
+			
+			"<br>Email:<input type='email' id='emailText'><button onclick='appGlobals.currentObject().getEmail()'>Update</button>"+
+			
+			"<br>Email Subject:<input type='text' id='subjectText'><button onclick='appGlobals.currentObject().getEmailSubject()'>Update</button>"+
+			
+			"<br>Latitude:<br><input type='number' id='latitude'><br><button onclick='appGlobals.currentObject().getLatitude()'>Update</button>"+
+			
+			"<br>Longitude:<br><input type='number' id='longitude'><br><button onclick='appGlobals.currentObject().getLongitude()'>Update</button>"+
+			
+			"<br>Address:<input type='text' id='address'><button onclick='appGlobals.currentObject().getAddress()'>Update</button>"+
+			
+			"<br>Name:<input type='text' id='name'><button onclick='appGlobals.currentObject().getName()'>Update</button>"+
+			
+			"<br>URL<input type='text' id='newURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button></div>")
     
-    $("#qrcodeMenu").append("<br>Email:<input type='email' id='emailText'><button onclick='appGlobals.currentObject().getEmail()'>Update</button>")
+   $("#qrcodeMenu").append("<div id='barcode'>Barcode Number:<br><input type='number' id='barcodenumber'><br><button onclick='appGlobals.currentObject().getBarcodenumber()'>Update</button></div>")		
     
-    $("#qrcodeMenu").append("<br>Email Subject:<input type='text' id='subjectText'><button onclick='appGlobals.currentObject().getEmailSubject()'>Update</button>")
-	
-	$("#qrcodeMenu").append("<div id='n'>URL<input type='text' id='newFacebookURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button>"+
-
-    							"<div>Choose layout<select id='layout' onchange='appGlobals.currentObject().getLayout()'>"+
-    							"<option value='standard'>standard</option>"+
-    							"<option value='box_count'>box_count</option>"+
-    							"<option value='button_count'>button_count</option>"+
-    							"<option value='button'>button</option>"+
-    							"</select></div>"+
-   
-    							"<div>Choose action type<select id='actiontype' onchange='appGlobals.currentObject().getactiontype()'>"+
-    							"<option value='like'>like</option>"+
-    							"<option value='recommend'>recommend</option>"+
-    							"</select></div>"+
-
-    							"<br>Show share button<input type='checkbox' id='showsharebutton' onclick='appGlobals.currentObject().showShareButton()'>"+
-    
-    							"<br>Show Friend's faces<input type='checkbox' id='showfaces' onclick='appGlobals.currentObject().showFaces()'></div>")
-    
-    $("#qrcodeMenu").append("<div id='fbposts'>URL<input type='text' id='newFacebookPostsURLText'><button onclick='appGlobals.currentObject().changeURLP()'>Update</button></div>")
-    
-    $("#qrcodeMenu").append("<div id='fbcomments'>URL<input type='text' id='newFacebookCommentsURLText'><button onclick='appGlobals.currentObject().changeURLC()'>Update</button>"+
-    						  "<br>Choose the number of comments to show <input type='edit' id='comments' name='comments' value='' >"+
-    						  "<div>Choose the color of the scheme<select id='getcolor' onchange='appGlobals.currentObject().getcolor()'>"+
-    						  "<option value='light'>light</option>"+
-    						  "<option value='dark'>dark</option>"+
-    						  "</select></div></div>")
-
-    $("#comments").spinner({ min: 1, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().getCommentsNum() } })    
-
 }
 

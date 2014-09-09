@@ -4,6 +4,13 @@ $(function() {
     var hours = minutes = seconds = milliseconds = 0;
     var prev_hours = prev_minutes = prev_seconds = prev_milliseconds = undefined;
     var timeUpdate;
+    
+    var MilliSeconds = $(window.frameElement).attr('mseconds')
+    
+    if (MilliSeconds == "false"){
+    	
+    	$("#dots, #milliseconds").hide()
+    }
 	
     // Start/Pause/Resume button onClick
     $("#start_pause_resume").click(function(){

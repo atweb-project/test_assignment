@@ -7,12 +7,29 @@
         <style type="text/css">
 			#time {
 				font-size: 150%;
+				color: #fff;
+				margin-bottom: 10px;
+			}
+
+			#hours, #minutes, #seconds, #milliseconds {
+				position: relative;
+				margin: 0 0px;
+				padding: 3px;
+				border-radius: 5px;
+				background: #f08834;
+				box-shadow: 5px 5px 0px rgba(0,0,0,0.08);
+				overflow: hidden;
+				text-shadow: 0 0 5px rgba(255, 255, 255, 1);
+			}
+
+			#dots1, #dots2, #dots {
+				color: #000;
 			}
         </style>
     </head>
     <body>
         <div id="time">
-            <span id="hours">00</span> : <span id="minutes">00</span> : <span id="seconds">00</span> :: <span id="milliseconds">000</span>
+            <span id="hours">00</span><span id="dots1">  :  </span><span id="minutes">00</span><span id="dots2">  :  </span><span id="seconds">00</span><span id="dots"> . </span><span id="milliseconds">000</span>
         </div>
         <div id="controls">
             <button id="start_pause_resume">Start</button>

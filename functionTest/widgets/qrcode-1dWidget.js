@@ -13,7 +13,7 @@ function QrCodeWidget (pid, ptype)
       //QR code plugin
     	var TypeQrcode = "text"
      	var QrcodeText = 'This is the text to embed'
-     	var NumBer = '6957218212'
+     	var NumBer = '6977564686'
      	var EmaIL = 'dikostaras@yahoo.gr'
      	var SuBject = 'this is the subject to embed'
      	var Latitude = '51.5286416'
@@ -55,12 +55,14 @@ function QrCodeWidget (pid, ptype)
                 if (typeof (param.BarcodeNumber) !== 'undefined') BarcodeNumber = param.BarcodeNumber
 
                 //alert(" param.url "+param.url+"  param.allowFullscreen " + param.allowFullscreen + " number of params " + param.length)
-                	alert(QRPlugin)
+                	//alert(QRPlugin)
              }
             
 
             return '<div id="' + this.getId() + '">'+
-            		'<div  id="qr-' + this.getId() + '" class="code" style="width:100%; height:100%;"></div>'+
+            		'<iframe  id="qr-' + this.getId() + '" style="width:100%; height:100%;" src="qrcode/QRWidget.html" scrolling="no" frameborder="0" allowTransparency="true" typeqrcode="'+
+            		TypeQrcode+'" qrcodetext="'+QrcodeText+'" number="'+NumBer+'" email="'+EmaIL+'" subject="'+SuBject+'" latitude="'+
+            		Latitude+'" longitude="'+Longitude+'" address="'+AddRess+'" name="'+NaMe+'" url="'+url+'"></iframe>'+
             		'<iframe width="100%" id="barcode-' + this.getId() + '" height="100%" style="display:none;" src="qrcode/1dWidget.html" scrolling="no" frameborder="0" allowTransparency="true" barcodenumber="'+BarcodeNumber+'"></iframe></div>'
        
         },
@@ -94,6 +96,32 @@ function QrCodeWidget (pid, ptype)
                   
                 if (param[i].prop == 'BarcodeNumber') BarcodeNumber = param[i].value
 
+            }
+            
+            if ( QRPlugin == 'qrcode' ) {
+            	
+            	$('#qr-' + this.getId()).attr('typeqrcode', TypeQrcode )
+            	
+            	$('#qr-' + this.getId()).attr('qrcodetext', QrcodeText )
+            	
+            	$('#qr-' + this.getId()).attr('number', NumBer )
+            	
+            	$('#qr-' + this.getId()).attr('email', EmaIL )
+            	
+            	$('#qr-' + this.getId()).attr('typeqrcode', SuBject )
+            	
+            	$('#qr-' + this.getId()).attr('typeqrcode', Latitude )
+            	
+            	$('#qr-' + this.getId()).attr('typeqrcode', Longitude )
+            	
+            	$('#qr-' + this.getId()).attr('typeqrcode', AddRess )
+            	
+            	$('#qr-' + this.getId()).attr('typeqrcode', NaMe )
+            	
+            	$('#qr-' + this.getId()).attr('typeqrcode', url )
+            	
+            	$('#qr-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
+            	
             }
                         
             if ( QRPlugin == 'barcode' ) {
@@ -153,6 +181,163 @@ function QrCodeWidget (pid, ptype)
             	
             	$('#barcode').show()
             }
+            
+            var TypePluginValue = TypeQrcode 
+        	
+        	switch (TypePluginValue) { 
+		     case 'text' : 
+
+		    	 	$('#qrtext').show()
+	                            	
+	            	$('#qrnumber').hide()
+	            		            	
+	            	$('#qremail').hide()
+	            	
+	            	$('#qremailsubject').hide()
+	            	
+	            	$('#qrlatitude').hide()
+	            	
+	            	$('#qrlongitude').hide()
+	            	
+	            	$('#qraddress').hide()
+	            	
+	            	$('#qrname').hide()
+	            	
+	            	$('#qrurl').hide()
+	            	
+		         break;
+		     case 'email' : 
+		    	                 	            	
+	            	$('#qrtext').show()
+	            	
+	            	$('#qremail').show()
+	            	
+	            	$('#qremailsubject').show()
+	            	
+	            	$('#qrnumber').hide()
+	            		            		            	
+	            	$('#qrlatitude').hide()
+	            	
+	            	$('#qrlongitude').hide()
+	            	
+	            	$('#qraddress').hide()
+	            	
+	            	$('#qrname').hide()
+	            	
+	            	$('#qrurl').hide()
+
+		         break;
+	            	
+		     case 'location' : 
+		    	 	
+		    	 	$('#qrtext').hide()
+	            	
+	            	$('#qrlatitude').show()
+	            	
+	            	$('#qrlongitude').show()
+	            	
+	            	$('#qrnumber').hide()
+	            		            	
+	            	$('#qremail').hide()
+	            	
+	            	$('#qremailsubject').hide()
+	            		            	
+	            	$('#qraddress').hide()
+	            	
+	            	$('#qrname').hide()
+	            	
+	            	$('#qrurl').hide()
+	            	
+		         break;
+		    	 	
+		     case 'sms' : 
+		    	 	
+		    	 	$('#qrtext').show()
+	            	
+	            	$('#qrlatitude').hide()
+	            	
+	            	$('#qrlongitude').hide()
+	            	
+	            	$('#qrnumber').show()
+	            		            	
+	            	$('#qremail').hide()
+	            	
+	            	$('#qremailsubject').hide()
+	            		            	
+	            	$('#qraddress').hide()
+	            	
+	            	$('#qrname').hide()
+	            	
+	            	$('#qrurl').hide()
+	            	
+		         break;
+		    	 	
+		     case 'call' : 
+		    	 	
+		    	 	$('#qrtext').hide()
+	            	
+	            	$('#qrlatitude').hide()
+	            	
+	            	$('#qrlongitude').hide()
+	            	
+	            	$('#qrnumber').show()
+	            		            	
+	            	$('#qremail').hide()
+	            	
+	            	$('#qremailsubject').hide()
+	            		            	
+	            	$('#qraddress').hide()
+	            	
+	            	$('#qrname').hide()
+	            	
+	            	$('#qrurl').hide()
+	            	
+		         break;
+		    	 	
+		     case 'url' : 
+		    	 	
+		    	 	$('#qrtext').hide()
+	            	
+	            	$('#qrlatitude').hide()
+	            	
+	            	$('#qrlongitude').hide()
+	            	
+	            	$('#qrnumber').hide()
+	            		            	
+	            	$('#qremail').hide()
+	            	
+	            	$('#qremailsubject').hide()
+	            		            	
+	            	$('#qraddress').hide()
+	            	
+	            	$('#qrname').hide()
+	            	
+	            	$('#qrurl').show()
+	            	
+		         break;
+		    	 	
+		     case 'contact' : 
+		    	 	
+		    	 	$('#qrtext').hide()
+	            	
+	            	$('#qrlatitude').hide()
+	            	
+	            	$('#qrlongitude').hide()
+	            	
+	            	$('#qrnumber').show()
+	            		            	
+	            	$('#qremail').show()
+	            	
+	            	$('#qremailsubject').hide()
+	            		            	
+	            	$('#qraddress').show()
+	            	
+	            	$('#qrname').show()
+	            	
+	            	$('#qrurl').hide()
+	            	
+		         break;
+        	}
                    // alert(TypeQrcode)
        },
 
@@ -164,19 +349,7 @@ function QrCodeWidget (pid, ptype)
     		   
     	   $('#barcode-' + this.getId()).hide()  
     	     	   
-    	   $('#qr-' + this.getId()).ClassyQR({
-    		    create: true,
-    		    type: TypeQrcode,
-    		    text: QrcodeText,
-    		    number: NumBer,
-    		    email: EmaIL,
-    		    subject: SuBject,
-    		    latitude: Latitude,
-    		    longitude: Longitude,
-    		    address: AddRess,
-    		    name: NaMe,
-    		    url: url
-    		});  
+    	   $('#qr-' + this.getId()).show()
     	   
     	   }
     	   
@@ -214,7 +387,7 @@ function QrCodeWidget (pid, ptype)
 
        },
 
-       this.getNumber = function()
+       this.changeNumber = function()
        {
         	this.myRegisterUniquePropEvent(  [{ 'prop': 'NumBer', 'ov': NumBer, 'nv': $('#number').prop('value') }])
 
@@ -316,27 +489,26 @@ QrCodeWidget.init = function () {
 			"<option value='sms'>Sms</option>"+
 			"<option value='call'>Call</option>"+
 			"<option value='url'>Url</option>"+
-			"<option value='wifi'>Wifi</option>"+
 			"<option value='contact'>Contact</option>"+
-			"</select><br>"+
+			"</select>"+
 			
-			"Text:<input type='text' id='newqrText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button>"+
+			"<div id='qrtext'>Text:<input type='text' id='newqrText'><button onclick='appGlobals.currentObject().changeLabel()'>Update</button></div>"+
 			
-			"<br>Number:<br><input type='number' id='number'><br><button onclick='appGlobals.currentObject().changeNumber()'>Update</button>"+
+			"<div id='qrnumber'>Number:<br><input type='number' id='number'><br><button onclick='appGlobals.currentObject().changeNumber()'>Update</button></div>"+
 			
-			"<br>Email:<input type='email' id='emailText'><button onclick='appGlobals.currentObject().getEmail()'>Update</button>"+
+			"<div id='qremail'>Email:<input type='email' id='emailText'><button onclick='appGlobals.currentObject().getEmail()'>Update</button></div>"+
 			
-			"<br>Email Subject:<input type='text' id='subjectText'><button onclick='appGlobals.currentObject().getEmailSubject()'>Update</button>"+
+			"<div id='qremailsubject'>Email Subject:<input type='text' id='subjectText'><button onclick='appGlobals.currentObject().getEmailSubject()'>Update</button></div>"+
 			
-			"<br>Latitude:<br><input type='number' id='latitude'><br><button onclick='appGlobals.currentObject().getLatitude()'>Update</button>"+
+			"<div id='qrlatitude'>Latitude:<br><input type='number' id='latitude'><br><button onclick='appGlobals.currentObject().getLatitude()'>Update</button></div>"+
 			
-			"<br>Longitude:<br><input type='number' id='longitude'><br><button onclick='appGlobals.currentObject().getLongitude()'>Update</button>"+
+			"<div id='qrlongitude'>Longitude:<br><input type='number' id='longitude'><br><button onclick='appGlobals.currentObject().getLongitude()'>Update</button></div>"+
 			
-			"<br>Address:<input type='text' id='address'><button onclick='appGlobals.currentObject().getAddress()'>Update</button>"+
+			"<div id='qraddress'>Address:<input type='text' id='address'><button onclick='appGlobals.currentObject().getAddress()'>Update</button></div>"+
 			
-			"<br>Name:<input type='text' id='name'><button onclick='appGlobals.currentObject().getName()'>Update</button>"+
+			"<div id='qrname'>Name:<input type='text' id='name'><button onclick='appGlobals.currentObject().getName()'>Update</button></div>"+
 			
-			"<br>URL<input type='text' id='newURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button></div>")
+			"<div id='qrurl'>URL<input type='text' id='newURLText'><button onclick='appGlobals.currentObject().changeURL()'>Update</button></div></div>")
     
    $("#qrcodeMenu").append("<div id='barcode'>Barcode Number:<br><input type='number' id='barcodenumber'><br><button onclick='appGlobals.currentObject().getBarcodenumber()'>Update</button></div>")		
     

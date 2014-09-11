@@ -108,17 +108,17 @@ function QrCodeWidget (pid, ptype)
             	
             	$('#qr-' + this.getId()).attr('email', EmaIL )
             	
-            	$('#qr-' + this.getId()).attr('typeqrcode', SuBject )
+            	$('#qr-' + this.getId()).attr('subject', SuBject )
             	
-            	$('#qr-' + this.getId()).attr('typeqrcode', Latitude )
+            	$('#qr-' + this.getId()).attr('latitude', Latitude )
             	
-            	$('#qr-' + this.getId()).attr('typeqrcode', Longitude )
+            	$('#qr-' + this.getId()).attr('longitude', Longitude )
             	
-            	$('#qr-' + this.getId()).attr('typeqrcode', AddRess )
+            	$('#qr-' + this.getId()).attr('address', AddRess )
             	
-            	$('#qr-' + this.getId()).attr('typeqrcode', NaMe )
+            	$('#qr-' + this.getId()).attr('name', NaMe )
             	
-            	$('#qr-' + this.getId()).attr('typeqrcode', url )
+            	$('#qr-' + this.getId()).attr('url', url )
             	
             	$('#qr-' + this.getId()).attr( 'src', function ( i, val ) { return val; })
             	

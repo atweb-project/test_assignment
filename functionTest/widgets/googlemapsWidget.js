@@ -5,171 +5,152 @@
         
         MyWidget.call(this, pid, ptype)
 
-      var url = "media/echo-hereweare.mp4"
-      var urlIE = "media/echo-hereweare.webm"
-      var urlOGG = "media/echo-hereweare.ogv"
-      var PosTer = "media/echo-hereweare.jpg"
-      var AutoPLay = false
-      var FullScreen = true
-      var startVolume = 0.8
-      var LOOP = false
-     
-      
-
+      var Latitude = '51.528641'
+      var Longitude = '-0.101598'
+      var Zoom = 14
+      var MapControl = true
+      var PanControl = true
+      var RotateControl = true
+      var StreetViewControl = true
+  
         this.createElement= function (param) {
 
             if (typeof (param) !== 'undefined') {
-
-            	if ( typeof (param.url) !== 'undefined') url = param.url
-            	if ( typeof (param.urlIE) !== 'undefined') urlIE = param.urlIE
-            	if ( typeof (param.urlOGG) !== 'undefined') urlOGG = param.urlOGG
-            	if ( typeof (param.PosTer) !== 'undefined') PosTer = param.PosTer
-            	if ( typeof (param.AutoPLay) !== 'undefined') AutoPLay = param.AutoPLay
-            	if ( typeof (param.FullScreen) !== 'undefined') FullScreen = param.FullScreen
-            	if ( typeof (param.startVolume) !== 'undefined') startVolume = param.startVolume
-            	if ( typeof (param.LOOP) !== 'undefined') LOOP = param.LOOP
-           	
-
+            	
+            	if( typeof (param.Latitude) !== 'undefined') Latitude = param.Latitude
+            	
+            	if( typeof (param.Longitude) !== 'undefined') Longitude = param.Longitude
+            	
+            	if( typeof (param.Zoom) !== 'undefined') Zoom = param.Zoom
+            	
+            	if( typeof (param.MapControl) !== 'undefined') MapControl = param.MapControl
+            	
+            	if( typeof (param.PanControl) !== 'undefined') PanControl = param.PanControl
+            	
+            	if( typeof (param.RotateControl) !== 'undefined') RotateControl = param.RotateControl
+            	
+            	if( typeof (param.StreetViewControl) !== 'undefined') StreetViewControl = param.StreetViewControl
+      	
             }
 
            
             return '<iframe width="100%" height="100%" id="' + this.getId() + '" src="googlemaps/googlemapsWidget.html" frameborder="0" '+
-             	   'allowfullscreen="true" webkitAllowFullScreen="true" mozallowfullscreen="true" autostart="'+AutoPLay+'" videofullscreen="'+FullScreen+'" '+
-             	   'volume="'+startVolume+'" allowloop="'+LOOP+'" url="'+url+'" urlie="'+urlIE+'" urlogg ="'+urlOGG+'" poster="'+PosTer+'"></iframe>'
-            	
-            
-            
+             	   'allowfullscreen="true" latitude="'+Latitude+'" longitude="'+Longitude+'" zoom="'+Zoom+'" mapcontrol="'+MapControl+'" '+
+             	   'pancontrol="'+PanControl+'" rotatecontrol="'+RotateControl+'" streetviewcontrol="'+StreetViewControl+'"></iframe>'
+            	                        
         },
         
         this.initElement = function(param){
         	
 		},
 		
-		this.autoPlayparam = function() {
-				
-			 if ((appGlobals.isInDesignMode() == true) && ( AutoPLay == true)) 
-	             
-	            	$('#'+this.getId()).attr('paramplay','0');
-		},
+		this.getLatitude = function ()
+        {
+
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'Latitude', 'ov': Latitude, 'nv': $('#latitude').prop('value') }])
+
+        },
+        
+        this.getLongitude = function ()
+        {
+
+            this.myRegisterUniquePropEvent(  [{ 'prop': 'Longitude', 'ov': Longitude, 'nv': $('#longitude').prop('value') }])
+
+        },
 		       
-        this.changeURLVideo = function() {
+        this.changeZoom = function() {
 			
-            this.myRegisterUniquePropEvent( [{ 'prop': 'url', 'ov': url, 'nv': $('#newvideoURLText').prop('value') }])
+            this.myRegisterUniquePropEvent( [{ 'prop': 'Zoom', 'ov': Zoom, 'nv': $('#zoomnumber').prop('value') }])
                          
         },
         
-        this.changeURLIE = function() {
+        this.changeMapControl = function() {
         	
-        	this.myRegisterUniquePropEvent( [{ 'prop': 'urlIE', 'ov': urlIE, 'nv': $('#newvideoURLIEText').prop('value') }])
+        	this.myRegisterUniquePropEvent( [{ 'prop': 'MapControl', 'ov': MapControl, 'nv': $('#mapcontrol').prop('checked') }])
         
         },   
         
-        this.changeURLOGG = function() {
+        this.changePanControl = function() {
         	
-        	this.myRegisterUniquePropEvent( [{ 'prop': 'urlOGG', 'ov': urlOGG, 'nv': $('#newvideoURLOGGText').prop('value') }])
+        	this.myRegisterUniquePropEvent( [{ 'prop': 'PanControl', 'ov': PanControl, 'nv': $('#pancontrol').prop('checked') }])
         
         }, 
         
-        this.choosePoster = function() {
+        this.chooseRotateControl = function() {
         	
-        	this.myRegisterUniquePropEvent( [{ 'prop': 'PosTer', 'ov': PosTer, 'nv': $('#PosTer').prop('value') }])
+        	this.myRegisterUniquePropEvent( [{ 'prop': 'RotateControl', 'ov': RotateControl, 'nv': $('#rotatecontrol').prop('checked') }])
         
         }, 
         
-        this.changAutoplay = function() {
+        this.changeStreetViewControl = function() {
         	
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'AutoPLay', 'ov': AutoPLay, 'nv': $('#autoplayPlayer').prop('checked') }])
-        	
-        },
-        
-        this.changeFullscreen = function() {
-        	
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'FullScreen', 'ov': FullScreen, 'nv': $('#allowfullscreen').prop('checked') }])
+        	this.myRegisterUniquePropEvent(  [{ 'prop': 'StreetViewControl', 'ov': StreetViewControl, 'nv': $('#streetviewcontrol').prop('checked') }])
         	
         },
-        
-        this.changeVolume = function() {
-        	
-        	var ns = $('#volume').spinner("value")
-
-			if (ns != null) {
-				//alert(ns)
-						
-				this.myRegisterUniquePropEvent([ {'prop' : 'startVolume', 'ov' : startVolume, 'nv' : ns} ])
-				
-
-			} else {
-
-				alert("Numbers only")
-			}
-        	
-        },
-        
-        this.selectLoop = function() {
-        	
-        	this.myRegisterUniquePropEvent(  [{ 'prop': 'LOOP', 'ov': LOOP, 'nv': $('#allowloop').prop('checked') }])
-        	
-        },
-        
+               
         this.propChange= function (param) {
 
            // alert ("button prop change "+this.getId()+" param "+param.length)
 
         	 for (var i = 0; i < param.length; i++) {
+        		 
+        		 if( param[i].prop == 'Latitude' ) Latitude = param[i].value
+             	
+             	 if( param[i].prop == 'Longitude' ) Longitude = param[i].value
 
-                 if (param[i].prop == 'url') url =  param[i].value 
+                 if (param[i].prop == 'Zoom') Zoom =  param[i].value 
                  
-                 if (param[i].prop == 'urlIE') urlIE =  param[i].value 
+                 if (param[i].prop == 'MapControl') MapControl =  param[i].value 
                  
-                 if (param[i].prop == 'urlOGG') urlOGG =  param[i].value 
+                 if (param[i].prop == 'PanControl') PanControl =  param[i].value 
                  
-                 if (param[i].prop == 'PosTer') PosTer =  param[i].value
+                 if (param[i].prop == 'RotateControl') RotateControl =  param[i].value
                    
-                 if (param[i].prop == 'AutoPLay') AutoPLay = param[i].value
+                 if (param[i].prop == 'StreetViewControl') StreetViewControl = param[i].value
                  
-                 if (param[i].prop == 'FullScreen') FullScreen = param[i].value
-                 
-                 if (param[i].prop == 'startVolume') startVolume = param[i].value
-                 
-                 if (param[i].prop == 'LOOP') LOOP = param[i].value
-                 
-
              }
         	 
-        	 $('#'+this.getId() ).attr( 'url', url)
-        	 $('#'+this.getId() ).attr( 'urlie', urlIE)
-        	 $('#'+this.getId() ).attr( 'urlogg', urlOGG)
-        	 $('#'+this.getId() ).attr( 'poster', PosTer)    	 
-        	 $('#'+this.getId() ).attr( 'autostart', AutoPLay)
-        	 $('#'+this.getId() ).attr( 'videofullscreen', FullScreen)
-        	 $('#'+this.getId() ).attr( 'volume', startVolume)
-        	 $('#'+this.getId() ).attr( 'allowloop', LOOP)
+        	 $('#'+this.getId()).attr('latitude', Latitude )
+         	
+         	 $('#'+this.getId()).attr('longitude', Longitude )
         	 
+        	 $('#'+this.getId() ).attr( 'zoom', Zoom)
+        	 
+        	 $('#'+this.getId() ).attr( 'mapcontrol', MapControl)
+        	 
+        	 $('#'+this.getId() ).attr( 'pancontrol', PanControl)
+        	 
+        	 $('#'+this.getId() ).attr( 'rotatecontrol', RotateControl)   
+        	 
+        	 $('#'+this.getId() ).attr( 'streetviewcontrol', StreetViewControl)
+                	 
         	 $('#'+this.getId() ).attr( 'src', function ( i, val ) { return val; })
         	 
-        	 this.autoPlayparam()
-
         },
 
         this.selectionChanged=function()  {
 
           //  alert(" button selection changed " + $(currentID).html())
 
-            $('#newvideoURLText').prop('value', url)
-            $('#newvideoURLIEText').prop('value', urlIE)
-            $('#newvideoURLOGGText').prop('value', urlOGG)
-            $('#PosTer').prop('value', PosTer)
-            $('#autoplayPlayer').prop('checked', AutoPLay )
-            $('#allowfullscreen').prop('checked', FullScreen )
-            $('#volume').spinner('value', startVolume)
-            $('#allowloop').prop('checked', LOOP )
-
-
+        	$('#latitude').prop('value', Latitude )
+        	
+        	$('#longitude').prop('value', Longitude )
+        	
+        	$('#zoomnumber').prop('value', Zoom)
+        	
+            $('#mapcontrol').prop('checked', MapControl)
+            
+            $('#pancontrol').prop('checked', PanControl)
+            
+            $('#rotatecontrol').prop('checked', RotateControl)
+            
+            $('#streetviewcontrol').prop('checked', StreetViewControl )
+            
         },
          
         this.createJSON = function() {
 
-             return { 'url': url, 'urlIE': urlIE,'urlOGG': urlOGG,'PosTer': PosTer, 'AutoPLay':AutoPLay, 'FullScreen': FullScreen,'startVolume': startVolume,'LOOP': LOOP}
+             return { 'Latitude' : Latitude, 'Longitude' : Longitude,'Zoom': Zoom, 'MapControl': MapControl,'PanControl': PanControl,'RotateControl': RotateControl, 'StreetViewControl': StreetViewControl}
 
         }
         
@@ -178,15 +159,18 @@
 // static variables/functionsc
 
     GoogleMapsWidget.init = function () {
-    	$("#googlemapsMenu").append("Mp4 URL<br><input type='text' id='newvideoURLText'><button onclick='appGlobals.currentObject().changeURLVideo()'>Update</button>")
-    	$("#googlemapsMenu").append("<br>Webm URL<br><input type='text' id='newvideoURLIEText'><button onclick='appGlobals.currentObject().changeURLIE()'>Update</button>")
-    	$("#googlemapsMenu").append("<br>OGV URL<br><input type='text' id='newvideoURLOGGText'><button onclick='appGlobals.currentObject().changeURLOGG()'>Update</button>")
-    	$("#googlemapsMenu").append("<br>Choose image for poster start in the player<br><input type='text' id='PosTer'><button onclick='appGlobals.currentObject().choosePoster()'>Update</button>")
-    	$("#googlemapsMenu").append("<br>Autoplay<input type='checkbox' id='autoplayPlayer' name='autoplay' value='' onclick='appGlobals.currentObject().changAutoplay()'>")
-    	$("#googlemapsMenu").append("<br>Allow Fullscreen<input type='checkbox' id='allowfullscreen' name='' value='' onclick='appGlobals.currentObject().changeFullscreen()'>")
-    	$("#googlemapsMenu").append("<br>Choose volume start <input type='edit' id='volume' name='volume' value='' >")
-        $("#volume").spinner({ min: 0.8, max: 1, step: 0.01, numberFormat: "n", change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeVolume() } })
-        $("#googlemapsMenu").append("<br>Allow Loop<input type='checkbox' id='allowloop' name='' value='' onclick='appGlobals.currentObject().selectLoop()'>")
+    	
+    	$("#googlemapsMenu").append("Latitude:<br><input type='edit' id='latitude'>")
+		$("#latitude").spinner({ step: .000001, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().getLatitude() } })
+    	$("#googlemapsMenu").append("<br>Longitude:<br><input type='edit' id='longitude'>")
+    	$("#longitude").spinner({ step: .000001, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().getLongitude() } })
+		$("#googlemapsMenu").append("<br>Zoom<br><input type='edit' id='zoomnumber'>")
+    	$("#zoomnumber").spinner({ min: 0, max: 19, change: function (event, ui) { if (event.originalEvent) appGlobals.currentObject().changeZoom() } })
+		$("#googlemapsMenu").append("<br>Map Type Control<input type='checkbox' id='mapcontrol' onclick='appGlobals.currentObject().changeMapControl()'>")
+    	$("#googlemapsMenu").append("<br>Pan Control<input type='checkbox' id='pancontrol' onclick='appGlobals.currentObject().changePanControl()'>")
+    	$("#googlemapsMenu").append("<br>Rotate Control<input type='checkbox' id='rotatecontrol' value='' onclick='appGlobals.currentObject().chooseRotateControl()'>")
+    	$("#googlemapsMenu").append("<br>Street View Controol<input type='checkbox' id='streetviewcontrol' name='' value='' onclick='appGlobals.currentObject().changeStreetViewControl()'>")
+    	
 }
 GoogleMapsWidget.buttomImage='images/button_icon.png'
 GoogleMapsWidget.typeId= 'gmaps'

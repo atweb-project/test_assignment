@@ -81,13 +81,16 @@
         <script src="widgets/qrcode-1dWidget.js" type="text/javascript"></script>
                 
         <!-- google maps widget -->
-        
         <script src="widgets/googlemapsWidget.js" type="text/javascript"></script>
+        
+        <!-- display sequence of images widget -->
+        <script src="widgets/sequenceOfImagesWidget.js" type="text/javascript"></script>
         
 		<script>
 		
 		 $(document).ready(function () {
 		     
+		    widgetSetup( SequenceWidget) 		     
 		    widgetSetup( GoogleMapsWidget)
 		    widgetSetup( QrCodeWidget)
 		    widgetSetup( StopwatchWidget) 
